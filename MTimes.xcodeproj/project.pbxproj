@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */; };
+		048F59961CD9945400873784 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F59951CD9945400873784 /* MovieViewController.swift */; };
 		04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729441CD033DA00FF6DBE /* AppDelegate.swift */; };
-		04D729471CD033DA00FF6DBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729461CD033DA00FF6DBE /* ViewController.swift */; };
 		04D7294A1CD033DA00FF6DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D729481CD033DA00FF6DBE /* Main.storyboard */; };
 		04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */; };
 		04D7294F1CD033DA00FF6DBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D7294E1CD033DA00FF6DBE /* Assets.xcassets */; };
 		04D729521CD033DA00FF6DBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D729501CD033DA00FF6DBE /* LaunchScreen.storyboard */; };
 		04D7295D1CD033DA00FF6DBE /* MTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7295C1CD033DA00FF6DBE /* MTimesTests.swift */; };
 		04D729681CD033DA00FF6DBE /* MTimesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729671CD033DA00FF6DBE /* MTimesUITests.swift */; };
+		04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729791CD05CE700FF6DBE /* PlayingTableController.swift */; };
+		04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */; };
+		04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297D1CD05F6E00FF6DBE /* Movie.swift */; };
+		415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E80280748C35BB08147FCB /* Pods.framework */; };
+		D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +40,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		04D7298B1CD830DC00FF6DBE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTableController.swift; sourceTree = "<group>"; };
+		048F59951CD9945400873784 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		04D729411CD033DA00FF6DBE /* MTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D729441CD033DA00FF6DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04D729461CD033DA00FF6DBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04D729491CD033DA00FF6DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D7294C1CD033DA00FF6DBE /* MTimes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MTimes.xcdatamodel; sourceTree = "<group>"; };
 		04D7294E1CD033DA00FF6DBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +69,14 @@
 		04D729631CD033DA00FF6DBE /* MTimesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MTimesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D729671CD033DA00FF6DBE /* MTimesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTimesUITests.swift; sourceTree = "<group>"; };
 		04D729691CD033DA00FF6DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D729791CD05CE700FF6DBE /* PlayingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingTableController.swift; sourceTree = "<group>"; };
+		04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableCell.swift; sourceTree = "<group>"; };
+		04D7297D1CD05F6E00FF6DBE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		04D729911CD8331000FF6DBE /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.debug.xcconfig"; sourceTree = "<group>"; };
+		A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7E80280748C35BB08147FCB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */,
+				D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +113,8 @@
 				04D7295B1CD033DA00FF6DBE /* MTimesTests */,
 				04D729661CD033DA00FF6DBE /* MTimesUITests */,
 				04D729421CD033DA00FF6DBE /* Products */,
+				7EA29D87EC9D45CD8707101F /* Pods */,
+				DBB951CF8E3F5F6E7AEEF6F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +131,15 @@
 		04D729431CD033DA00FF6DBE /* MTimes */ = {
 			isa = PBXGroup;
 			children = (
+				04D729791CD05CE700FF6DBE /* PlayingTableController.swift */,
+				048F59951CD9945400873784 /* MovieViewController.swift */,
+				04D7297D1CD05F6E00FF6DBE /* Movie.swift */,
+				04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */,
 				04D729441CD033DA00FF6DBE /* AppDelegate.swift */,
-				04D729461CD033DA00FF6DBE /* ViewController.swift */,
 				04D729481CD033DA00FF6DBE /* Main.storyboard */,
+				0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */,
 				04D7294E1CD033DA00FF6DBE /* Assets.xcassets */,
+				04D729911CD8331000FF6DBE /* Firebase.framework */,
 				04D729501CD033DA00FF6DBE /* LaunchScreen.storyboard */,
 				04D729531CD033DA00FF6DBE /* Info.plist */,
 				04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */,
@@ -128,6 +165,24 @@
 			path = MTimesUITests;
 			sourceTree = "<group>";
 		};
+		7EA29D87EC9D45CD8707101F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */,
+				C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DBB951CF8E3F5F6E7AEEF6F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7E80280748C35BB08147FCB /* Pods.framework */,
+				A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +190,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D7296C1CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimes" */;
 			buildPhases = (
+				F49EC3AD4A7E739ECAD0E671 /* Check Pods Manifest.lock */,
 				04D7293D1CD033DA00FF6DBE /* Sources */,
 				04D7293E1CD033DA00FF6DBE /* Frameworks */,
 				04D7293F1CD033DA00FF6DBE /* Resources */,
+				BDAF915DE11D2B45B9A7ABCF /* Embed Pods Frameworks */,
+				A92494854DECAD4B6028054E /* Copy Pods Resources */,
+				04D7298B1CD830DC00FF6DBE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,14 +316,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A92494854DECAD4B6028054E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDAF915DE11D2B45B9A7ABCF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F49EC3AD4A7E739ECAD0E671 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04D7293D1CD033DA00FF6DBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D729471CD033DA00FF6DBE /* ViewController.swift in Sources */,
+				0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */,
+				048F59961CD9945400873784 /* MovieViewController.swift in Sources */,
 				04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */,
 				04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */,
+				04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */,
+				04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */,
+				04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,8 +515,13 @@
 		};
 		04D7296D1CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MTimes",
+				);
 				INFOPLIST_FILE = MTimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
@@ -415,8 +531,13 @@
 		};
 		04D7296E1CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MTimes",
+				);
 				INFOPLIST_FILE = MTimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
@@ -489,6 +610,7 @@
 				04D7296E1CD033DA00FF6DBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04D7296F1CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +619,7 @@
 				04D729711CD033DA00FF6DBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04D729721CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +628,7 @@
 				04D729741CD033DA00FF6DBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
