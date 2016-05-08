@@ -13,7 +13,6 @@ class MovieViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var overview: UILabel!
-    //@IBOutlet var imageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var posterView: UIImageView!
     @IBOutlet var dateLabel: UILabel!
@@ -21,24 +20,22 @@ class MovieViewController: UIViewController {
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var similar: UILabel!
-    @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var imagesView: UIScrollView!
     
     
     var currentMovie: Movie?
     var movieSet = [String]()
     var imageSet = [String]()
-    //var imageView1: UIImageView?
-    //var imageView2: UIImageView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlStrings = ["https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
-                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"]
+        let urlStrings = ["https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
+                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"]
         
-        for url in urlStrings {
-            downloadMovieData(url)
+        for var i = 0; i < urlStrings.count; i++
+        {
+            downloadMovieData(urlStrings[i], flag: i)
         }
 
         // Do any additional setup after loading the view.
@@ -52,11 +49,9 @@ class MovieViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.scrollView.contentSize.height = 1000
+        self.scrollView.contentSize.height = 3000
         
         self.overview.text = "Overview"
-        
-        
         
         self.titleLabel.text = self.currentMovie!.title
         self.popularityLabel.text = "Popularity: " + String(format: "%.2f", currentMovie!.popularity!)
@@ -75,22 +70,13 @@ class MovieViewController: UIViewController {
             self.posterView.image = UIImage(named: "Image")
         }
         self.imagesView.frame.size.width = UIScreen.mainScreen().bounds.width
-        //self.imageView.frame.size.width = UIScreen.mainScreen().bounds.width
         self.imagesView.frame.size.height = UIScreen.mainScreen().bounds.width / 1.5
-        //self.imageView.frame.size.height = UIScreen.mainScreen().bounds.width / 1.5
-//        let image = "http://image.tmdb.org/t/p/w1000" + currentMovie!.backdrop! + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
-//        if let url  = NSURL(string: image),
-//            data = NSData(contentsOfURL: url)
-//        {
-//            self.imageView.image = UIImage(data: data)
-//        } else {
-//            self.imageView.image = UIImage(named: "Image")
-//        }
+        
         // Display selected movie details
     }
     
     // Download current playing movies from the source and check network connection
-    func downloadMovieData(url: String) {
+    func downloadMovieData(url: String, flag: Int) {
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -100,8 +86,11 @@ class MovieViewController: UIViewController {
             if let data = data {
                 self.parseMovieJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.updateSimilarMovies()
-                    self.updateImages()
+                    if flag == 0 {
+                        self.updateImages()
+                    } else if flag == 1 {
+                        self.updateSimilarMovies()
+                    }
                 }
             } else {
                 let messageString: String = "Something wrong with the network connection"
@@ -137,10 +126,7 @@ class MovieViewController: UIViewController {
                 for image in json["backdrops"].arrayValue {
                         if let path = image["file_path"].string {
                             imageSet.append(path)
-                        } else {
-                            imageSet.append("No Image")
                         }
-                    
                 }
             }
         }catch {
@@ -151,21 +137,24 @@ class MovieViewController: UIViewController {
     func updateSimilarMovies() {
         if self.movieSet.count != 0 {
             self.similar.text = "Similar Movies"
+            var number = self.similar.frame.maxY + 5
+            for var i = 0; i < self.movieSet.count; i++
+            {
+                let label = UILabel(frame: CGRectMake(23, number , 380, 21))
+                label.text = self.movieSet[i]
+                label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
+                label.font = UIFont.boldSystemFontOfSize(11)
+                self.scrollView.addSubview(label)
+                number += 15
+                self.scrollView.contentSize.height += 15
+            }
         } else {
-            self.similar.text = ""
+            self.similar.text = " "
+            self.similar.enabled = false
+            self.scrollView.contentSize.height = self.similar.frame.maxY + 10
         }
-        var number = self.similar.frame.maxY + 5
-        for var i = 1; i < self.movieSet.count; i++
-        {
-            let label = UILabel(frame: CGRectMake(23, number , 380, 21))
-            label.text = self.movieSet[i]
-            label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
-            label.font = UIFont.boldSystemFontOfSize(13)
-            self.scrollView.addSubview(label)
-            number += 15
-            self.scrollView.contentSize.height += 15
-        }
-        let button = UIButton(frame: CGRectMake(100, number + 15 , 150, 28))
+        
+        let button = UIButton(frame: CGRectMake(100, scrollView.contentSize.height + 15 , 150, 28))
         button.center.x = self.scrollView.center.x
         button.backgroundColor = UIColor.grayColor()
         button.layer.cornerRadius = 5.0
@@ -173,7 +162,7 @@ class MovieViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
         button.setTitle("Find a Cinema", forState: UIControlState.Normal)
         self.scrollView.addSubview(button)
-        self.scrollView.contentSize.height += 30
+        self.scrollView.contentSize.height = button.frame.maxY + 10
     }
     
     func updateImages() {
@@ -187,7 +176,7 @@ class MovieViewController: UIViewController {
                 data = NSData(contentsOfURL: url) {
                     imageView1.image = UIImage(data: data)
                 } else {
-                    imageView1.image = UIImage(named: "Image")
+                    imageView1.image = UIImage(named: "noimage")
                 }
             
             let image2 = "http://image.tmdb.org/t/p/w500" + self.imageSet[imageSet.count - 1] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
@@ -196,15 +185,15 @@ class MovieViewController: UIViewController {
                 data = NSData(contentsOfURL: url) {
                     imageView2.image = UIImage(data: data)
                 } else {
-                    imageView2.image = UIImage(named: "Image")
+                    imageView2.image = UIImage(named: "noimage")
                 }
             self.imagesView.addSubview(imageView1)
             self.imagesView.addSubview(imageView2)
             imagesView.contentSize = CGSizeMake(imagesView.frame.size.width*2, imagesView.frame.size.height)
-            //self.imagesView.addSubview(pageControl)
-            //self.pageControl.currentPage = Int(round(self.imagesView.contentOffset.x / imagesView.frame.size.width))
-        
-        //pageControl.addTarget(self, action: Selector("changePage: "), forControlEvents: UIControlEvents.ValueChanged)
+        } else {
+            let imageView1 = UIImageView(frame: CGRectMake(0, 0, self.imagesView.frame.width, self.imagesView.frame.height))
+            imageView1.image = UIImage(named: "noimage")
+            self.imagesView.addSubview(imageView1)
         }
     }
     

@@ -197,7 +197,7 @@ class PlayingTableController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "N_ViewDetailSegue"
+        if segue.identifier == "N_ViewMovieSegue"
         {
             let controller: MovieViewController = segue.destinationViewController as! MovieViewController
             

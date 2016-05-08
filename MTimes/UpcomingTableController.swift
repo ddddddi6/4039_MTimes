@@ -169,6 +169,19 @@ class UpcomingTableController: UITableViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "U_ViewMovieSegue"
+        {
+            let controller: MovieViewController = segue.destinationViewController as! MovieViewController
+            
+            let indexPath = tableView.indexPathForSelectedRow!
+            
+            let m: Movie = self.currentMovie[indexPath.row] as! Movie
+            controller.currentMovie = m
+            // Display movie details screen
+        }
+    }
+    
     //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     //        if segue.identifier == "AddReminderSegue"
     //        {
