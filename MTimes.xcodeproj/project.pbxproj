@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */; };
+		0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044788491CE16AB60029BE33 /* DiscoverViewController.swift */; };
 		048F59961CD9945400873784 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F59951CD9945400873784 /* MovieViewController.swift */; };
 		04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729441CD033DA00FF6DBE /* AppDelegate.swift */; };
 		04D7294A1CD033DA00FF6DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D729481CD033DA00FF6DBE /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTableController.swift; sourceTree = "<group>"; };
+		044788491CE16AB60029BE33 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		048F59951CD9945400873784 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		04D729411CD033DA00FF6DBE /* MTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D729441CD033DA00FF6DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				04D729791CD05CE700FF6DBE /* PlayingTableController.swift */,
 				048F59951CD9945400873784 /* MovieViewController.swift */,
+				044788491CE16AB60029BE33 /* DiscoverViewController.swift */,
 				04D7297D1CD05F6E00FF6DBE /* Movie.swift */,
 				04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */,
 				04D729441CD033DA00FF6DBE /* AppDelegate.swift */,
@@ -374,6 +377,7 @@
 				04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */,
 				04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */,
 				04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */,
+				0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */,
 				04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */,
 				04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */,
 			);

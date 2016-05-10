@@ -134,7 +134,7 @@
         <!--Discover-->
         <scene sceneID="qyW-6t-O61">
             <objects>
-                <viewController title="Discover" id="MwT-lx-3jq" sceneMemberID="viewController">
+                <viewController title="Discover" id="MwT-lx-3jq" customClass="DiscoverViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EIb-Z1-dgk"/>
                         <viewControllerLayoutGuide type="bottom" id="C5D-HB-ay9"/>
@@ -143,19 +143,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDr-yb-6mA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wY-97-Rei">
+                                <rect key="frame" x="0.0" y="164" width="320" height="32"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="jOA-Vi-TSS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WWo-x4-KF1">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="MwT-lx-3jq" id="ZuL-GR-JSd"/>
-                                </connections>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UFi-OJ-L7C">
+                                <rect key="frame" x="0.0" y="253" width="320" height="32"/>
+                                <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="EGm-eO-W0h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="WWo-x4-KF1" firstAttribute="trailing" secondItem="8wY-97-Rei" secondAttribute="trailing" id="52H-Kz-2AG"/>
+                            <constraint firstItem="WWo-x4-KF1" firstAttribute="leading" secondItem="8wY-97-Rei" secondAttribute="leading" id="BUL-4m-eXS"/>
+                            <constraint firstItem="WWo-x4-KF1" firstAttribute="top" secondItem="EIb-Z1-dgk" secondAttribute="bottom" id="M6P-Fx-hLg"/>
+                            <constraint firstItem="UFi-OJ-L7C" firstAttribute="top" secondItem="8wY-97-Rei" secondAttribute="bottom" constant="57" id="MEr-3V-3dc"/>
+                            <constraint firstItem="8wY-97-Rei" firstAttribute="top" secondItem="WWo-x4-KF1" secondAttribute="bottom" constant="56" id="MI4-nv-xhg"/>
+                            <constraint firstAttribute="trailing" secondItem="WWo-x4-KF1" secondAttribute="trailing" id="P06-rB-XbY"/>
+                            <constraint firstItem="8wY-97-Rei" firstAttribute="leading" secondItem="UFi-OJ-L7C" secondAttribute="leading" id="VXT-xT-qkI"/>
+                            <constraint firstItem="8wY-97-Rei" firstAttribute="trailing" secondItem="UFi-OJ-L7C" secondAttribute="trailing" id="kgG-Aw-qPH"/>
+                            <constraint firstItem="WWo-x4-KF1" firstAttribute="leading" secondItem="sKQ-at-Fll" secondAttribute="leading" id="lXO-Qt-hPy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4aR-HI-mce"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="mapLabel" destination="UFi-OJ-L7C" id="A3e-bb-zCf"/>
+                        <outlet property="recLabel" destination="8wY-97-Rei" id="5z2-LR-qmC"/>
+                        <outlet property="searchBar" destination="WWo-x4-KF1" id="6zN-W8-QV6"/>
                         <outlet property="searchDisplayController" destination="9Yo-uK-aYb" id="w2m-WF-Ltc"/>
                     </connections>
                 </viewController>
@@ -163,7 +196,6 @@
                 <searchDisplayController id="9Yo-uK-aYb">
                     <connections>
                         <outlet property="delegate" destination="MwT-lx-3jq" id="Wyj-Ti-bea"/>
-                        <outlet property="searchBar" destination="DDr-yb-6mA" id="099-fO-AGX"/>
                         <outlet property="searchContentsController" destination="MwT-lx-3jq" id="uMt-MR-MCp"/>
                         <outlet property="searchResultsDataSource" destination="MwT-lx-3jq" id="bN0-J9-bcq"/>
                         <outlet property="searchResultsDelegate" destination="MwT-lx-3jq" id="5Oi-Y4-556"/>
@@ -485,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzn-Mh-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731.5" y="805.5"/>
+            <point key="canvasLocation" x="1793.5" y="123.5"/>
         </scene>
         <!--Current Playing-->
         <scene sceneID="0el-lN-7qp">

@@ -163,33 +163,6 @@ class PlayingTableController: UITableViewController {
                         currentMovie.addObject(m)
                     }
                 }
-                
-//                if let id = movie["id"].int {
-//                    if let title = movie["title"].string {
-//                        if let overview = movie["overview"].string {
-//                            if let poster = movie["poster_path"].string {
-//                                if let popularity = movie["popularity"].double {
-//                                    if let rate = movie["vote_average"].double {
-//                                        let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate)
-//                                        currentMovie.addObject(m)
-//                                    } else {
-//                                        print(movie["vote_average"].error)
-//                                    }
-//                                } else {
-//                                    print(movie["popularity"].error)
-//                                }
-//                            } else {
-//                                print(movie["poster_path"].error)
-//                            }
-//                        } else {
-//                            print(movie["overview"].error)
-//                        }
-//                    } else {
-//                        print(movie["title"].error)
-//                    }
-//                } else {
-//                    print(movie["id"].error)
-//                }
             }
         }catch {
                 print("JSON Serialization error")
