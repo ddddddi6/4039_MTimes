@@ -23,10 +23,10 @@ class DiscoverViewController: UIViewController {
         self.recLabel.text = "Recommendation"
         self.mapLabel.text = "Locate cinema"
         
-        let buttonText = ["Search", "Popular movies", "Find a cinema"]
+        let buttonText = ["Popular movies", "Find a cinema"]
         var buttonArray = Array<UIButton>()
         
-        var number = self.searchBar.frame.maxY + 15
+        var number = self.searchBar.frame.maxY + 47
         for var i = 0; i < buttonText.count; i++
         {
             let button = UIButton(frame: CGRectMake(100, number, 150, 28))
@@ -41,7 +41,7 @@ class DiscoverViewController: UIViewController {
             number += 88
         }
         
-        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -53,6 +53,11 @@ class DiscoverViewController: UIViewController {
     
     func displayPopularMovies (sender: UIButton!) {
         self.performSegueWithIdentifier("popularSegue", sender: nil)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
     }
 
     /*

@@ -10,6 +10,7 @@
 		0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */; };
 		0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044788491CE16AB60029BE33 /* DiscoverViewController.swift */; };
 		0447884C1CE203A60029BE33 /* PopularTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884B1CE203A60029BE33 /* PopularTableController.swift */; };
+		0447884E1CE2D6F00029BE33 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884D1CE2D6F00029BE33 /* SearchTableController.swift */; };
 		048F59961CD9945400873784 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F59951CD9945400873784 /* MovieViewController.swift */; };
 		04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729441CD033DA00FF6DBE /* AppDelegate.swift */; };
 		04D7294A1CD033DA00FF6DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D729481CD033DA00FF6DBE /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTableController.swift; sourceTree = "<group>"; };
 		044788491CE16AB60029BE33 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		0447884B1CE203A60029BE33 /* PopularTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableController.swift; sourceTree = "<group>"; };
+		0447884D1CE2D6F00029BE33 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
 		048F59951CD9945400873784 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		04D729411CD033DA00FF6DBE /* MTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D729441CD033DA00FF6DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */,
 				04D729441CD033DA00FF6DBE /* AppDelegate.swift */,
 				04D729481CD033DA00FF6DBE /* Main.storyboard */,
+				0447884D1CE2D6F00029BE33 /* SearchTableController.swift */,
 				0447884B1CE203A60029BE33 /* PopularTableController.swift */,
 				0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */,
 				04D7294E1CD033DA00FF6DBE /* Assets.xcassets */,
@@ -377,6 +380,7 @@
 			files = (
 				0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */,
 				048F59961CD9945400873784 /* MovieViewController.swift in Sources */,
+				0447884E1CE2D6F00029BE33 /* SearchTableController.swift in Sources */,
 				04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */,
 				04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */,
 				04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */,
