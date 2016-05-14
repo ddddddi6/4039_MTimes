@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscoverViewController: UIViewController {
+class DiscoverViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var recLabel: UILabel!
     @IBOutlet var mapLabel: UILabel!
@@ -19,6 +19,26 @@ class DiscoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for subView in searchBar.subviews
+        {
+            for subView1 in subView.subviews
+            {
+                if subView1.isKindOfClass(UITextField)
+                {
+                    subView1.backgroundColor = UIColor.clearColor()
+                    subView1.layer.borderColor = UIColor.lightGrayColor().CGColor
+                    subView1.layer.borderWidth = 1
+                    subView1.layer.cornerRadius = 5.0
+                    subView1.clipsToBounds = true
+                }
+            }
+        }
+        
+        searchBar.delegate = self
+        
+        var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = UIColor.whiteColor()
         
         self.recLabel.text = "Recommendation"
         self.mapLabel.text = "Locate cinema"
@@ -59,6 +79,25 @@ class DiscoverViewController: UIViewController {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar!)
+    {
+        self.performSegueWithIdentifier("SearchSegue", sender: nil)
+            
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SearchSegue"
+        {
+            let controller: SearchTableController = segue.destinationViewController as! SearchTableController
+            
+            let title = searchBar.text
+            
+            controller.movieTitle = title
+            // Display movie details screen
+        }
+    }
+
 
     /*
     // MARK: - Navigation

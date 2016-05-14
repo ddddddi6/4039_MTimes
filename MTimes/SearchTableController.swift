@@ -12,7 +12,10 @@ import SwiftyJSON
 class SearchTableController: UITableViewController {
     @IBOutlet var infoLabel: UILabel!
     
+    var movieTitle: String?
+    
     var currentMovie: NSMutableArray
+    
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
         super.init(coder: aDecoder)
@@ -61,7 +64,7 @@ class SearchTableController: UITableViewController {
         
         // Configure the cell...
         let m: Movie = self.currentMovie[indexPath.row] as! Movie
-        self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Popular Movies"
+        self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Results"
         if (m.title != nil) {
             cell.titleLabel.text = m.title
         }
@@ -103,7 +106,7 @@ class SearchTableController: UITableViewController {
     
     // Download current playing movies from the source and check network connection
     func downloadMovieData() {
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/popular?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+        let url = NSURL(string: "https://api.themoviedb.org/3/search/movie?query=" + self.movieTitle!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -136,7 +139,7 @@ class SearchTableController: UITableViewController {
                                                                     options: NSJSONReadingOptions.MutableContainers)
             let json = JSON(result)
             
-            NSLog("Found \(json["results"].count) new current playing movies!")
+            NSLog("Found \(json["results"].count) results!")
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
@@ -168,7 +171,7 @@ class SearchTableController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "P_ViewMovieSegue"
+        if segue.identifier == "S_ViewMovieSegue"
         {
             let controller: MovieViewController = segue.destinationViewController as! MovieViewController
             

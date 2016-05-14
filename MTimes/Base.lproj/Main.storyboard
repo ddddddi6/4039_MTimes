@@ -129,7 +129,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZM-nC-WTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="976" y="235"/>
+            <point key="canvasLocation" x="1214" y="214"/>
         </scene>
         <!--Discover-->
         <scene sceneID="qyW-6t-O61">
@@ -146,8 +146,12 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="WWo-x4-KF1">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wY-97-Rei">
                                 <rect key="frame" x="0.0" y="107" width="320" height="32"/>
@@ -191,6 +195,7 @@
                         <outlet property="searchBar" destination="WWo-x4-KF1" id="6zN-W8-QV6"/>
                         <outlet property="searchDisplayController" destination="9Yo-uK-aYb" id="w2m-WF-Ltc"/>
                         <segue destination="1fE-qU-bxs" kind="show" identifier="popularSegue" id="vr2-H1-7Wy"/>
+                        <segue destination="Wy5-5L-am5" kind="show" identifier="SearchSegue" id="ujJ-0a-ZUQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgY-km-9aF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,7 +382,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecN-Jx-4Oh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="-429"/>
+            <point key="canvasLocation" x="1675" y="-303"/>
         </scene>
         <!--Results-->
         <scene sceneID="yYp-o7-EwO">
@@ -389,9 +394,20 @@
                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GAE-ZH-9UP" userLabel="Info Label">
+                            <rect key="frame" x="0.0" y="64" width="320" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="0zF-xo-Onh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableCell" id="RT6-ng-rxI" customClass="MovieTableCell" customModule="MTimes" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="165"/>
+                                <rect key="frame" x="0.0" y="127" width="320" height="165"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RT6-ng-rxI" id="Vmg-25-Nhr">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="164.5"/>
@@ -470,11 +486,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateLabel" destination="6vJ-E5-S4G" id="O6L-dw-iKq"/>
-                                    <outlet property="popularityLabel" destination="Ueg-LS-9QL" id="mxu-LA-el8"/>
-                                    <outlet property="posterView" destination="TFc-O7-ssl" id="4IP-q4-vvd"/>
-                                    <outlet property="rateLabel" destination="cL2-Xb-vfP" id="0AA-Em-Trc"/>
-                                    <outlet property="titleLabel" destination="UpT-cx-PLN" id="Ybd-uJ-Vfm"/>
+                                    <outlet property="dateLabel" destination="6vJ-E5-S4G" id="o3p-db-mNt"/>
+                                    <outlet property="popularityLabel" destination="Ueg-LS-9QL" id="V03-ec-euu"/>
+                                    <outlet property="posterView" destination="TFc-O7-ssl" id="JGb-DZ-P1n"/>
+                                    <outlet property="rateLabel" destination="cL2-Xb-vfP" id="p9w-ck-T4X"/>
+                                    <outlet property="titleLabel" destination="UpT-cx-PLN" id="G1H-iG-wNB"/>
+                                    <segue destination="6vL-B4-7h9" kind="show" identifier="S_ViewMovieSegue" id="Cb0-GQ-LPp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -484,10 +501,13 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="infoLabel" destination="GAE-ZH-9UP" id="1yg-SR-uNy"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maI-Yy-rUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2112" y="-693"/>
+            <point key="canvasLocation" x="1662" y="-1011"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hKg-ov-e5A">
@@ -802,7 +822,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzn-Mh-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2131.5" y="53.5"/>
+            <point key="canvasLocation" x="2310.5" y="-175.5"/>
         </scene>
         <!--Current Playing-->
         <scene sceneID="0el-lN-7qp">
