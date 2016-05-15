@@ -502,7 +502,7 @@
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="infoLabel" destination="GAE-ZH-9UP" id="1yg-SR-uNy"/>
+                        <outlet property="infoLabel" destination="GAE-ZH-9UP" id="XK2-xa-TR8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maI-Yy-rUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -894,6 +894,6 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u9a-L7-NuI"/>
+        <segue reference="Cb0-GQ-LPp"/>
     </inferredMetricsTieBreakers>
 </document>

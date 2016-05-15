@@ -89,11 +89,23 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SearchSegue"
         {
+            let title = searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            if(title == "")
+            {
+                let messageString: String = "Please input valid values"
+                // Setup an alert to warn user
+                // UIAlertController manages an alert instance
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle:
+                    UIAlertControllerStyle.Alert)
+                
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            } else {
             let controller: SearchTableController = segue.destinationViewController as! SearchTableController
-            
-            let title = searchBar.text
-            
-            controller.movieTitle = title
+                controller.movieTitle = title
+            }
             // Display movie details screen
         }
     }

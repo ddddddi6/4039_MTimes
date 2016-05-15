@@ -64,7 +64,9 @@ class SearchTableController: UITableViewController {
         
         // Configure the cell...
         let m: Movie = self.currentMovie[indexPath.row] as! Movie
-        self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Results"
+        if currentMovie.count != 0 {
+            self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Results"
+        }
         if (m.title != nil) {
             cell.titleLabel.text = m.title
         }
@@ -78,7 +80,11 @@ class SearchTableController: UITableViewController {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             let date = dateFormatter.stringFromDate(m.date!)
-            cell.dateLabel.text = "Release Date: \(date)"
+            if (date != "1111-11-11") {
+                cell.dateLabel.text = "Release Date: \(date)"
+            } else {
+                cell.dateLabel.text = "Release Date: Unknown"
+            }
         }
         if (m.poster != nil) {
             let image = "http://image.tmdb.org/t/p/w500" + m.poster! + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
@@ -116,6 +122,9 @@ class SearchTableController: UITableViewController {
                 self.parseMovieJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
+                    if self.currentMovie.count == 0 {
+                        self.infoLabel.text = "Sorry, No Result Found..."
+                    }
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
@@ -140,6 +149,7 @@ class SearchTableController: UITableViewController {
             let json = JSON(result)
             
             NSLog("Found \(json["results"].count) results!")
+            
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
@@ -148,11 +158,15 @@ class SearchTableController: UITableViewController {
                     popularity = movie["popularity"].double,
                     rate = movie["vote_average"].double,
                     date = movie["release_date"].string,
-                    count = movie["vote_count"].int{
+                    count = movie["vote_count"].int {
                     let dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = NSTimeZone(name: "UTC")
+                    if date.characters.count == 0{
+                        let release_date = dateFormatter.dateFromString("1111-11-11")!
+                    } else {
                     let release_date = dateFormatter.dateFromString(date)!
+                    
                     
                     if let
                         poster = movie["poster_path"].string,
@@ -162,6 +176,7 @@ class SearchTableController: UITableViewController {
                     } else {
                         let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image")
                         currentMovie.addObject(m)
+                    }
                     }
                 }
             }
