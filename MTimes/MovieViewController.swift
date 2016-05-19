@@ -163,6 +163,8 @@ class MovieViewController: UIViewController {
         button.setTitle("Find a Cinema", forState: UIControlState.Normal)
         self.scrollView.addSubview(button)
         self.scrollView.contentSize.height = button.frame.maxY + 10
+        
+        button.addTarget(self, action: #selector(MovieViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
     }
     
     func updateImages() {
@@ -195,6 +197,10 @@ class MovieViewController: UIViewController {
             imageView1.image = UIImage(named: "noimage")
             self.imagesView.addSubview(imageView1)
         }
+    }
+    
+    func buttonAction (sender: UIButton!) {
+        self.performSegueWithIdentifier("CinemaMapSegue", sender: nil)
     }
     
 

@@ -196,6 +196,7 @@
                         <outlet property="searchDisplayController" destination="9Yo-uK-aYb" id="w2m-WF-Ltc"/>
                         <segue destination="1fE-qU-bxs" kind="show" identifier="popularSegue" id="vr2-H1-7Wy"/>
                         <segue destination="Wy5-5L-am5" kind="show" identifier="SearchSegue" id="ujJ-0a-ZUQ"/>
+                        <segue destination="vVf-Wo-8cY" kind="show" identifier="ShowMapSegue" id="oFU-AD-fJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgY-km-9aF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -382,7 +383,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecN-Jx-4Oh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1675" y="-303"/>
+            <point key="canvasLocation" x="1670" y="-139"/>
         </scene>
         <!--Results-->
         <scene sceneID="yYp-o7-EwO">
@@ -507,7 +508,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maI-Yy-rUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="-1011"/>
+            <point key="canvasLocation" x="1670" y="-1188"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hKg-ov-e5A">
@@ -818,11 +819,45 @@
                         <outlet property="scrollView" destination="x3Y-Gs-qvY" id="8DE-Wo-MNz"/>
                         <outlet property="similar" destination="ZDm-rX-IRb" id="pUf-hD-02y"/>
                         <outlet property="titleLabel" destination="AsF-BD-BQj" id="jmz-FV-FQv"/>
+                        <segue destination="vVf-Wo-8cY" kind="show" identifier="CinemaMapSegue" id="X5p-qE-Ykg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzn-Mh-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2310.5" y="-175.5"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="6Yh-87-QGj">
+            <objects>
+                <viewController title="Map" id="vVf-Wo-8cY" customClass="MapViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ouf-6M-j4L"/>
+                        <viewControllerLayoutGuide type="bottom" id="ShS-5m-2ZX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YQY-56-ucp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pLo-Ww-PTx">
+                                <rect key="frame" x="0.0" y="58" width="320" height="447"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="leading" secondItem="YQY-56-ucp" secondAttribute="leading" id="JZo-dG-oHh"/>
+                            <constraint firstAttribute="trailing" secondItem="pLo-Ww-PTx" secondAttribute="trailing" id="LkJ-V9-eOp"/>
+                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="top" secondItem="YQY-56-ucp" secondAttribute="topMargin" constant="58" id="fix-Au-Sh3"/>
+                            <constraint firstItem="ShS-5m-2ZX" firstAttribute="top" secondItem="pLo-Ww-PTx" secondAttribute="bottom" constant="14" id="iP7-PN-5io"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mapView" destination="pLo-Ww-PTx" id="s8D-R7-BwQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kbm-mL-gUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2834" y="-181"/>
         </scene>
         <!--Current Playing-->
         <scene sceneID="0el-lN-7qp">
@@ -895,5 +930,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Cb0-GQ-LPp"/>
+        <segue reference="X5p-qE-Ykg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -62,6 +62,8 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         }
         
         buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
+        
+        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -86,13 +88,17 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
             
     }
     
+    func buttonAction (sender: UIButton!) {
+        self.performSegueWithIdentifier("ShowMapSegue", sender: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SearchSegue"
         {
             let title = searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             if(title == "")
             {
-                let messageString: String = "Please input valid values"
+                let messageString: String = "Please input valid movie title"
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
                 let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle:
