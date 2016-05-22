@@ -839,25 +839,64 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pLo-Ww-PTx">
-                                <rect key="frame" x="0.0" y="58" width="320" height="447"/>
+                                <rect key="frame" x="0.0" y="58" width="320" height="461"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="leading" secondItem="YQY-56-ucp" secondAttribute="leading" id="JZo-dG-oHh"/>
-                            <constraint firstAttribute="trailing" secondItem="pLo-Ww-PTx" secondAttribute="trailing" id="LkJ-V9-eOp"/>
-                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="top" secondItem="YQY-56-ucp" secondAttribute="topMargin" constant="58" id="fix-Au-Sh3"/>
-                            <constraint firstItem="ShS-5m-2ZX" firstAttribute="top" secondItem="pLo-Ww-PTx" secondAttribute="bottom" constant="14" id="iP7-PN-5io"/>
+                            <constraint firstAttribute="trailing" secondItem="pLo-Ww-PTx" secondAttribute="trailing" id="3FV-ug-5xd"/>
+                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="bottom" secondItem="ShS-5m-2ZX" secondAttribute="top" id="Vdx-be-aPj"/>
+                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="leading" secondItem="YQY-56-ucp" secondAttribute="leading" id="dgl-MS-bMh"/>
+                            <constraint firstItem="pLo-Ww-PTx" firstAttribute="top" secondItem="YQY-56-ucp" secondAttribute="topMargin" constant="58" id="uDg-Vt-xue"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Map" id="S2t-KS-587">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="EPh-lD-Z2y">
+                            <connections>
+                                <action selector="share:" destination="vVf-Wo-8cY" id="6Wl-NA-jKK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mapView" destination="pLo-Ww-PTx" id="s8D-R7-BwQ"/>
+                        <segue destination="9tR-gV-obn" kind="show" identifier="CinemaWebSegue" id="YAn-qt-xK2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbm-mL-gUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2834" y="-181"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ceg-Og-fHC">
+            <objects>
+                <viewController id="9tR-gV-obn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wTN-tF-oL3"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Sg-gg-hgz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HnT-57-bNP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyQ-xU-HHa">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dyQ-xU-HHa" firstAttribute="top" secondItem="wTN-tF-oL3" secondAttribute="bottom" id="3cU-g9-V3i"/>
+                            <constraint firstItem="dyQ-xU-HHa" firstAttribute="bottom" secondItem="3Sg-gg-hgz" secondAttribute="top" id="LZf-5t-fON"/>
+                            <constraint firstAttribute="trailing" secondItem="dyQ-xU-HHa" secondAttribute="trailing" id="hhx-qa-jdS"/>
+                            <constraint firstItem="dyQ-xU-HHa" firstAttribute="leading" secondItem="HnT-57-bNP" secondAttribute="leading" id="up7-NS-pts"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4qO-y0-qDQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3255" y="-181"/>
         </scene>
         <!--Current Playing-->
         <scene sceneID="0el-lN-7qp">
@@ -929,7 +968,7 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cb0-GQ-LPp"/>
+        <segue reference="u9a-L7-NuI"/>
         <segue reference="X5p-qE-Ykg"/>
     </inferredMetricsTieBreakers>
 </document>

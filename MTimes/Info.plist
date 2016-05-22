@@ -42,8 +42,8 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Request</string>
+	<string>Show your location on the map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Request</string>
+	<string>Show your location on the map</string>
 </dict>
 </plist>
