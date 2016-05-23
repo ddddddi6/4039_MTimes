@@ -103,8 +103,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-            self.performSegueWithIdentifier("CinemaWebSegue", sender: self)
+            self.performSegueWithIdentifier("CinemaDetailSegue", sender: self)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "CinemaDetailSegue"
+        {
+            let theDestination : CinemaViewController = segue.destinationViewController as! CinemaViewController
+            theDestination.currentCinemaID = self.mapView.selectedAnnotations[0].subtitle!}
     }
 
 
@@ -126,8 +133,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         var objectAnnotation = MKPointAnnotation()
                         objectAnnotation.coordinate = pinLocation
                         objectAnnotation.title = c.name
+                        objectAnnotation.subtitle = c.id
                         self.mapView.layer.shadowColor = UIColor.clearColor().CGColor;
                         self.mapView.addAnnotation(objectAnnotation)
+                        
                     }
                 }
             } else {
@@ -154,17 +163,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             NSLog("Found \(json["results"].count) cinemas!")
             
-            if json["next_page_token"].string != nil {
+        
             for cinema in json["results"].arrayValue {
                 if let
                     latitude = cinema["geometry"]["location"]["lat"].double,
                     longitude = cinema["geometry"]["location"]["lng"].double,
-                    name = cinema["name"].string {
-                    let c: Cinema = Cinema(latitude: latitude, longitude: longitude, name: name)
+                    name = cinema["name"].string,
+                    id = cinema["place_id"].string {
+                    let c: Cinema = Cinema(latitude: latitude, longitude: longitude, name: name, id: id)
                     nearbyCinema.addObject(c)
                 }
             }
-            }
+        
         }catch {
             print("JSON Serialization error")
         }

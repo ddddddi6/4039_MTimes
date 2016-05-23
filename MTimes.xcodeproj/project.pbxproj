@@ -11,6 +11,7 @@
 		041798A81CED780F00C03BB0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798A71CED780F00C03BB0 /* LocationManager.swift */; };
 		041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041798A91CEF47E200C03BB0 /* MapKit.framework */; };
 		041798AC1CEFED5000C03BB0 /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AB1CEFED5000C03BB0 /* Cinema.swift */; };
+		041798B01CF2ACF200C03BB0 /* CinemaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */; };
 		0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */; };
 		0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044788491CE16AB60029BE33 /* DiscoverViewController.swift */; };
 		0447884C1CE203A60029BE33 /* PopularTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884B1CE203A60029BE33 /* PopularTableController.swift */; };
@@ -65,6 +66,7 @@
 		041798A71CED780F00C03BB0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		041798A91CEF47E200C03BB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		041798AB1CEFED5000C03BB0 /* Cinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
+		041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaViewController.swift; sourceTree = "<group>"; };
 		0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTableController.swift; sourceTree = "<group>"; };
 		044788491CE16AB60029BE33 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		0447884B1CE203A60029BE33 /* PopularTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				04D729441CD033DA00FF6DBE /* AppDelegate.swift */,
 				04D729481CD033DA00FF6DBE /* Main.storyboard */,
 				041798A51CED777200C03BB0 /* MapViewController.swift */,
+				041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */,
 				041798AB1CEFED5000C03BB0 /* Cinema.swift */,
 				0447884D1CE2D6F00029BE33 /* SearchTableController.swift */,
 				0447884B1CE203A60029BE33 /* PopularTableController.swift */,
@@ -400,6 +403,7 @@
 				04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */,
 				04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */,
 				0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */,
+				041798B01CF2ACF200C03BB0 /* CinemaViewController.swift in Sources */,
 				041798A81CED780F00C03BB0 /* LocationManager.swift in Sources */,
 				04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */,
 				04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */,
