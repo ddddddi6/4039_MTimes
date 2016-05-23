@@ -43,49 +43,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
+        
+        self.mapView.delegate = self
 
         // Do any additional setup after loading the view.
     }
     
-    // When user taps on the disclosure button you can perform a segue to navigate to another view controller
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView{
-            print(view.annotation!.title) // annotation's title
-            print(view.annotation!.subtitle) // annotation's subttitle
-            
-            self.performSegueWithIdentifier("CinemaWebView", sender: self)
-            //Perform a segue here to navigate to another viewcontroller
-            // On tapping the disclosure button you will get here
-        }
-    }
-    
-    // Here we add disclosure button inside annotation window
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        print("viewForannotation")
-        if annotation is MKUserLocation {
-            //return nil
-            return nil
-        }
-        
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            //println("Pinview was nil")
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.animatesDrop = true
-        }
-        
-        let button = UIButton.init(type: UIButtonType.DetailDisclosure) as UIButton // button with info sign in it
-        
-        pinView?.rightCalloutAccessoryView = button
-        
-        
-        return pinView
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -113,6 +76,38 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(error.localizedDescription)
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            //return nil
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+        }
+        
+        let button = UIButton(type: .DetailDisclosure) as UIButton // button with info sign in it
+        
+        pinView?.rightCalloutAccessoryView = button
+        
+        
+        return pinView
+    }
+
+
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            self.performSegueWithIdentifier("CinemaWebSegue", sender: self)
+        }
+    }
+
+
     // Download current playing movies from the source and check network connection
     func searchNearbyCinema() {
         
