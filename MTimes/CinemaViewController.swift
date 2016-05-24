@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import MapKit
 
 class CinemaViewController: UIViewController {
 
@@ -31,7 +32,39 @@ class CinemaViewController: UIViewController {
         super.viewDidLoad()
 
         downloadCinemaData()
+        
+        // add gesture to your Label
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.handleTap(_:)))
+        address.userInteractionEnabled=true
+        address.addGestureRecognizer(tapGesture)
+
+        
         // Do any additional setup after loading the view.
+    }
+    
+    // handle the function of UILabel
+    func handleTap(sender:UITapGestureRecognizer){
+            let geocoder = CLGeocoder()
+            let str = address.text // A string of the address info you already have
+            geocoder.geocodeAddressString(str!) { (placemarksOptional, error) -> Void in
+                if let placemarks = placemarksOptional {
+                    print("placemark| \(placemarks.first)")
+                    if let location = placemarks.first?.location {
+                        let query = "?ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
+                        let path = "http://maps.apple.com/" + query
+                        if let url = NSURL(string: path) {
+                            UIApplication.sharedApplication().openURL(url)
+                        } else {
+                            // Could not construct url. Handle error.
+                        }
+                    } else {
+                        // Could not get a location from the geocode request. Handle error.
+                    }
+                } else {
+                    // Didn't get any placemarks. Handle error.
+                }
+            }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +87,7 @@ class CinemaViewController: UIViewController {
                     self.address.text = self.cinemaAddress
                     self.homepage.text = self.cinemaWeb
                     self.phoneNumber.text = self.cinemaPhone
-                    self.rating.text = String(self.cinemaRating)
+                    self.rating.text = "Rating: " + String(format: "%.1f", self.cinemaRating!)
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
@@ -101,6 +134,22 @@ class CinemaViewController: UIViewController {
 
     
 
+    @IBAction func share(sender: UIBarButtonItem) {
+        let bounds = UIScreen.mainScreen().bounds
+        
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+        
+        self.view.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
+        
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        let activityViewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+        
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+
+    }
     /*
     // MARK: - Navigation
 

@@ -922,7 +922,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-Dh-TaX">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-Dh-TaX">
                                 <rect key="frame" x="40" y="381" width="272" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kRQ-ho-dcB"/>
@@ -982,6 +982,13 @@
                             <constraint firstItem="lpH-hl-zU3" firstAttribute="top" secondItem="Kbg-Sg-df5" secondAttribute="bottom" constant="8" symbolic="YES" id="yKH-3I-Fr5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Cinema" id="gfb-iR-z8k">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="dXP-MP-74u">
+                            <connections>
+                                <action selector="share:" destination="9tR-gV-obn" id="bGx-lv-IOU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="address" destination="bco-1Y-dDc" id="neH-Vb-sRu"/>
