@@ -77,6 +77,7 @@ class MovieViewController: UIViewController {
     
     // Download current playing movies from the source and check network connection
     func downloadMovieData(url: String, flag: Int) -> Bool {
+        var flags = true as Bool
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -92,6 +93,7 @@ class MovieViewController: UIViewController {
                         self.updateSimilarMovies()
                     }
                 }
+                flags = true
             } else {
                 let messageString: String = "Something wrong with the network connection"
                 // Setup an alert to warn user
@@ -101,10 +103,11 @@ class MovieViewController: UIViewController {
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
+                flags = false
             }
         }
         task.resume()
-        return true
+        return flags
         // Download movies
     }
     
@@ -136,7 +139,7 @@ class MovieViewController: UIViewController {
         return true
     }
     
-    func updateSimilarMovies() {
+    func updateSimilarMovies() -> Bool {
         if self.movieSet.count != 0 {
             self.similar.text = "Similar Movies"
             var number = self.similar.frame.maxY + 5
@@ -167,6 +170,7 @@ class MovieViewController: UIViewController {
         self.scrollView.contentSize.height = button.frame.maxY + 10
         
         button.addTarget(self, action: #selector(MovieViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
+        return true
     }
     
     func updateImages() {

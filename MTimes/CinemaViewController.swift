@@ -52,7 +52,8 @@ class CinemaViewController: UIViewController {
     }
     
     // handle the function of UILabel
-    func handleTap(sender:UITapGestureRecognizer){
+    func handleTap(sender:UITapGestureRecognizer) -> Bool{
+        var flag = true as Bool
             let geocoder = CLGeocoder()
             let str = address.text // A string of the address info you already have
             geocoder.geocodeAddressString(str!) { (placemarksOptional, error) -> Void in
@@ -64,16 +65,19 @@ class CinemaViewController: UIViewController {
                         if let url = NSURL(string: path) {
                             UIApplication.sharedApplication().openURL(url)
                         } else {
+                            flag = false
                             // Could not construct url. Handle error.
                         }
                     } else {
+                        flag = false
                         // Could not get a location from the geocode request. Handle error.
                     }
                 } else {
+                    flag = false
                     // Didn't get any placemarks. Handle error.
                 }
             }
-        
+        return flag
     }
 
     override func didReceiveMemoryWarning() {

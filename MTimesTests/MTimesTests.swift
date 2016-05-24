@@ -11,16 +11,17 @@ import XCTest
 
 class MTimesTests: XCTestCase {
     
-    var mvc: PlayingTableController!
+    var mvc: MovieViewController!
+    var ptc: PlayingTableController!
+    var mapvc: MapViewController!
     
     override func setUp() {
         super.setUp()
         
-        mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayingTableController") as! PlayingTableController
-    
+        mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MovieViewController") as! MovieViewController
+        ptc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayingTableController") as! PlayingTableController
+        mapvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MapViewController") as! MapViewController
 
-        //let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-        //mvc = storyboard.instantiateInitialViewController() as! MovieViewController
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -41,8 +42,23 @@ class MTimesTests: XCTestCase {
         }
     }
     
-    func testSearchFunction() {
-        let p = mvc.downloadMovieData()
-        XCTAssertTrue(p == true, "f")
+    func testDownloadPosterFunction() {
+        let p = mvc.downloadMovieData("https://api.themoviedb.org/3/movie/1/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4", flag: 0)
+        XCTAssertTrue(p == true)
+    }
+    
+    func testDownloadSimilarFunction() {
+        let p = mvc.downloadMovieData("https://api.themoviedb.org/3/movie/1/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4", flag: 1)
+        XCTAssertTrue(p == true)
+    }
+    
+    func testDownloadPlayingFunction() {
+        let p = ptc.downloadMovieData()
+        XCTAssertTrue(p == true)
+    }
+    
+    func testSearchCinemaFunction() {
+        let p = mapvc.searchNearbyCinema()
+        XCTAssertTrue(p == true)
     }
 }

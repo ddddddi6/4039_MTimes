@@ -10,7 +10,7 @@
         <!--MTimes - In Theater-->
         <scene sceneID="4gG-Ry-vzB">
             <objects>
-                <tableViewController id="xSt-7F-u6O" customClass="PlayingTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PlayingTableController" id="xSt-7F-u6O" customClass="PlayingTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="aJu-c3-1kb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +134,7 @@
         <!--Discover-->
         <scene sceneID="qyW-6t-O61">
             <objects>
-                <viewController title="Discover" id="MwT-lx-3jq" customClass="DiscoverViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverViewController" title="Discover" id="MwT-lx-3jq" customClass="DiscoverViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EIb-Z1-dgk"/>
                         <viewControllerLayoutGuide type="bottom" id="C5D-HB-ay9"/>
@@ -214,7 +214,7 @@
         <!--Popular Movies-->
         <scene sceneID="EsQ-eR-cfB">
             <objects>
-                <tableViewController title="Popular Movies" id="1fE-qU-bxs" customClass="PopularTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PopularTableController" title="Popular Movies" id="1fE-qU-bxs" customClass="PopularTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="oG5-ek-MGm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,7 +388,7 @@
         <!--Results-->
         <scene sceneID="yYp-o7-EwO">
             <objects>
-                <tableViewController title="Results" id="Wy5-5L-am5" customClass="SearchTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchTableController" title="Results" id="Wy5-5L-am5" customClass="SearchTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="NPE-3w-IF8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -536,7 +536,7 @@
         <!--Upcoming movies-->
         <scene sceneID="ZZC-qv-0SZ">
             <objects>
-                <tableViewController title="Upcoming movies" id="YxO-gr-1tU" customClass="UpcomingTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="UpcomingTableController" title="Upcoming movies" id="YxO-gr-1tU" customClass="UpcomingTableController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="28" sectionFooterHeight="28" id="JvQ-LY-Ruz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -665,7 +665,7 @@
         <!--Movie Detail-->
         <scene sceneID="d8W-Sy-YZC">
             <objects>
-                <viewController title="Movie Detail" id="6vL-B4-7h9" customClass="MovieViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieViewController" title="Movie Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6vL-B4-7h9" customClass="MovieViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iXE-eF-fml"/>
                         <viewControllerLayoutGuide type="bottom" id="DWB-rt-n3S"/>
@@ -829,7 +829,7 @@
         <!--Map-->
         <scene sceneID="6Yh-87-QGj">
             <objects>
-                <viewController title="Map" id="vVf-Wo-8cY" customClass="MapViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" title="Map" id="vVf-Wo-8cY" customClass="MapViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ouf-6M-j4L"/>
                         <viewControllerLayoutGuide type="bottom" id="ShS-5m-2ZX"/>
@@ -870,7 +870,7 @@
         <!--Cinema-->
         <scene sceneID="ceg-Og-fHC">
             <objects>
-                <viewController title="Cinema" id="9tR-gV-obn" customClass="CinemaViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CinemaViewController" title="Cinema" id="9tR-gV-obn" customClass="CinemaViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wTN-tF-oL3"/>
                         <viewControllerLayoutGuide type="bottom" id="3Sg-gg-hgz"/>
@@ -879,13 +879,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbg-Sg-df5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbg-Sg-df5">
                                 <rect key="frame" x="59" y="274" width="185" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9J-84-rxK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9J-84-rxK">
                                 <rect key="frame" x="20" y="244" width="216" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -907,7 +907,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VMX-Ug-Uee">
                                 <rect key="frame" x="0.0" y="64" width="320" height="172"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6b-vk-kdu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6b-vk-kdu">
                                 <rect key="frame" x="40" y="326" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qdp-mT-fZY"/>
@@ -922,7 +922,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-Dh-TaX">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-Dh-TaX">
                                 <rect key="frame" x="40" y="381" width="272" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kRQ-ho-dcB"/>
@@ -937,7 +937,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bco-1Y-dDc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bco-1Y-dDc">
                                 <rect key="frame" x="40" y="430" width="272" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3RK-GE-eJl"/>
@@ -1007,7 +1007,7 @@
         <!--Homepage-->
         <scene sceneID="clj-du-5rE">
             <objects>
-                <viewController title="Homepage" id="FSi-EH-zvU" customClass="WebViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebViewController" title="Homepage" id="FSi-EH-zvU" customClass="WebViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E5e-UK-Jw3"/>
                         <viewControllerLayoutGuide type="bottom" id="WVd-zi-bIh"/>
@@ -1108,7 +1108,7 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="u9a-L7-NuI"/>
+        <segue reference="Cb0-GQ-LPp"/>
         <segue reference="X5p-qE-Ykg"/>
     </inferredMetricsTieBreakers>
 </document>

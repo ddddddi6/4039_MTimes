@@ -116,8 +116,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
 
     // Download current playing movies from the source and check network connection
-    func searchNearbyCinema() {
-        
+    func searchNearbyCinema() -> Bool{
+        var flag = true as Bool
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + self.latitude + "," + self.longitude + "&radius=50000&types=movie_theater&sensor=true&key=AIzaSyBp1FhLFQV2NCcXkMSO4p4lm3vuFD5g8f8")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -129,14 +129,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 dispatch_async(dispatch_get_main_queue()) {
                     for cinema in self.nearbyCinema {
                         let c: Cinema = cinema as! Cinema
-                        var pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(c.latitude!), Double(c.longitude!))
+                        let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(c.latitude!), Double(c.longitude!))
                         var objectAnnotation = MKPointAnnotation()
                         objectAnnotation.coordinate = pinLocation
                         objectAnnotation.title = c.name
                         objectAnnotation.subtitle = c.id
                         self.mapView.layer.shadowColor = UIColor.clearColor().CGColor;
                         self.mapView.addAnnotation(objectAnnotation)
-                        
+                        flag = true
                     }
                 }
             } else {
@@ -148,10 +148,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
+                flag = false
             }
         }
         task.resume()
         // Download movies
+        return flag
     }
     
     // Parse the received json result

@@ -10,7 +10,6 @@ import XCTest
 @testable import MTimes
 
 class MTimesUITests: XCTestCase {
-    var mvc: PlayingTableController!
         
     override func setUp() {
         super.setUp()

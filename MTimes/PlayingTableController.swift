@@ -105,6 +105,7 @@ class PlayingTableController: UITableViewController {
     
     // Download current playing movies from the source and check network connection
     func downloadMovieData() -> Bool {
+        var flag = true as Bool
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -115,6 +116,7 @@ class PlayingTableController: UITableViewController {
                 self.parseMovieJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
+                    flag = true
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
@@ -125,10 +127,11 @@ class PlayingTableController: UITableViewController {
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 
                     self.presentViewController(alertController, animated: true, completion: nil)
+                flag = false
             }
         }
         task.resume()
-        return true
+        return flag
         // Download movies
     }
     
