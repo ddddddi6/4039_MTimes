@@ -26,6 +26,7 @@ class CinemaViewController: UIViewController {
     var cinemaWeb: String?
     var cinemaAddress: String?
     var cinemaRating: Double?
+    var photo: String?
     
     
     override func viewDidLoad() {
@@ -37,9 +38,17 @@ class CinemaViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.handleTap(_:)))
         address.userInteractionEnabled=true
         address.addGestureRecognizer(tapGesture)
+        
+        let tapGesture_p = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.webView(_:)))
+        homepage.userInteractionEnabled=true
+        homepage.addGestureRecognizer(tapGesture_p)
 
         
         // Do any additional setup after loading the view.
+    }
+    
+    func webView(sender:UITapGestureRecognizer){
+        self.performSegueWithIdentifier("CinemaWebSegue", sender: nil)
     }
     
     // handle the function of UILabel
@@ -88,6 +97,15 @@ class CinemaViewController: UIViewController {
                     self.homepage.text = self.cinemaWeb
                     self.phoneNumber.text = self.cinemaPhone
                     self.rating.text = "Rating: " + String(format: "%.1f", self.cinemaRating!)
+                    let poster = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + self.photo! + "&key=AIzaSyBpHKu9KGpv-VacWvQOhrI7OVjGVdHQY9Y" as String
+                    if let url  = NSURL(string: poster),
+                        data = NSData(contentsOfURL: url)
+                    {
+                        self.cinemaPhoto.image = UIImage(data: data)
+                    } else {
+                        self.cinemaPhoto.image = UIImage(named: "Image")
+                    }
+
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
@@ -113,17 +131,19 @@ class CinemaViewController: UIViewController {
             
             //NSLog("Found \(json["result"].count) new current playing movies!")
 
-                if let
-                    name = json["result"]["name"].string,
-                    phone = json["result"]["international_phone_number"].string,
-                    website = json["result"]["website"].string,
-                    address = json["result"]["vicinity"].string,
+            if let
+                name = json["result"]["name"].string,
+                phone = json["result"]["international_phone_number"].string,
+                website = json["result"]["website"].string,
+                address = json["result"]["vicinity"].string,
+                photo = json["result"]["photos"][0]["photo_reference"].string,
                 rating = json["result"]["rating"].double{
                     self.cinemaName = name
                     self.cinemaPhone = phone
                     self.cinemaWeb = website
                     self.cinemaAddress = address
                     self.cinemaRating = rating
+                    self.photo = photo
                 }
             
         
@@ -149,6 +169,16 @@ class CinemaViewController: UIViewController {
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
 
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "CinemaWebSegue"
+        {
+            
+            let controller: WebViewController = segue.destinationViewController as! WebViewController
+            controller.weblink = self.homepage.text
+            // Display movie details screen
+        }
     }
     /*
     // MARK: - Navigation

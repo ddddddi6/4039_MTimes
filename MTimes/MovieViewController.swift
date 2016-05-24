@@ -76,7 +76,7 @@ class MovieViewController: UIViewController {
     }
     
     // Download current playing movies from the source and check network connection
-    func downloadMovieData(url: String, flag: Int) {
+    func downloadMovieData(url: String, flag: Int) -> Bool {
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -104,11 +104,12 @@ class MovieViewController: UIViewController {
             }
         }
         task.resume()
+        return true
         // Download movies
     }
     
     // Parse the received json result
-    func parseMovieJSON(movieJSON:NSData){
+    func parseMovieJSON(movieJSON:NSData) -> Bool{
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
                                                                     options: NSJSONReadingOptions.MutableContainers)
@@ -132,6 +133,7 @@ class MovieViewController: UIViewController {
         }catch {
             print("JSON Serialization error")
         }
+        return true
     }
     
     func updateSimilarMovies() {

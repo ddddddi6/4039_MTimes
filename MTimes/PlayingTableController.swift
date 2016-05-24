@@ -8,7 +8,6 @@
 
 
 import UIKit
-import Firebase
 import SwiftyJSON
 
 class PlayingTableController: UITableViewController {
@@ -105,7 +104,7 @@ class PlayingTableController: UITableViewController {
     
     
     // Download current playing movies from the source and check network connection
-    func downloadMovieData() {
+    func downloadMovieData() -> Bool {
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -129,6 +128,7 @@ class PlayingTableController: UITableViewController {
             }
         }
         task.resume()
+        return true
         // Download movies
     }
     

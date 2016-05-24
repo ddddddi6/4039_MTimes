@@ -12,6 +12,8 @@
 		041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041798A91CEF47E200C03BB0 /* MapKit.framework */; };
 		041798AC1CEFED5000C03BB0 /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AB1CEFED5000C03BB0 /* Cinema.swift */; };
 		041798B01CF2ACF200C03BB0 /* CinemaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */; };
+		041798DA1CF42BF500C03BB0 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041798D91CF42BF500C03BB0 /* SwiftyJSON.framework */; };
+		041798DC1CF443A500C03BB0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798DB1CF443A500C03BB0 /* WebViewController.swift */; };
 		0442BC281CD8D1D500F5EA85 /* UpcomingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */; };
 		0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044788491CE16AB60029BE33 /* DiscoverViewController.swift */; };
 		0447884C1CE203A60029BE33 /* PopularTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884B1CE203A60029BE33 /* PopularTableController.swift */; };
@@ -28,6 +30,8 @@
 		04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */; };
 		04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297D1CD05F6E00FF6DBE /* Movie.swift */; };
 		415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E80280748C35BB08147FCB /* Pods.framework */; };
+		46DA35E5BE5465EC7A20055E /* Pods_MTimesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984BB20BF58934614307C075 /* Pods_MTimesTests.framework */; };
+		553E37D7BCB2E1D0BF72A5F6 /* Pods_MTimesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */; };
 		D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +71,8 @@
 		041798A91CEF47E200C03BB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		041798AB1CEFED5000C03BB0 /* Cinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
 		041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaViewController.swift; sourceTree = "<group>"; };
+		041798D91CF42BF500C03BB0 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/MTimes-eawfdnrrvhwkkiblxplxioxfivre/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		041798DB1CF443A500C03BB0 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingTableController.swift; sourceTree = "<group>"; };
 		044788491CE16AB60029BE33 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		0447884B1CE203A60029BE33 /* PopularTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableController.swift; sourceTree = "<group>"; };
@@ -88,7 +94,12 @@
 		04D729791CD05CE700FF6DBE /* PlayingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingTableController.swift; sourceTree = "<group>"; };
 		04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableCell.swift; sourceTree = "<group>"; };
 		04D7297D1CD05F6E00FF6DBE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		04D729911CD8331000FF6DBE /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.release.xcconfig"; sourceTree = "<group>"; };
+		5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		984BB20BF58934614307C075 /* Pods_MTimesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.debug.xcconfig"; sourceTree = "<group>"; };
 		A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7E80280748C35BB08147FCB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				041798DA1CF42BF500C03BB0 /* SwiftyJSON.framework in Frameworks */,
 				041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */,
 				415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */,
 				D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */,
@@ -110,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46DA35E5BE5465EC7A20055E /* Pods_MTimesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				553E37D7BCB2E1D0BF72A5F6 /* Pods_MTimesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,11 +176,11 @@
 				0447884B1CE203A60029BE33 /* PopularTableController.swift */,
 				0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */,
 				04D7294E1CD033DA00FF6DBE /* Assets.xcassets */,
-				04D729911CD8331000FF6DBE /* Firebase.framework */,
 				04D729501CD033DA00FF6DBE /* LaunchScreen.storyboard */,
 				04D729531CD033DA00FF6DBE /* Info.plist */,
 				04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */,
 				041798A71CED780F00C03BB0 /* LocationManager.swift */,
+				041798DB1CF443A500C03BB0 /* WebViewController.swift */,
 			);
 			path = MTimes;
 			sourceTree = "<group>";
@@ -194,6 +208,10 @@
 			children = (
 				A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */,
 				C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */,
+				5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */,
+				5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */,
+				76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */,
+				0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -201,9 +219,12 @@
 		DBB951CF8E3F5F6E7AEEF6F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				041798D91CF42BF500C03BB0 /* SwiftyJSON.framework */,
 				041798A91CEF47E200C03BB0 /* MapKit.framework */,
 				A7E80280748C35BB08147FCB /* Pods.framework */,
 				A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */,
+				984BB20BF58934614307C075 /* Pods_MTimesTests.framework */,
+				8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -236,9 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D7296F1CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesTests" */;
 			buildPhases = (
+				4EC78F625B94853D525522F4 /* Check Pods Manifest.lock */,
 				04D729541CD033DA00FF6DBE /* Sources */,
 				04D729551CD033DA00FF6DBE /* Frameworks */,
 				04D729561CD033DA00FF6DBE /* Resources */,
+				68344AE4C8D205475F0C21F8 /* Embed Pods Frameworks */,
+				ADB7EDA3326A7FECC7A19849 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,9 +278,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D729721CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesUITests" */;
 			buildPhases = (
+				826AA686FE043931AA19A198 /* Check Pods Manifest.lock */,
 				04D7295F1CD033DA00FF6DBE /* Sources */,
 				04D729601CD033DA00FF6DBE /* Frameworks */,
 				04D729611CD033DA00FF6DBE /* Resources */,
+				D4260D57A788C0CB5A0199CE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,6 +368,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4EC78F625B94853D525522F4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		68344AE4C8D205475F0C21F8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		826AA686FE043931AA19A198 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		A92494854DECAD4B6028054E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,6 +428,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ADB7EDA3326A7FECC7A19849 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BDAF915DE11D2B45B9A7ABCF /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,6 +456,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4260D57A788C0CB5A0199CE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F49EC3AD4A7E739ECAD0E671 /* Check Pods Manifest.lock */ = {
@@ -407,6 +508,7 @@
 				041798A81CED780F00C03BB0 /* LocationManager.swift in Sources */,
 				04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */,
 				04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */,
+				041798DC1CF443A500C03BB0 /* WebViewController.swift in Sources */,
 				0447884C1CE203A60029BE33 /* PopularTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +658,10 @@
 				);
 				INFOPLIST_FILE = MTimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Firebase",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -572,6 +678,10 @@
 				);
 				INFOPLIST_FILE = MTimes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/Firebase",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -579,6 +689,7 @@
 		};
 		04D729701CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MTimesTests/Info.plist;
@@ -591,6 +702,7 @@
 		};
 		04D729711CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MTimesTests/Info.plist;
@@ -603,6 +715,7 @@
 		};
 		04D729731CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = MTimesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -614,6 +727,7 @@
 		};
 		04D729741CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = MTimesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

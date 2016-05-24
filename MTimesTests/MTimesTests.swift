@@ -11,8 +11,16 @@ import XCTest
 
 class MTimesTests: XCTestCase {
     
+    var mvc: PlayingTableController!
+    
     override func setUp() {
         super.setUp()
+        
+        mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlayingTableController") as! PlayingTableController
+    
+
+        //let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        //mvc = storyboard.instantiateInitialViewController() as! MovieViewController
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -33,4 +41,8 @@ class MTimesTests: XCTestCase {
         }
     }
     
+    func testSearchFunction() {
+        let p = mvc.downloadMovieData()
+        XCTAssertTrue(p == true, "f")
+    }
 }
