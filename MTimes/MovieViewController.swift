@@ -22,21 +22,24 @@ class MovieViewController: UIViewController {
     @IBOutlet var similar: UILabel!
     @IBOutlet var imagesView: UIScrollView!
     
-    
     var currentMovie: Movie?
     var movieSet = [String]()
     var imageSet = [String]()
+    var videoKey: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let urlStrings = ["https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
-                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"]
+                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
+                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/videos?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"]
         
         for var i = 0; i < urlStrings.count; i++
         {
             downloadMovieData(urlStrings[i], flag: i)
         }
+        
+        //downloadVideoData()
 
         // Do any additional setup after loading the view.
     }
@@ -85,12 +88,18 @@ class MovieViewController: UIViewController {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let data = data {
-                self.parseMovieJSON(data)
+                if flag != 2 {
+                    self.parseMovieJSON(data)
+                } else {
+                    self.parseVideoJSON(data)
+                }
                 dispatch_async(dispatch_get_main_queue()) {
                     if flag == 0 {
                         self.updateImages()
                     } else if flag == 1 {
                         self.updateSimilarMovies()
+                    } else if flag == 2 {
+                        self.updateVideo()
                     }
                 }
                 flags = true
@@ -175,7 +184,6 @@ class MovieViewController: UIViewController {
     
     func updateImages() {
         if imageSet.count != 0 {
-        
             let image1 = "http://image.tmdb.org/t/p/w500" + self.imageSet[0] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
             let imageView1 = UIImageView(frame: CGRectMake(0, 0, self.imagesView.frame.width, self.imagesView.frame.height))
             let imageView2 = UIImageView(frame: CGRectMake(self.imagesView.frame.width, 0, self.imagesView.frame.width, self.imagesView.frame.height))
@@ -205,6 +213,42 @@ class MovieViewController: UIViewController {
         }
     }
     
+    // Parse the received json result
+    func parseVideoJSON(movieJSON:NSData) {
+        do{
+            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
+                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let json = JSON(result)
+            
+            if json["results"].count != 0 {
+                NSLog("Found \(json["results"].count) videos!")
+                    if let key = json["results"][0]["key"].string {
+                        self.videoKey = key
+                }
+            }
+        }catch {
+            print("JSON Serialization error")
+        }
+    }
+
+    func updateVideo() {
+        let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height + 15, UIScreen.mainScreen().bounds.width, 250))
+        webV.backgroundColor = UIColor.clearColor()
+        webV.scrollView.showsHorizontalScrollIndicator = false
+        webV.scrollView.showsVerticalScrollIndicator = false
+        
+        let width = webV.frame.width - 20
+        let height = webV.frame.height - 20
+        let frame = 0
+        
+        let youtubelink: String = "https://www.youtube.com/embed/" + self.videoKey!
+        let Code: NSString = "<body style='background-color: #4C4C4C; margin: 0; padding: 0;'><iframe width=100% height=\(height) src=\(youtubelink) frameborder=0  allowfullscreen></iframe></body>"
+        webV.loadHTMLString(Code as String, baseURL: nil)
+        
+        self.scrollView.addSubview(webV)
+        self.scrollView.contentSize.height = webV.frame.maxY + 20
+    }
+
     func buttonAction (sender: UIButton!) {
         self.performSegueWithIdentifier("CinemaMapSegue", sender: nil)
     }
