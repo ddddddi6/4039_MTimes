@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		041798A61CED777200C03BB0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798A51CED777200C03BB0 /* MapViewController.swift */; };
-		041798A81CED780F00C03BB0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798A71CED780F00C03BB0 /* LocationManager.swift */; };
 		041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041798A91CEF47E200C03BB0 /* MapKit.framework */; };
 		041798AC1CEFED5000C03BB0 /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AB1CEFED5000C03BB0 /* Cinema.swift */; };
 		041798B01CF2ACF200C03BB0 /* CinemaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */; };
@@ -67,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		041798A51CED777200C03BB0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		041798A71CED780F00C03BB0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		041798A91CEF47E200C03BB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		041798AB1CEFED5000C03BB0 /* Cinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
 		041798AF1CF2ACF200C03BB0 /* CinemaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaViewController.swift; sourceTree = "<group>"; };
@@ -163,8 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				04D729791CD05CE700FF6DBE /* PlayingTableController.swift */,
-				048F59951CD9945400873784 /* MovieViewController.swift */,
 				044788491CE16AB60029BE33 /* DiscoverViewController.swift */,
+				048F59951CD9945400873784 /* MovieViewController.swift */,
 				04D7297D1CD05F6E00FF6DBE /* Movie.swift */,
 				04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */,
 				04D729441CD033DA00FF6DBE /* AppDelegate.swift */,
@@ -179,7 +177,6 @@
 				04D729501CD033DA00FF6DBE /* LaunchScreen.storyboard */,
 				04D729531CD033DA00FF6DBE /* Info.plist */,
 				04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */,
-				041798A71CED780F00C03BB0 /* LocationManager.swift */,
 				041798DB1CF443A500C03BB0 /* WebViewController.swift */,
 			);
 			path = MTimes;
@@ -505,7 +502,6 @@
 				04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */,
 				0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */,
 				041798B01CF2ACF200C03BB0 /* CinemaViewController.swift in Sources */,
-				041798A81CED780F00C03BB0 /* LocationManager.swift in Sources */,
 				04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */,
 				04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */,
 				041798DC1CF443A500C03BB0 /* WebViewController.swift in Sources */,

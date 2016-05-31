@@ -19,6 +19,7 @@ class WebViewController: UIViewController {
         let url = NSURL(string: weblink!);
         let requestObj = NSURLRequest(URL: url!);
         webView.loadRequest(requestObj);
+        webView.backgroundColor = UIColor.clearColor()
 
         // Do any additional setup after loading the view.
     }

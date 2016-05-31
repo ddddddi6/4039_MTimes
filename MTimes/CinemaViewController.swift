@@ -96,7 +96,7 @@ class CinemaViewController: UIViewController {
             if let data = data {
                 self.parseCinemaJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.cinemaTitle.text = self.cinemaName
+                    self.title = self.cinemaName
                     self.address.text = self.cinemaAddress
                     self.homepage.text = self.cinemaWeb
                     self.phoneNumber.text = self.cinemaPhone
