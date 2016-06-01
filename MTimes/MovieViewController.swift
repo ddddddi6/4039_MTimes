@@ -26,15 +26,22 @@ class MovieViewController: UIViewController {
     var movieSet = [String]()
     var imageSet = [String]()
     var videoKey: String?
-
+    var reviews = [String]()
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlStrings = ["https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
-                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/similar?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4",
-                          "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) + "/videos?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"]
+        let apiLink = "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) as String
+        let apiKey = "api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"
+
         
-        for var i = 0; i < urlStrings.count; i++
+        let urlStrings = [apiLink + "/images?" + apiKey,
+                          apiLink + "/similar?" + apiKey,
+                          apiLink + "/videos?" + apiKey,
+                          apiLink + "/reviews?" + apiKey]
+        
+        for i in 0 ..< urlStrings.count
         {
             downloadMovieData(urlStrings[i], flag: i)
         }
@@ -88,11 +95,14 @@ class MovieViewController: UIViewController {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let data = data {
-                if flag != 2 {
-                    self.parseMovieJSON(data)
-                } else {
+                if flag == 2 {
                     self.parseVideoJSON(data)
+                } else if flag == 3 {
+                    self.parseReviewJSON(data)
+                } else {
+                    self.parseMovieJSON(data)
                 }
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     if flag == 0 {
                         self.updateImages()
@@ -100,6 +110,8 @@ class MovieViewController: UIViewController {
                         self.updateSimilarMovies()
                     } else if flag == 2 {
                         self.updateVideo()
+                    } else {
+                        self.updateReview()
                     }
                 }
                 flags = true
@@ -151,6 +163,7 @@ class MovieViewController: UIViewController {
     func updateSimilarMovies() -> Bool {
         if self.movieSet.count != 0 {
             self.similar.text = "Similar Movies"
+            self.similar.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
             var number = self.similar.frame.maxY + 5
             for var i = 0; i < self.movieSet.count; i++
             {
@@ -167,18 +180,6 @@ class MovieViewController: UIViewController {
             self.similar.enabled = false
             self.scrollView.contentSize.height = self.similar.frame.maxY + 10
         }
-        
-        let button = UIButton(frame: CGRectMake(100, scrollView.contentSize.height + 15 , 150, 28))
-        button.center.x = self.scrollView.center.x
-        button.backgroundColor = UIColor.grayColor()
-        button.layer.cornerRadius = 5.0
-        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        button.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
-        button.setTitle("Find a Cinema", forState: UIControlState.Normal)
-        self.scrollView.addSubview(button)
-        self.scrollView.contentSize.height = button.frame.maxY + 10
-        
-        button.addTarget(self, action: #selector(MovieViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
         return true
     }
     
@@ -232,27 +233,69 @@ class MovieViewController: UIViewController {
     }
 
     func updateVideo() {
-        let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height + 15, UIScreen.mainScreen().bounds.width, 250))
-        webV.backgroundColor = UIColor.clearColor()
-        webV.scrollView.showsHorizontalScrollIndicator = false
-        webV.scrollView.showsVerticalScrollIndicator = false
+        if self.videoKey != nil {
+            let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height + 15, UIScreen.mainScreen().bounds.width, 250))
+            webV.backgroundColor = UIColor.clearColor()
+            webV.scrollView.showsHorizontalScrollIndicator = false
+            webV.scrollView.showsVerticalScrollIndicator = false
         
-        let width = webV.frame.width - 20
-        let height = webV.frame.height - 20
-        let frame = 0
+            let width = webV.frame.width - 20
+            let height = webV.frame.height - 20
+            let frame = 0
         
-        let youtubelink: String = "https://www.youtube.com/embed/" + self.videoKey!
-        let Code: NSString = "<body style='background-color: #4C4C4C; margin: 0; padding: 0;'><iframe width=100% height=\(height) src=\(youtubelink) frameborder=0  allowfullscreen></iframe></body>"
-        webV.loadHTMLString(Code as String, baseURL: nil)
+            let youtubelink: String = "https://www.youtube.com/embed/" + self.videoKey!
+            let Code: NSString = "<body style='background-color: #4C4C4C; margin: 0; padding: 0;'><iframe width=100% height=\(height) src=\(youtubelink) frameborder=0  allowfullscreen></iframe></body>"
+            webV.loadHTMLString(Code as String, baseURL: nil)
         
-        self.scrollView.addSubview(webV)
-        self.scrollView.contentSize.height = webV.frame.maxY + 20
-    }
-
-    func buttonAction (sender: UIButton!) {
-        self.performSegueWithIdentifier("CinemaMapSegue", sender: nil)
+            self.scrollView.addSubview(webV)
+            self.scrollView.contentSize.height = webV.frame.maxY + 10
+        }
     }
     
+    // Parse the received json result
+    func parseReviewJSON(movieJSON:NSData) {
+        do{
+            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
+                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let json = JSON(result)
+            
+            if json["results"].count != 0 {
+                NSLog("Found \(json["results"].count) reviews!")
+                for review in json["results"].arrayValue {
+                    if let content = review["content"].string {
+                        self.reviews.append(content)
+                    }
+                }
+            }
+        }catch {
+            print("JSON Serialization error")
+        }
+    }
+    
+    func updateReview() {
+        if reviews.count != 0 {
+            let review = UILabel(frame: CGRectMake(8, scrollView.contentSize.height, 360, 21))
+            review.text = "Reviews"
+            review.textColor = UIColor.whiteColor()
+            review.font = UIFont.boldSystemFontOfSize(17)
+            review.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
+            self.scrollView.addSubview(review)
+            var number = review.frame.maxY + 5
+            self.scrollView.contentSize.height += 15
+            for var i = 0; i < self.reviews.count; i++
+            {
+                let label = UILabel(frame: CGRectMake(23, number , 450, 21))
+                label.text = self.reviews[i]
+                label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
+                label.font = UIFont.systemFontOfSize(12)
+                self.scrollView.addSubview(label)
+                number += 15
+                self.scrollView.contentSize.height += 15
+            }
+        } else {
+            self.scrollView.contentSize.height += 20
+        }
+    }
 
     /*
     // MARK: - Navigation
