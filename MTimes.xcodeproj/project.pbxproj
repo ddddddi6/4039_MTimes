@@ -173,11 +173,11 @@
 				0447884D1CE2D6F00029BE33 /* SearchTableController.swift */,
 				0447884B1CE203A60029BE33 /* PopularTableController.swift */,
 				0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */,
+				041798DB1CF443A500C03BB0 /* WebViewController.swift */,
 				04D7294E1CD033DA00FF6DBE /* Assets.xcassets */,
 				04D729501CD033DA00FF6DBE /* LaunchScreen.storyboard */,
 				04D729531CD033DA00FF6DBE /* Info.plist */,
 				04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */,
-				041798DB1CF443A500C03BB0 /* WebViewController.swift */,
 			);
 			path = MTimes;
 			sourceTree = "<group>";
