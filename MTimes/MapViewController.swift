@@ -187,11 +187,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     @IBAction func share(sender: UIBarButtonItem) {
-        let bounds = UIScreen.mainScreen().bounds
+        let layer = UIApplication.sharedApplication().keyWindow!.layer
         
-        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0.0)
+        let scale = UIScreen.mainScreen().scale
         
-        self.view.drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
+        
+        layer.renderInContext(UIGraphicsGetCurrentContext()!)
         
         let img = UIGraphicsGetImageFromCurrentImageContext()
         
