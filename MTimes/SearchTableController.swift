@@ -126,6 +126,14 @@ class SearchTableController: UITableViewController {
                     self.tableView.reloadData()
                     if self.currentMovie.count == 0 {
                         self.infoLabel.text = "Sorry, No Result Found..."
+                        let messageString: String = "No Result Found"
+                        // Setup an alert to warn user
+                        // UIAlertController manages an alert instance
+                        let alertController = UIAlertController(title: "Sorry", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     }
                 }
             } else {

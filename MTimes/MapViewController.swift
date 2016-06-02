@@ -43,7 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
-        
+   
         self.mapView.delegate = self
 
         // Do any additional setup after loading the view.
@@ -60,16 +60,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         NSLog("Found \(location.coordinate.latitude) \(location.coordinate.longitude)")
         
-        self.latitude = String(location.coordinate.latitude)
-        self.longitude = String(location.coordinate.longitude)
+        if (self.latitude == nil && self.longitude == nil) {
+            self.latitude = String(location.coordinate.latitude)
+            self.longitude = String(location.coordinate.longitude)
         
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
         
-        self.mapView.setRegion(region, animated: true)
-        self.locationManager.stopUpdatingLocation()
+            self.mapView.setRegion(region, animated: true)
+            self.locationManager.stopUpdatingLocation()
         
-        searchNearbyCinema()
+            searchNearbyCinema()
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
@@ -90,12 +92,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.animatesDrop = true
+        } else {
+            pinView?.annotation = annotation
         }
         
         let button = UIButton(type: .DetailDisclosure) as UIButton // button with info sign in it
         
         pinView?.rightCalloutAccessoryView = button
-        
         
         return pinView
     }
@@ -115,7 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
 
-    // Download current playing movies from the source and check network connection
+    // Search nearby cinema from google map api and check network connection
     func searchNearbyCinema() -> Bool{
         var flag = true as Bool
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + self.latitude + "," + self.longitude + "&radius=50000&types=movie_theater&sensor=true&key=AIzaSyBp1FhLFQV2NCcXkMSO4p4lm3vuFD5g8f8")!

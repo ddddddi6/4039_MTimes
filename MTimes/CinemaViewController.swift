@@ -35,6 +35,10 @@ class CinemaViewController: UIViewController {
         downloadCinemaData()
         
         // add gesture to your Label
+        let tapGesture_c = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.callNumber(_:)))
+        phoneNumber.userInteractionEnabled=true
+        phoneNumber.addGestureRecognizer(tapGesture_c)
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.handleTap(_:)))
         address.userInteractionEnabled=true
         address.addGestureRecognizer(tapGesture)
@@ -49,6 +53,16 @@ class CinemaViewController: UIViewController {
     
     func webView(sender:UITapGestureRecognizer){
         self.performSegueWithIdentifier("CinemaWebSegue", sender: nil)
+    }
+    
+    func callNumber(sender:UITapGestureRecognizer) {
+        let number = self.phoneNumber.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        if let phoneCallURL:NSURL = NSURL(string:"tel://\(number)") {
+            let application:UIApplication = UIApplication.sharedApplication()
+            if (application.canOpenURL(phoneCallURL)) {
+                application.openURL(phoneCallURL);
+            }
+        }
     }
     
     // handle the function of UILabel
