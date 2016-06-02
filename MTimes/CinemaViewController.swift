@@ -195,7 +195,7 @@ class CinemaViewController: UIViewController {
             
             let controller: WebViewController = segue.destinationViewController as! WebViewController
             controller.weblink = self.homepage.text
-            // Display movie details screen
+            // Go to cinema homepage
         }
     }
     /*

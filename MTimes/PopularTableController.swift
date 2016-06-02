@@ -101,7 +101,7 @@ class PopularTableController: UITableViewController {
     }
     
     
-    // Download current playing movies from the source and check network connection
+    // Download popular movies from the source and check network connection
     func downloadMovieData() {
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/popular?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)

@@ -110,7 +110,7 @@ class SearchTableController: UITableViewController {
     }
     
     
-    // Download current playing movies from the source and check network connection
+    // Download searching results from the source and check network connection
     func downloadMovieData() {
         let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let escapedString = mTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())

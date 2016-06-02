@@ -188,11 +188,6 @@ class PlayingTableController: UITableViewController {
             // Display movie details screen
         }
     }
-        
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-//        self.performSegueWithIdentifier("N_ViewDetailSegue", sender: self)
-//        // Move to view movie screen for selected item
-//    }
     
     /*
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
