@@ -130,15 +130,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     for cinema in self.nearbyCinema {
                         let c: Cinema = cinema as! Cinema
                         let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(c.latitude!), Double(c.longitude!))
-                        var objectAnnotation = MKPointAnnotation()
+                        let objectAnnotation = MKPointAnnotation()
                         objectAnnotation.coordinate = pinLocation
                         objectAnnotation.title = c.name
                         objectAnnotation.subtitle = c.id
                         self.mapView.layer.shadowColor = UIColor.clearColor().CGColor;
                         self.mapView.addAnnotation(objectAnnotation)
-                        flag = true
                     }
                 }
+                flag = true
             } else {
                 let messageString: String = "Something wrong with the connection"
                 // Setup an alert to warn user

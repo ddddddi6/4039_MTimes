@@ -145,50 +145,6 @@ class MovieViewController: UIViewController {
     }
     
     // Parse the received json result
-    func parseMovieJSON(movieJSON:NSData) -> Bool{
-        do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
-            let json = JSON(result)
-            
-            if json["results"].count != 0 {
-                NSLog("Found \(json["results"].count) similar movies!")
-                for movie in json["results"].arrayValue {
-                    if let title = movie["title"].string {
-                        movieSet.append(title)
-                    }
-                }
-            }
-        }catch {
-            print("JSON Serialization error")
-        }
-        return true
-    }
-    
-    func updateSimilarMovies() -> Bool {
-        if self.movieSet.count >= 5 {
-            self.similar.text = "Similar Movies"
-            self.similar.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
-            var number = self.similar.frame.maxY + 5
-            for var i = 0; i < 5; i++
-            {
-                let label = UILabel(frame: CGRectMake(23, number , 380, 21))
-                label.text = self.movieSet[i]
-                label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
-                label.font = UIFont.boldSystemFontOfSize(11)
-                self.scrollView.addSubview(label)
-                number += 15
-                self.scrollView.contentSize.height += 13
-            }
-        } else {
-            self.similar.text = " "
-            self.similar.enabled = false
-            self.scrollView.contentSize.height = self.similar.frame.maxY + 10
-        }
-        return true
-    }
-    
-    // Parse the received json result
     func parsePosterJSON(movieJSON:NSData) -> Bool{
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -241,6 +197,50 @@ class MovieViewController: UIViewController {
     }
     
     // Parse the received json result
+    func parseMovieJSON(movieJSON:NSData) -> Bool{
+        do{
+            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
+                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let json = JSON(result)
+            
+            if json["results"].count != 0 {
+                NSLog("Found \(json["results"].count) similar movies!")
+                for movie in json["results"].arrayValue {
+                    if let title = movie["title"].string {
+                        movieSet.append(title)
+                    }
+                }
+            }
+        }catch {
+            print("JSON Serialization error")
+        }
+        return true
+    }
+    
+    func updateSimilarMovies() -> Bool {
+        if self.movieSet.count >= 5 {
+            self.similar.text = "Similar Movies"
+            self.similar.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
+            var number = self.similar.frame.maxY + 5
+            for var i = 0; i < 5; i++
+            {
+                let label = UILabel(frame: CGRectMake(23, number , 380, 21))
+                label.text = self.movieSet[i]
+                label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
+                label.font = UIFont.boldSystemFontOfSize(11)
+                self.scrollView.addSubview(label)
+                number += 15
+                self.scrollView.contentSize.height += 8
+            }
+        } else {
+            self.similar.text = " "
+            self.similar.enabled = false
+            self.scrollView.contentSize.height = self.similar.frame.maxY
+        }
+        return true
+    }
+    
+    // Parse the received json result
     func parseVideoJSON(movieJSON:NSData) {
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -260,7 +260,7 @@ class MovieViewController: UIViewController {
 
     func updateVideo() {
         if self.videoKey != nil {
-            let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height, UIScreen.mainScreen().bounds.width, 250))
+            let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height+25, UIScreen.mainScreen().bounds.width, 230))
             webV.backgroundColor = UIColor.clearColor()
             webV.scrollView.showsHorizontalScrollIndicator = false
             webV.scrollView.showsVerticalScrollIndicator = false
@@ -272,7 +272,10 @@ class MovieViewController: UIViewController {
             webV.loadHTMLString(Code as String, baseURL: nil)
         
             self.scrollView.addSubview(webV)
-            self.scrollView.contentSize.height = webV.frame.maxY + 7
+            self.scrollView.contentSize.height = webV.frame.maxY + 5
+        }
+        else {
+            self.scrollView.contentSize.height += 5
         }
     }
     
@@ -307,19 +310,19 @@ class MovieViewController: UIViewController {
             var number = review.frame.maxY + 5
             for var i = 0; i < self.reviews.count; i++
             {
-                let label = UILabel(frame: CGRectMake(23, number , 330, 21))
+                let label = UILabel(frame: CGRectMake(23, number , 330, 62))
                 label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                label.numberOfLines = 0
+                label.numberOfLines = 3
                 label.text = self.reviews[i]
-                label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
+                label.textColor = UIColor.whiteColor()
                 label.font = UIFont.systemFontOfSize(12)
                 self.scrollView.addSubview(label)
                 number += 15
-                self.scrollView.contentSize.height += 15
+                self.scrollView.contentSize.height = label.frame.maxY + 5
             }
-             self.scrollView.contentSize.height += 35
+             self.scrollView.contentSize.height += 10
         } else {
-            self.scrollView.contentSize.height += 20
+            self.scrollView.contentSize.height += 5
         }
     }
 

@@ -108,6 +108,8 @@ class PopularTableController: UITableViewController {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         let session = NSURLSession.sharedSession()
+        let priority = QOS_CLASS_USER_INTERACTIVE
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let data = data {
                 self.parseMovieJSON(data)
@@ -126,6 +128,7 @@ class PopularTableController: UITableViewController {
             }
         }
         task.resume()
+        }
         // Download movies
     }
     

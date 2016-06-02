@@ -112,7 +112,9 @@ class SearchTableController: UITableViewController {
     
     // Download current playing movies from the source and check network connection
     func downloadMovieData() {
-        let url = NSURL(string: "https://api.themoviedb.org/3/search/movie?query=" + self.movieTitle!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+        let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let escapedString = mTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let url = NSURL(string: "https://api.themoviedb.org/3/search/movie?query=" + escapedString!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
