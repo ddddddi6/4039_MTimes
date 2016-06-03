@@ -12,6 +12,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var recLabel: UILabel!
     @IBOutlet var mapLabel: UILabel!
+    @IBOutlet var bookmarkLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,10 +41,11 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = UIColor.whiteColor()
         
-        self.recLabel.text = "Recommendation"
-        self.mapLabel.text = "Locate cinema"
+        self.recLabel.text = " Recommendation"
+        self.mapLabel.text = " Locate cinema"
+        self.bookmarkLabel.text = " Bookmark"
         
-        let buttonText = ["Popular movies", "Find a cinema"]
+        let buttonText = ["Popular movies", "Find a cinema", "Bookmark"]
         var buttonArray = Array<UIButton>()
         
         var number = self.searchBar.frame.maxY + 47
@@ -64,6 +66,8 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
         
         buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
+        
+        buttonArray[2].addTarget(self, action: #selector(DiscoverViewController.displayBookmark(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -75,6 +79,10 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     
     func displayPopularMovies (sender: UIButton!) {
         self.performSegueWithIdentifier("popularSegue", sender: nil)
+    }
+    
+    func displayBookmark (sender: UIButton!) {
+        self.performSegueWithIdentifier("ShowBookmarkSegue", sender: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){

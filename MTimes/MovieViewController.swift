@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class MovieViewController: UIViewController {
 
+    @IBOutlet var button: UIButton!
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var overview: UILabel!
     @IBOutlet var titleLabel: UILabel!
@@ -22,11 +23,15 @@ class MovieViewController: UIViewController {
     @IBOutlet var similar: UILabel!
     @IBOutlet var imagesView: UIScrollView!
     
+    
+    
     var currentMovie: Movie?
     var movieSet = [String]()
     var imageSet = [String]()
     var videoKey: String?
     var reviews = [String]()
+    
+    let myDefaults = NSUserDefaults.standardUserDefaults()
     
    
     override func viewDidLoad() {
@@ -45,6 +50,13 @@ class MovieViewController: UIViewController {
         {
             downloadMovieData(urlStrings[i], flag: i)
         }
+        
+        if (currentMovie?.mark == true) {
+            button?.backgroundColor = UIColor(red: 255/255.0, green: 128.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        }
+        
+        button.addTarget(self, action: #selector(MovieViewController.bookMovie(_:)), forControlEvents: .TouchUpInside)
+        
         
         //downloadVideoData()
 
@@ -317,7 +329,7 @@ class MovieViewController: UIViewController {
                 label.textColor = UIColor.whiteColor()
                 label.font = UIFont.systemFontOfSize(12)
                 self.scrollView.addSubview(label)
-                number += 15
+                number = label.frame.maxY + 5
                 self.scrollView.contentSize.height = label.frame.maxY + 5
             }
              self.scrollView.contentSize.height += 10
@@ -325,7 +337,57 @@ class MovieViewController: UIViewController {
             self.scrollView.contentSize.height += 5
         }
     }
-
+    
+    func bookMovie(sender: UIButton) {
+        //myDefaults.setObject(currentMovie?.title, forKey: "myMovie")
+        
+        let array = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+        let button = sender as? UIButton
+        var flag = true
+        for movie in array {
+            if currentMovie?.title == movie {
+                flag = false
+                break
+            }
+        }
+        
+            if flag {
+                var storedData = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+                
+                storedData.append((currentMovie?.title)!)
+                
+                // then update whats in the `NSUserDefault`
+                myDefaults.setObject(storedData, forKey: "myMovie")
+                
+                // call this after you update
+                myDefaults.synchronize()
+                
+                button?.backgroundColor = UIColor(red: 255/255.0, green: 128.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+//                let messageString: String = "Movie Saved"
+//                // Setup an alert to warn user
+//                // UIAlertController manages an alert instance
+//                let alertController = UIAlertController(title: "Message", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+//                
+//                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+//                
+//                self.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                let messageString: String = "You have already saved this movie"
+                // Setup an alert to warn user
+                // UIAlertController manages an alert instance
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alertController.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+    }
+    
+    func getMovies() -> [String] {
+        let array = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+        return array
+    }
+    
     /*
     // MARK: - Navigation
 
