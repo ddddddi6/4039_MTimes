@@ -18,7 +18,6 @@ class Movie: NSObject {
     var date: NSDate?
     var count: Int?
     var backdrop: String?
-    var mark: Bool?
     
     override init()
     {
@@ -31,11 +30,10 @@ class Movie: NSObject {
         self.date = nil
         self.count = 0
         self.backdrop = "No Image"
-        self.mark = false
         // Default intialization of each variables
     }
     
-    init(id: Int, title: String, poster: String, overview: String, popularity: Double, rate: Double, date: NSDate, count: Int, backdrop: String, mark: Bool)
+    init(id: Int, title: String, poster: String, overview: String, popularity: Double, rate: Double, date: NSDate, count: Int, backdrop: String)
     {
         self.id = id
         self.title = title
@@ -46,7 +44,6 @@ class Movie: NSObject {
         self.date = date
         self.count = count
         self.backdrop = backdrop
-        self.mark = mark
         // Custome initialization of each variables
     }
 

@@ -51,8 +51,9 @@ class MovieViewController: UIViewController {
             downloadMovieData(urlStrings[i], flag: i)
         }
         
-        if (currentMovie?.mark == true) {
-            button?.backgroundColor = UIColor(red: 255/255.0, green: 128.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        if (checkMarked()) {
+            button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         }
         
         button.addTarget(self, action: #selector(MovieViewController.bookMovie(_:)), forControlEvents: .TouchUpInside)
@@ -341,17 +342,10 @@ class MovieViewController: UIViewController {
     func bookMovie(sender: UIButton) {
         //myDefaults.setObject(currentMovie?.title, forKey: "myMovie")
         
-        let array = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
         let button = sender as? UIButton
-        var flag = true
-        for movie in array {
-            if currentMovie?.title == movie {
-                flag = false
-                break
-            }
-        }
+        let flag = checkMarked()
         
-            if flag {
+            if !flag {
                 var storedData = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
                 
                 storedData.append((currentMovie?.title)!)
@@ -361,16 +355,8 @@ class MovieViewController: UIViewController {
                 
                 // call this after you update
                 myDefaults.synchronize()
-                
-                button?.backgroundColor = UIColor(red: 255/255.0, green: 128.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-//                let messageString: String = "Movie Saved"
-//                // Setup an alert to warn user
-//                // UIAlertController manages an alert instance
-//                let alertController = UIAlertController(title: "Message", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
-//                
-//                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-//                
-//                self.presentViewController(alertController, animated: true, completion: nil)
+                button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+                button!.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
             } else {
                 let messageString: String = "You have already saved this movie"
                 // Setup an alert to warn user
@@ -386,6 +372,18 @@ class MovieViewController: UIViewController {
     func getMovies() -> [String] {
         let array = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
         return array
+    }
+    
+    func checkMarked () -> Bool {
+        let array = getMovies()
+        var flag = false
+        for movie in array {
+            if currentMovie?.title == movie {
+                flag = true
+                break
+            }
+        }
+        return flag
     }
     
     /*

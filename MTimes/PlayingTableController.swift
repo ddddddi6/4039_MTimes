@@ -163,10 +163,10 @@ class PlayingTableController: UITableViewController {
                     if let
                     poster = movie["poster_path"].string,
                     backdrop = movie["backdrop_path"].string {
-                        let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: backdrop, mark: false)
+                        let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: backdrop)
                         currentMovie.addObject(m)
                     } else {
-                    let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image", mark: false)
+                    let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image")
                         currentMovie.addObject(m)
                     }
                 }
