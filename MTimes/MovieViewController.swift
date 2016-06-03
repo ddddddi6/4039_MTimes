@@ -52,8 +52,8 @@ class MovieViewController: UIViewController {
         }
         
         if (checkMarked()) {
-            button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
-            button.setTitle("Bookmarked", forState: UIControlState.Normal)
+            button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
+            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         }
         
@@ -341,32 +341,45 @@ class MovieViewController: UIViewController {
     }
     
     func bookMovie(sender: UIButton) {
-        //myDefaults.setObject(currentMovie?.title, forKey: "myMovie")
-        let flag = checkMarked()
-        
-            if !flag {
-                var storedData = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+        if !checkMarked() {
+            var storedData = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+            
+            storedData.append((currentMovie?.title)!)
+            
+            // then update whats in the `NSUserDefault`
+            myDefaults.setObject(storedData, forKey: "myMovie")
                 
-                storedData.append((currentMovie?.title)!)
-                
-                // then update whats in the `NSUserDefault`
-                myDefaults.setObject(storedData, forKey: "myMovie")
-                
-                // call this after you update
-                myDefaults.synchronize()
-                button!.titleLabel?.text = "Bookmarked"
-                button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
-                button!.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
-            } else {
-                let messageString: String = "You have already saved this movie"
-                // Setup an alert to warn user
-                // UIAlertController manages an alert instance
-                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
-                
-                alertController.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default,handler: nil))
-                
-                self.presentViewController(alertController, animated: true, completion: nil)
+            // call this after you update
+            myDefaults.synchronize()
+            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
+            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+            button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
+        } else {
+            var array = getMovies()
+            var index = -1 as Int
+            for movie in array {
+                if currentMovie?.title == movie {
+                    index = array.indexOf(movie)!
+                }
             }
+            array.removeAtIndex(index)
+            // then update whats in the `NSUserDefault`
+            myDefaults.setObject(array, forKey: "myMovie")
+            
+            // call this after you update
+            myDefaults.synchronize()
+            button.setTitle("Bookmark", forState: UIControlState.Normal)
+            button.titleLabel?.font = UIFont.systemFontOfSize(12)
+            button?.backgroundColor = UIColor(red: 127/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
+//            let messageString: String = "You have already saved this movie"
+//            // Setup an alert to warn user
+//            // UIAlertController manages an alert instance
+//            let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+//                
+//            alertController.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default,handler: nil))
+//                
+//            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     func getMovies() -> [String] {
