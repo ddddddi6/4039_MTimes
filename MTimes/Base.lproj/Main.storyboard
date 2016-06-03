@@ -792,11 +792,11 @@
                                         </constraints>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJe-IM-SPb">
-                                        <rect key="frame" x="151" y="314" width="64" height="21"/>
+                                        <rect key="frame" x="151" y="314" width="84" height="21"/>
                                         <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Hba-xe-oDv"/>
-                                            <constraint firstAttribute="width" constant="64" id="WnD-fV-A8o"/>
+                                            <constraint firstAttribute="width" constant="84" id="WnD-fV-A8o"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" title="Bookmark">
@@ -1009,7 +1009,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="a1k-Eg-Dm1">
-                                <rect key="frame" x="285" y="441" width="19" height="13"/>
+                                <rect key="frame" x="285" y="436" width="19" height="18"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1033,7 +1033,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iaj-tT-q7e" secondAttribute="trailing" constant="-4" id="SME-nP-8CQ"/>
                             <constraint firstItem="eI9-2X-gZ1" firstAttribute="trailing" secondItem="hH0-PX-Jq8" secondAttribute="trailing" id="UUI-2r-35Y"/>
                             <constraint firstItem="Wwv-Dh-TaX" firstAttribute="leading" secondItem="bco-1Y-dDc" secondAttribute="leading" id="V96-HT-V2a"/>
-                            <constraint firstItem="a1k-Eg-Dm1" firstAttribute="top" secondItem="hH0-PX-Jq8" secondAttribute="bottom" constant="13" id="Vc3-NK-0fW"/>
+                            <constraint firstItem="a1k-Eg-Dm1" firstAttribute="top" secondItem="hH0-PX-Jq8" secondAttribute="bottom" constant="8" id="Vc3-NK-0fW"/>
                             <constraint firstItem="eI9-2X-gZ1" firstAttribute="top" secondItem="B6b-vk-kdu" secondAttribute="bottom" constant="5" id="Vi9-Sh-IZ1"/>
                             <constraint firstItem="3Sg-gg-hgz" firstAttribute="top" secondItem="bco-1Y-dDc" secondAttribute="bottom" constant="65" id="XvM-UO-Oc7"/>
                             <constraint firstItem="i9J-84-rxK" firstAttribute="top" secondItem="VMX-Ug-Uee" secondAttribute="bottom" constant="8" symbolic="YES" id="Y0M-6Z-Arx"/>
@@ -1170,12 +1170,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Current Playing" width="32" height="32"/>
-        <image name="Discover" width="32" height="32"/>
-        <image name="S_Current Playing" width="32" height="32"/>
-        <image name="S_Discover" width="32" height="32"/>
-        <image name="S_Upcoming" width="32" height="32"/>
-        <image name="Upcoming" width="32" height="32"/>
+        <image name="Current Playing" width="28" height="28"/>
+        <image name="Discover" width="28" height="28"/>
+        <image name="S_Current Playing" width="28" height="28"/>
+        <image name="S_Discover" width="28" height="28"/>
+        <image name="S_Upcoming" width="28" height="28"/>
+        <image name="Upcoming" width="28" height="28"/>
         <image name="like" width="512" height="512"/>
         <image name="map" width="50" height="50"/>
         <image name="phone" width="50" height="50"/>

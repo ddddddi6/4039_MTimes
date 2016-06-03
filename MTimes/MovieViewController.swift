@@ -53,6 +53,7 @@ class MovieViewController: UIViewController {
         
         if (checkMarked()) {
             button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+            button.setTitle("Bookmarked", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         }
         
@@ -341,8 +342,6 @@ class MovieViewController: UIViewController {
     
     func bookMovie(sender: UIButton) {
         //myDefaults.setObject(currentMovie?.title, forKey: "myMovie")
-        
-        let button = sender as? UIButton
         let flag = checkMarked()
         
             if !flag {
@@ -355,6 +354,7 @@ class MovieViewController: UIViewController {
                 
                 // call this after you update
                 myDefaults.synchronize()
+                button!.titleLabel?.text = "Bookmarked"
                 button?.backgroundColor = UIColor(red: 0/255.0, green: 128.0/255.0, blue: 64.0/255.0, alpha: 1.0)
                 button!.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
             } else {
