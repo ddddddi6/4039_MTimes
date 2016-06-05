@@ -51,7 +51,7 @@ class MovieViewController: UIViewController {
             downloadMovieData(urlStrings[i], flag: i)
         }
         
-        if (checkMarked()) {
+        if (checkMarked() && myDefaults.objectForKey("myMovie") != nil) {
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
             button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
@@ -322,7 +322,7 @@ class MovieViewController: UIViewController {
             review.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
             self.scrollView.addSubview(review)
             var number = review.frame.maxY + 5
-            for var i = 0; i < self.reviews.count; i++
+            for i in 0 ..< self.reviews.count
             {
                 let label = UILabel(frame: CGRectMake(23, number , 330, 62))
                 label.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -342,12 +342,12 @@ class MovieViewController: UIViewController {
     
     func bookMovie(sender: UIButton) {
         if !checkMarked() {
-            var storedData = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
+            var array = getMovies()
             
-            storedData.append((currentMovie?.title)!)
+            array.append(["id": currentMovie!.id!, "title": currentMovie!.title!])
             
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(storedData, forKey: "myMovie")
+            myDefaults.setObject(array, forKey: "myMovie")
                 
             // call this after you update
             myDefaults.synchronize()
@@ -357,11 +357,14 @@ class MovieViewController: UIViewController {
         } else {
             var array = getMovies()
             var index = -1 as Int
-            for movie in array {
-                if currentMovie?.title == movie {
-                    index = array.indexOf(movie)!
+            for var i = 0; i <= array.count; ++i {
+                let id = array[i]["id"] as! Int
+                if currentMovie?.id == id {
+                    index = i
+                    break
                 }
             }
+
             array.removeAtIndex(index)
             // then update whats in the `NSUserDefault`
             myDefaults.setObject(array, forKey: "myMovie")
@@ -371,27 +374,20 @@ class MovieViewController: UIViewController {
             button.setTitle("Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.systemFontOfSize(12)
             button?.backgroundColor = UIColor(red: 127/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
-//            let messageString: String = "You have already saved this movie"
-//            // Setup an alert to warn user
-//            // UIAlertController manages an alert instance
-//            let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
-//                
-//            alertController.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default,handler: nil))
-//                
-//            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
-    func getMovies() -> [String] {
-        let array = myDefaults.objectForKey("myMovie") as? [String] ?? [String]()
-        return array
+    func getMovies() -> [[String:AnyObject]] {
+        let movies = myDefaults.objectForKey("myMovie") as? [[String:AnyObject]] 
+        return movies!
     }
     
     func checkMarked () -> Bool {
-        let array = getMovies()
+        let movies = getMovies()
         var flag = false
-        for movie in array {
-            if currentMovie?.title == movie {
+        for movie in movies {
+            let id = movie["id"] as! Int
+            if currentMovie?.id == id {
                 flag = true
                 break
             }

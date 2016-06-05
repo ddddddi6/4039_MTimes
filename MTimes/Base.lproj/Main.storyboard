@@ -236,13 +236,56 @@
                     <view key="view" contentMode="scaleToFill" id="x5M-Cm-ieh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ruU-Tp-Hph">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7y4-eA-Tpy">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="w91-fT-KWp">
+                                        <rect key="frame" x="0.0" y="126" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w91-fT-KWp" id="CeX-2V-2yV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="6vL-B4-7h9" kind="show" identifier="B_ViewMovieSegue" id="Aas-Li-4Ff"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ruU-Tp-Hph" firstAttribute="top" secondItem="1ud-Mw-cCZ" secondAttribute="bottom" constant="-64" id="3sg-7x-k6k"/>
+                            <constraint firstAttribute="trailing" secondItem="ruU-Tp-Hph" secondAttribute="trailing" id="Ap7-iQ-5jT"/>
+                            <constraint firstItem="ruU-Tp-Hph" firstAttribute="leading" secondItem="x5M-Cm-ieh" secondAttribute="leading" id="U3k-ff-Qi8"/>
+                            <constraint firstItem="ruU-Tp-Hph" firstAttribute="bottom" secondItem="YuZ-yD-xy9" secondAttribute="top" id="g7p-pJ-sl3"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="infoLabel" destination="7y4-eA-Tpy" id="eLD-5p-ecS"/>
+                        <outlet property="tableView" destination="ruU-Tp-Hph" id="QUB-q6-gXM"/>
+                        <outlet property="view" destination="x5M-Cm-ieh" id="aic-VO-hOP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQV-in-A5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="-829"/>
+            <point key="canvasLocation" x="1792" y="570"/>
         </scene>
         <!--Popular Movies-->
         <scene sceneID="EsQ-eR-cfB">
@@ -1182,7 +1225,7 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cb0-GQ-LPp"/>
+        <segue reference="Aas-Li-4Ff"/>
         <segue reference="hWH-9B-e0f"/>
     </inferredMetricsTieBreakers>
 </document>
