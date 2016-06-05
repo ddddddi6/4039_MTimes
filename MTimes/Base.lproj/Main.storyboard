@@ -122,6 +122,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="In Theater" id="I7z-vo-0gv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1k1-nR-MT1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="VFn-sP-SQi" id="5R1-MN-SwO"/>
                     </connections>
@@ -453,6 +456,9 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="8QA-qk-sa6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="cR0-LR-FV4" id="2Po-k4-Rl4"/>
                     </connections>
@@ -578,6 +584,9 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="NBI-IJ-ONU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="GAE-ZH-9UP" id="XK2-xa-TR8"/>
                     </connections>
@@ -730,6 +739,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Upcoming" id="VKF-DM-Il5"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="slg-yH-oIY">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="urI-KU-GoR" id="QEB-N6-vbD"/>
                     </connections>
@@ -835,7 +847,7 @@
                                         </constraints>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJe-IM-SPb">
-                                        <rect key="frame" x="151" y="314" width="144" height="21"/>
+                                        <rect key="frame" x="151" y="319" width="144" height="21"/>
                                         <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="Hba-xe-oDv"/>
@@ -872,7 +884,7 @@
                                     <constraint firstItem="39b-Iu-EjL" firstAttribute="centerX" secondItem="fYu-9A-0K8" secondAttribute="centerX" id="fyB-m5-xC7"/>
                                     <constraint firstItem="vv5-pL-kZc" firstAttribute="top" secondItem="hpZ-VT-mUV" secondAttribute="bottom" constant="36" id="g1K-fK-PCt"/>
                                     <constraint firstItem="V5W-4e-MBf" firstAttribute="leading" secondItem="Jg4-Jd-SG3" secondAttribute="leading" id="lqY-hY-eYg"/>
-                                    <constraint firstItem="NJe-IM-SPb" firstAttribute="top" secondItem="Jg4-Jd-SG3" secondAttribute="bottom" constant="8" symbolic="YES" id="lx1-U8-uiC"/>
+                                    <constraint firstItem="NJe-IM-SPb" firstAttribute="top" secondItem="Jg4-Jd-SG3" secondAttribute="bottom" constant="13" id="lx1-U8-uiC"/>
                                     <constraint firstItem="Jg4-Jd-SG3" firstAttribute="top" secondItem="V5W-4e-MBf" secondAttribute="bottom" constant="12" id="mAN-8D-e56"/>
                                     <constraint firstItem="LyJ-If-Bae" firstAttribute="top" secondItem="hpZ-VT-mUV" secondAttribute="bottom" constant="18" id="mmT-kH-56B"/>
                                     <constraint firstItem="73o-Z9-rDy" firstAttribute="top" secondItem="KKp-oz-FNs" secondAttribute="bottom" constant="1" id="sfh-dC-y2k"/>
@@ -1225,7 +1237,7 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Aas-Li-4Ff"/>
         <segue reference="hWH-9B-e0f"/>
+        <segue reference="u2w-wn-yUB"/>
     </inferredMetricsTieBreakers>
 </document>

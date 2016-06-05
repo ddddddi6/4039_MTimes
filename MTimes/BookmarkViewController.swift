@@ -20,11 +20,16 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.addSubview(self.refreshControl)
         
         if movies.count == 0 {
             self.infoLabel.text = "You haven't save any movie"
+        } else if movies.count == 1 {
+            self.infoLabel.text = "Here is " + String(movies.count) + " Movie"
+            self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            tableView.delegate = self
+            tableView.dataSource = self
         } else {
             self.infoLabel.text = "Here are " + String(movies.count) + " Movies"
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
