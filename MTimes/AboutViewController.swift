@@ -18,8 +18,10 @@ class AboutViewController: UIViewController {
         m_api.textColor = UIColor.whiteColor()
         m_api.font = UIFont.boldSystemFontOfSize(17)
         
-        let m_desc = UILabel(frame: CGRectMake(10, m_api.frame.maxY+5, 380, 21))
-        m_desc.text = "http://docs.themoviedb.apiary.io/#"
+        let m_desc = UILabel(frame: CGRectMake(10, m_api.frame.maxY+5, 360, 42))
+        m_desc.text = "https://www.themoviedb.org/documentation/api/terms-of-use"
+        m_desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        m_desc.numberOfLines = 2
         m_desc.textColor = UIColor.whiteColor()
         m_desc.font = UIFont.systemFontOfSize(14)
         
@@ -47,12 +49,20 @@ class AboutViewController: UIViewController {
         s_desc.textColor = UIColor.whiteColor()
         s_desc.font = UIFont.systemFontOfSize(14)
         
+        let desc = UILabel(frame: CGRectMake(10, s_desc.frame.maxY+10, 360, 42))
+        desc.text = "This product uses the TMDb API but is not endorsed or certified by TMDb."
+        desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        desc.numberOfLines = 2
+        desc.textColor = UIColor.lightGrayColor()
+        desc.font = UIFont.boldSystemFontOfSize(15)
+        
         self.view.addSubview(m_api)
         self.view.addSubview(m_desc)
         self.view.addSubview(g_api)
         self.view.addSubview(g_desc)
         self.view.addSubview(swiftyjson)
         self.view.addSubview(s_desc)
+        self.view.addSubview(desc)
     }
     
     override func didReceiveMemoryWarning() {

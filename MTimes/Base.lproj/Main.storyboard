@@ -254,7 +254,18 @@
                     <view key="view" contentMode="scaleToFill" id="DH9-ES-GJc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tmdb" translatesAutoresizingMaskIntoConstraints="NO" id="II9-Wy-Zdz">
+                                <rect key="frame" x="60" y="361" width="201" height="100"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="II9-Wy-Zdz" firstAttribute="top" secondItem="Zzg-Xb-TXp" secondAttribute="bottom" constant="297" id="eTZ-HQ-H0S"/>
+                            <constraint firstItem="II9-Wy-Zdz" firstAttribute="centerX" secondItem="DH9-ES-GJc" secondAttribute="centerX" id="hTo-Uu-ysB"/>
+                            <constraint firstItem="JzI-GM-IM2" firstAttribute="top" secondItem="II9-Wy-Zdz" secondAttribute="bottom" constant="58" id="nQ4-Gf-tpj"/>
+                            <constraint firstItem="II9-Wy-Zdz" firstAttribute="leading" secondItem="DH9-ES-GJc" secondAttribute="leadingMargin" constant="40" id="tm0-Ct-T33"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
@@ -1269,6 +1280,7 @@
         <image name="map" width="50" height="50"/>
         <image name="phone" width="50" height="50"/>
         <image name="star" width="626" height="626"/>
+        <image name="tmdb" width="450" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oFU-AD-fJk"/>
