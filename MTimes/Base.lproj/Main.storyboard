@@ -185,10 +185,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-p7-ebF">
+                                <rect key="frame" x="0.0" y="371" width="320" height="32"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="fgP-Rc-EJ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WWo-x4-KF1" firstAttribute="trailing" secondItem="8wY-97-Rei" secondAttribute="trailing" id="52H-Kz-2AG"/>
+                            <constraint firstItem="DHD-p7-ebF" firstAttribute="leading" secondItem="vMg-RD-fX8" secondAttribute="leading" id="736-TZ-lje"/>
                             <constraint firstItem="WWo-x4-KF1" firstAttribute="leading" secondItem="8wY-97-Rei" secondAttribute="leading" id="BUL-4m-eXS"/>
                             <constraint firstItem="vMg-RD-fX8" firstAttribute="trailing" secondItem="UFi-OJ-L7C" secondAttribute="trailing" id="M2K-Yx-Sij"/>
                             <constraint firstItem="WWo-x4-KF1" firstAttribute="top" secondItem="EIb-Z1-dgk" secondAttribute="bottom" id="M6P-Fx-hLg"/>
@@ -196,8 +207,10 @@
                             <constraint firstItem="8wY-97-Rei" firstAttribute="top" secondItem="WWo-x4-KF1" secondAttribute="bottom" id="MI4-nv-xhg"/>
                             <constraint firstItem="vMg-RD-fX8" firstAttribute="leading" secondItem="UFi-OJ-L7C" secondAttribute="leading" id="O94-eI-2CQ"/>
                             <constraint firstAttribute="trailing" secondItem="WWo-x4-KF1" secondAttribute="trailing" id="P06-rB-XbY"/>
+                            <constraint firstItem="DHD-p7-ebF" firstAttribute="top" secondItem="vMg-RD-fX8" secondAttribute="bottom" constant="55" id="T4i-UC-KLN"/>
                             <constraint firstItem="8wY-97-Rei" firstAttribute="leading" secondItem="UFi-OJ-L7C" secondAttribute="leading" id="VXT-xT-qkI"/>
                             <constraint firstItem="vMg-RD-fX8" firstAttribute="top" secondItem="UFi-OJ-L7C" secondAttribute="bottom" constant="56" id="i4M-db-ztD"/>
+                            <constraint firstItem="DHD-p7-ebF" firstAttribute="trailing" secondItem="vMg-RD-fX8" secondAttribute="trailing" id="jPO-o2-I6t"/>
                             <constraint firstItem="8wY-97-Rei" firstAttribute="trailing" secondItem="UFi-OJ-L7C" secondAttribute="trailing" id="kgG-Aw-qPH"/>
                             <constraint firstItem="WWo-x4-KF1" firstAttribute="leading" secondItem="sKQ-at-Fll" secondAttribute="leading" id="lXO-Qt-hPy"/>
                         </constraints>
@@ -205,6 +218,7 @@
                     <navigationItem key="navigationItem" title="Discover" id="4aR-HI-mce"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="aboutLabel" destination="DHD-p7-ebF" id="76g-C1-m9P"/>
                         <outlet property="bookmarkLabel" destination="vMg-RD-fX8" id="XwT-El-lfK"/>
                         <outlet property="mapLabel" destination="UFi-OJ-L7C" id="A3e-bb-zCf"/>
                         <outlet property="recLabel" destination="8wY-97-Rei" id="5z2-LR-qmC"/>
@@ -214,6 +228,7 @@
                         <segue destination="Wy5-5L-am5" kind="show" identifier="SearchSegue" id="ujJ-0a-ZUQ"/>
                         <segue destination="vVf-Wo-8cY" kind="show" identifier="ShowMapSegue" id="oFU-AD-fJk"/>
                         <segue destination="9Vt-bk-rpq" kind="show" identifier="ShowBookmarkSegue" id="Ra4-3r-bzk"/>
+                        <segue destination="AB0-UU-W5u" kind="show" identifier="aboutSegue" id="5eB-le-Cti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgY-km-9aF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -227,6 +242,25 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1198" y="-429"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="Lfm-3G-x3W">
+            <objects>
+                <viewController title="About" id="AB0-UU-W5u" customClass="AboutViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zzg-Xb-TXp"/>
+                        <viewControllerLayoutGuide type="bottom" id="JzI-GM-IM2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DH9-ES-GJc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JuO-A8-YL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594" y="-988"/>
         </scene>
         <!--Bookmark-->
         <scene sceneID="yyy-k0-HSY">
@@ -244,7 +278,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexTrackingBackgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7y4-eA-Tpy">
                                     <rect key="frame" x="0.0" y="64" width="320" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -262,8 +296,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="6vL-B4-7h9" kind="show" identifier="B_ViewMovieSegue" id="Aas-Li-4Ff"/>
                                         </connections>
@@ -288,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQV-in-A5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1792" y="570"/>
+            <point key="canvasLocation" x="1689" y="687"/>
         </scene>
         <!--Popular Movies-->
         <scene sceneID="EsQ-eR-cfB">
@@ -1237,7 +1271,7 @@
         <image name="star" width="626" height="626"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hWH-9B-e0f"/>
-        <segue reference="u2w-wn-yUB"/>
+        <segue reference="oFU-AD-fJk"/>
+        <segue reference="Aas-Li-4Ff"/>
     </inferredMetricsTieBreakers>
 </document>

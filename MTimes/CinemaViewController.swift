@@ -34,12 +34,12 @@ class CinemaViewController: UIViewController {
 
         downloadCinemaData()
         
-        // add gesture to your Label
+        // add gesture to Labels
         let tapGesture_c = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.callNumber(_:)))
         phoneNumber.userInteractionEnabled=true
         phoneNumber.addGestureRecognizer(tapGesture_c)
 
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.handleTap(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.navigateCinema(_:)))
         address.userInteractionEnabled=true
         address.addGestureRecognizer(tapGesture)
         
@@ -51,10 +51,12 @@ class CinemaViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // jump to cinema homepage
     func webView(sender:UITapGestureRecognizer){
         self.performSegueWithIdentifier("CinemaWebSegue", sender: nil)
     }
     
+    // call cinema phone number
     func callNumber(sender:UITapGestureRecognizer) {
         let number = self.phoneNumber.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         if let phoneCallURL:NSURL = NSURL(string:"tel://\(number)") {
@@ -65,8 +67,8 @@ class CinemaViewController: UIViewController {
         }
     }
     
-    // handle the function of UILabel
-    func handleTap(sender:UITapGestureRecognizer) -> Bool{
+    // open the map in map application
+    func navigateCinema(sender:UITapGestureRecognizer) -> Bool{
         var flag = true as Bool
             let geocoder = CLGeocoder()
             let str = address.text // A string of the address info you already have
@@ -99,7 +101,7 @@ class CinemaViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Download current playing movies from the source and check network connection
+    // Download selected cinema from the source and check network connection
     func downloadCinemaData() {
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + currentCinemaID! + "&key=AIzaSyBpHKu9KGpv-VacWvQOhrI7OVjGVdHQY9Y")!
         let request = NSMutableURLRequest(URL: url)
@@ -137,7 +139,7 @@ class CinemaViewController: UIViewController {
             }
         }
         task.resume()
-        // Download movies
+        // Download cinema
     }
     
     // Parse the received json result
@@ -146,8 +148,6 @@ class CinemaViewController: UIViewController {
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
                                                                     options: NSJSONReadingOptions.MutableContainers)
             let json = JSON(result)
-            
-            //NSLog("Found \(json["result"].count) new current playing movies!")
 
             if let
                 name = json["result"]["name"].string,
@@ -169,9 +169,10 @@ class CinemaViewController: UIViewController {
             print("JSON Serialization error")
         }
     }
-
     
-
+    // share the screenshot with external applications
+    // solution from: https://www.hackingwithswift.com/example-code/uikit/how-to-share-content-with-uiactivityviewcontroller
+    // and http://stackoverflow.com/questions/25448879/how-to-take-full-screen-screenshot-in-swift
     @IBAction func share(sender: UIBarButtonItem) {
         let layer = UIApplication.sharedApplication().keyWindow!.layer
         
@@ -191,6 +192,7 @@ class CinemaViewController: UIViewController {
 
     }
     
+    // pass homepage link to second view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CinemaWebSegue"
         {

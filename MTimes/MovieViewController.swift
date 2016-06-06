@@ -24,7 +24,6 @@ class MovieViewController: UIViewController {
     @IBOutlet var imagesView: UIScrollView!
     
     
-    
     var currentMovie: Movie?
     var movieSet = [String]()
     var imageSet = [String]()
@@ -32,7 +31,6 @@ class MovieViewController: UIViewController {
     var reviews = [String]()
     
     let myDefaults = NSUserDefaults.standardUserDefaults()
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +49,14 @@ class MovieViewController: UIViewController {
             downloadMovieData(urlStrings[i], flag: i)
         }
         
+        // check whether the movie has been saved
         if (checkMarked() && myDefaults.objectForKey("myMovie") != nil) {
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
             button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
         }
         
-        button.addTarget(self, action: #selector(MovieViewController.bookMovie(_:)), forControlEvents: .TouchUpInside)
-        
-        
-        //downloadVideoData()
+        button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -99,7 +95,7 @@ class MovieViewController: UIViewController {
         // Display selected movie details
     }
     
-    // Download current playing movies from the source and check network connection
+    // Download selected movie from the source and check network connection
     func downloadMovieData(url: String, flag: Int) -> Bool {
         var flags = true as Bool
         let url = NSURL(string: url)!
@@ -155,10 +151,10 @@ class MovieViewController: UIViewController {
         task.resume()
         }
         return flags
-        // Download movies
+        // Download movie
     }
     
-    // Parse the received json result
+    // Parse the received json result for backdrops
     func parsePosterJSON(movieJSON:NSData) -> Bool{
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -179,6 +175,7 @@ class MovieViewController: UIViewController {
         return true
     }
     
+    // Update backdrops of the movie
     func updateImages() {
         if imageSet.count != 0 {
             let image1 = "http://image.tmdb.org/t/p/w500" + self.imageSet[0] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
@@ -210,7 +207,7 @@ class MovieViewController: UIViewController {
         }
     }
     
-    // Parse the received json result
+    // Parse the received json result for similar movies
     func parseMovieJSON(movieJSON:NSData) -> Bool{
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -231,6 +228,7 @@ class MovieViewController: UIViewController {
         return true
     }
     
+    // display similar movies on screen
     func updateSimilarMovies() -> Bool {
         if self.movieSet.count >= 5 {
             self.similar.text = "Similar Movies"
@@ -254,7 +252,7 @@ class MovieViewController: UIViewController {
         return true
     }
     
-    // Parse the received json result
+    // Parse the received json result for videos
     func parseVideoJSON(movieJSON:NSData) {
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -272,6 +270,8 @@ class MovieViewController: UIViewController {
         }
     }
 
+    // embed youtube video
+    // solution from: https://www.youtube.com/watch?v=5qwyoi3sQPI
     func updateVideo() {
         if self.videoKey != nil {
             let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height+25, UIScreen.mainScreen().bounds.width, 230))
@@ -293,7 +293,7 @@ class MovieViewController: UIViewController {
         }
     }
     
-    // Parse the received json result
+    // Parse the received json result for reviews
     func parseReviewJSON(movieJSON:NSData) {
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -313,6 +313,7 @@ class MovieViewController: UIViewController {
         }
     }
     
+    // display reviews
     func updateReview() {
         if reviews.count != 0 {
             let review = UILabel(frame: CGRectMake(8, scrollView.contentSize.height,  UIScreen.mainScreen().bounds.width - 16, 21))
@@ -340,7 +341,10 @@ class MovieViewController: UIViewController {
         }
     }
     
-    func bookMovie(sender: UIButton) {
+    // save or mark the movie
+    // solution from: https://www.hackingwithswift.com/read/12/2/reading-and-writing-basics-nsuserdefaults
+    // and http://stackoverflow.com/questions/26233067/simple-persistent-storage-in-swift
+    func markMovie(sender: UIButton) {
         if !checkMarked() {
             var array = getMovies()
             
@@ -355,6 +359,7 @@ class MovieViewController: UIViewController {
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
         } else {
+            // remove mark from this movie
             var array = getMovies()
             var index = -1 as Int
             for var i = 0; i <= array.count; ++i {
@@ -364,7 +369,6 @@ class MovieViewController: UIViewController {
                     break
                 }
             }
-
             array.removeAtIndex(index)
             // then update whats in the `NSUserDefault`
             myDefaults.setObject(array, forKey: "myMovie")
@@ -377,11 +381,13 @@ class MovieViewController: UIViewController {
         }
     }
     
+    // return the saved movies
     func getMovies() -> [[String:AnyObject]] {
         let movies = myDefaults.objectForKey("myMovie") as? [[String:AnyObject]] 
         return movies!
     }
     
+    // check the status of this movie
     func checkMarked () -> Bool {
         let movies = getMovies()
         var flag = false

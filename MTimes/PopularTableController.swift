@@ -110,7 +110,6 @@ class PopularTableController: UITableViewController {
         }
     }
     
-    
     // Download popular movies from the source and check network connection
     func downloadMovieData() {
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/popular?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
@@ -149,7 +148,7 @@ class PopularTableController: UITableViewController {
                                                                     options: NSJSONReadingOptions.MutableContainers)
             let json = JSON(result)
             
-            NSLog("Found \(json["results"].count) new current playing movies!")
+            NSLog("Found \(json["results"].count) popular movies!")
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
@@ -180,6 +179,7 @@ class PopularTableController: UITableViewController {
         }
     }
     
+    // pass selected movie to movie detail screen
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "P_ViewMovieSegue"
         {

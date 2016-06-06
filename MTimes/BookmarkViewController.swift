@@ -15,7 +15,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var tableView: UITableView!
     
     var currentMovie: Movie?
-//    let mvc: MovieViewController = MovieViewController()
+    // get saved movies from MovieViewController
     var movies = MovieViewController().getMovies()
     
     override func viewDidLoad() {
@@ -38,22 +38,19 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // define refresh control for tableview
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(BookmarkViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
     }()
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        // Do some reloading of data and update the table view's data source
-        // Fetch more objects from a web service, for example...
-        
-        // Simply adding an object to the data source for this example
+        // update the table view's data source
         updateInfo()
         refreshControl.endRefreshing()
     }
-
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,6 +62,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    // Update saved movies information in table view
     func updateInfo() {
         movies = MovieViewController().getMovies()
         self.tableView.reloadData()
@@ -107,17 +105,17 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        //let indexPath = tableView.indexPathForSelectedRow!
         if movies.count != 0 {
             let id = self.movies[indexPath.row]["id"] as! Int
         
             let movieID = String(id) as String
         
+            // get movie details for selected movie
             downloadMovieData(movieID)
         }
     }
     
-    // Download current playing movies from the source and check network connection
+    // Download selected movie from the source and check network connection
     func downloadMovieData(id: String) {
         let url = NSURL(string: "http://api.themoviedb.org/3/movie/" + id + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
@@ -143,8 +141,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
             task.resume()
-
-        // Download movies
+        // Download movie
     }
     
     // Parse the received json result
@@ -182,6 +179,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // pass movie object to movie detail screen
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "B_ViewMovieSegue"
         {

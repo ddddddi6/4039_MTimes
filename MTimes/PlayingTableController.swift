@@ -14,12 +14,11 @@ class PlayingTableController: UITableViewController {
     
     @IBOutlet var infoLabel: UILabel!
     
+    // Define a NSMutableArray to store all current playing movies
     var currentMovie: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
         super.init(coder: aDecoder)
-        
-        // Define a NSMutableArray to store all reminders
     }
     
     override func viewDidLoad() {
@@ -43,6 +42,7 @@ class PlayingTableController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // refresh control action
     func refresh(sender:AnyObject)
     {
         // Updating your data here...
@@ -111,7 +111,6 @@ class PlayingTableController: UITableViewController {
         }
     }
     
-    
     // Download current playing movies from the source and check network connection
     func downloadMovieData() -> Bool {
         var flag = true as Bool
@@ -168,7 +167,6 @@ class PlayingTableController: UITableViewController {
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = NSTimeZone(name: "UTC")
                     let release_date = dateFormatter.dateFromString(date)!
-                    
                     if let
                     poster = movie["poster_path"].string,
                     backdrop = movie["backdrop_path"].string {

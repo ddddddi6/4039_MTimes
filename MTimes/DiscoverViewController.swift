@@ -13,6 +13,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var recLabel: UILabel!
     @IBOutlet var mapLabel: UILabel!
     @IBOutlet var bookmarkLabel: UILabel!
+    @IBOutlet var aboutLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,18 +39,19 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         
         searchBar.delegate = self
         
-        var textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
+        let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
         textFieldInsideSearchBar?.textColor = UIColor.whiteColor()
         
         self.recLabel.text = " Recommendation"
         self.mapLabel.text = " Locate cinema"
         self.bookmarkLabel.text = " Bookmark"
+        self.aboutLabel.text = " About MTimes"
         
-        let buttonText = ["Popular movies", "Find a cinema", "Bookmark"]
+        let buttonText = ["Popular movies", "Find a cinema", "Bookmark", "About"]
         var buttonArray = Array<UIButton>()
         
         var number = self.searchBar.frame.maxY + 47
-        for var i = 0; i < buttonText.count; i++
+        for i in 0 ..< buttonText.count
         {
             let button = UIButton(frame: CGRectMake(100, number, 150, 28))
             button.center.x = self.view.center.x
@@ -65,9 +67,11 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         
         buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
         
-        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.buttonAction(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.showMap(_:)), forControlEvents: .TouchUpInside)
         
         buttonArray[2].addTarget(self, action: #selector(DiscoverViewController.displayBookmark(_:)), forControlEvents: .TouchUpInside)
+        
+        buttonArray[3].addTarget(self, action: #selector(DiscoverViewController.displayAbout(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -77,28 +81,39 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // jump to popular movie screen
     func displayPopularMovies (sender: UIButton!) {
         self.performSegueWithIdentifier("popularSegue", sender: nil)
     }
     
+    // jump to bookmark screen
     func displayBookmark (sender: UIButton!) {
         self.performSegueWithIdentifier("ShowBookmarkSegue", sender: nil)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
-        view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+    //jump to about screen
+    func displayAbout (sender: UIButton!) {
+        self.performSegueWithIdentifier("aboutSegue", sender: nil)
     }
     
+    // jump to search result screen
     func searchBarSearchButtonClicked(searchBar: UISearchBar!)
     {
         self.performSegueWithIdentifier("SearchSegue", sender: nil)
     }
     
-    func buttonAction (sender: UIButton!) {
+    // jump to map screen
+    func showMap (sender: UIButton!) {
         self.performSegueWithIdentifier("ShowMapSegue", sender: nil)
     }
     
+    // dismiss keyboard for search bar
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    // pass movie title to second view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SearchSegue"
         {
@@ -119,7 +134,6 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
                 let controller: SearchTableController = segue.destinationViewController as! SearchTableController
                 controller.movieTitle = title
             }
-            // Display movie details screen
         }
     }
 

@@ -24,7 +24,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.nearbyCinema = NSMutableArray()
         super.init(coder: aDecoder)
         
-        // Define a NSMutableArray to store all reminders
+        // Define a NSMutableArray to store all cinemas
     }
 
     override func viewDidLoad() {
@@ -54,6 +54,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Dispose of any resources that can be recreated.
     }
     
+    // get current location
+    // solution from: https://www.youtube.com/watch?v=qrdIL44T6FQ
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
     let location = locations.last! as CLLocation
@@ -78,6 +80,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(error.localizedDescription)
     }
     
+    // add button for annotation on map
+    // solution from: http://stackoverflow.com/questions/28225296/how-to-add-a-button-to-mkpointannotation
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
@@ -130,6 +134,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if let data = data {
                 self.parseCinemaJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
+                    // drop pins for each cinema on map
                     for cinema in self.nearbyCinema {
                         let c: Cinema = cinema as! Cinema
                         let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(Double(c.latitude!), Double(c.longitude!))
@@ -155,7 +160,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
         task.resume()
-        // Download movies
+        // Download cinemas
         return flag
     }
     
@@ -185,7 +190,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    
+    // share the screenshot with external applications
+    // solution from: https://www.hackingwithswift.com/example-code/uikit/how-to-share-content-with-uiactivityviewcontroller
+    // and http://stackoverflow.com/questions/25448879/how-to-take-full-screen-screenshot-in-swift
     @IBAction func share(sender: UIBarButtonItem) {
         let layer = UIApplication.sharedApplication().keyWindow!.layer
         

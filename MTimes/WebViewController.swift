@@ -13,6 +13,7 @@ class WebViewController: UIViewController {
     @IBOutlet var webView: UIWebView!
     var weblink: String?
 
+    // display cinema homepage
     override func viewDidLoad() {
         super.viewDidLoad()
         

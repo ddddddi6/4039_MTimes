@@ -151,7 +151,7 @@ class UpcomingTableController: UITableViewController {
                                                                     options: NSJSONReadingOptions.MutableContainers)
             let json = JSON(result)
             
-            NSLog("Found \(json["results"].count) new current playing movies!")
+            NSLog("Found \(json["results"].count) upcoming movies!")
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
@@ -182,6 +182,8 @@ class UpcomingTableController: UITableViewController {
         }
     }
     
+    
+    // pass selected movie to movie detail screen
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "U_ViewMovieSegue"
         {
@@ -194,23 +196,6 @@ class UpcomingTableController: UITableViewController {
             // Display movie details screen
         }
     }
-    
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if segue.identifier == "AddReminderSegue"
-    //        {
-    //            let controller: AddReminderController = segue.destinationViewController as! AddReminderController
-    //            controller.delegate = self
-    //            // Display add reminder screen
-    //        } else if (segue.identifier == "DisplayDetailsSegue")
-    //        {
-    //            let controller: ReminderDetailsController = segue.destinationViewController as! ReminderDetailsController
-    //            let indexPath = tableView.indexPathForSelectedRow!
-    //
-    //            let r: Reminder = self.currentReminder[indexPath.row] as! Reminder
-    //            controller.currentReminder = r
-    //            // Display reminder details screen
-    //        }
-    //    }
     
     /*
      override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

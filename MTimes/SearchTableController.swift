@@ -119,7 +119,6 @@ class SearchTableController: UITableViewController {
         }
     }
     
-    
     // Download searching results from the source and check network connection
     func downloadMovieData() {
         let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
@@ -205,6 +204,7 @@ class SearchTableController: UITableViewController {
         }
     }
     
+    // pass selected movie to movie detail screen
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "S_ViewMovieSegue"
         {
