@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 
 class BookmarkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -39,6 +40,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // define refresh control for tableview
+    // solution from: http://stackoverflow.com/questions/24475792/how-to-use-pull-to-refresh-in-swift
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(BookmarkViewController.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -116,6 +118,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // Download selected movie from the source and check network connection
+    // solution from: http://docs.themoviedb.apiary.io/#reference/movies
     func downloadMovieData(id: String) {
         let url = NSURL(string: "http://api.themoviedb.org/3/movie/" + id + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
@@ -145,6 +148,8 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseMovieJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,

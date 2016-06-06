@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 
 class SearchTableController: UITableViewController {
@@ -16,11 +17,10 @@ class SearchTableController: UITableViewController {
     
     var currentMovie: NSMutableArray
     
+    // Define a NSMutableArray to store all results
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
         super.init(coder: aDecoder)
-        
-        // Define a NSMutableArray to store all reminders
     }
     
     override func viewDidLoad() {
@@ -32,7 +32,6 @@ class SearchTableController: UITableViewController {
         
         self.refreshControl?.addTarget(self, action: #selector(PlayingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -47,7 +46,7 @@ class SearchTableController: UITableViewController {
     
     func refresh(sender:AnyObject)
     {
-        // Updating your data here...
+        // Updating table view data
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -120,6 +119,7 @@ class SearchTableController: UITableViewController {
     }
     
     // Download searching results from the source and check network connection
+    // solution from: http://docs.themoviedb.apiary.io/#reference/search/searchmovie
     func downloadMovieData() {
         let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let escapedString = mTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
@@ -161,6 +161,8 @@ class SearchTableController: UITableViewController {
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseMovieJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,

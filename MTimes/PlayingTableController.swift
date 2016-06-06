@@ -6,8 +6,8 @@
 //  Copyright © 2016 Dee. All rights reserved.
 //
 
-
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 
 class PlayingTableController: UITableViewController {
@@ -45,7 +45,7 @@ class PlayingTableController: UITableViewController {
     // refresh control action
     func refresh(sender:AnyObject)
     {
-        // Updating your data here...
+        // Updating table view data
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -112,6 +112,7 @@ class PlayingTableController: UITableViewController {
     }
     
     // Download current playing movies from the source and check network connection
+    // solution from: http://docs.themoviedb.apiary.io/#reference/movies/movienowplaying
     func downloadMovieData() -> Bool {
         var flag = true as Bool
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
@@ -147,6 +148,8 @@ class PlayingTableController: UITableViewController {
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseMovieJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,

@@ -7,18 +7,18 @@
 //
 
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 
 class UpcomingTableController: UITableViewController {
     
     @IBOutlet var infoLabel: UILabel!
     
+    // Define a NSMutableArray to store all upcoming movies
     var currentMovie: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
         super.init(coder: aDecoder)
-        
-        // Define a NSMutableArray to store all reminders
     }
     
     override func viewDidLoad() {
@@ -29,7 +29,6 @@ class UpcomingTableController: UITableViewController {
         self.downloadMovieData()
         
         self.refreshControl?.addTarget(self, action: #selector(PlayingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,7 +44,7 @@ class UpcomingTableController: UITableViewController {
     
     func refresh(sender:AnyObject)
     {
-        // Updating your data here...
+        // Updating table view data
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -114,6 +113,7 @@ class UpcomingTableController: UITableViewController {
     
     
     // Download upcoming movies from the source and check network connection
+    // solution from: http://docs.themoviedb.apiary.io/#reference/movies/movieupcoming
     func downloadMovieData() {
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)
@@ -145,6 +145,8 @@ class UpcomingTableController: UITableViewController {
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseMovieJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,

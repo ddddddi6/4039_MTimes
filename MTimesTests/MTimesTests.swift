@@ -57,8 +57,4 @@ class MTimesTests: XCTestCase {
         XCTAssertTrue(p == true)
     }
     
-    func testSearchCinemaFunction() {
-        let p = mapvc.searchNearbyCinema()
-        XCTAssertTrue(p == true)
-    }
 }

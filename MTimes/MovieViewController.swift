@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 
 class MovieViewController: UIViewController {
@@ -96,6 +97,7 @@ class MovieViewController: UIViewController {
     }
     
     // Download selected movie from the source and check network connection
+    // solution from: http://docs.themoviedb.apiary.io
     func downloadMovieData(url: String, flag: Int) -> Bool {
         var flags = true as Bool
         let url = NSURL(string: url)!
@@ -155,6 +157,8 @@ class MovieViewController: UIViewController {
     }
     
     // Parse the received json result for backdrops
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parsePosterJSON(movieJSON:NSData) -> Bool{
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -348,13 +352,16 @@ class MovieViewController: UIViewController {
         if !checkMarked() {
             var array = getMovies()
             
+            // add movie id and title
             array.append(["id": currentMovie!.id!, "title": currentMovie!.title!])
             
             // then update whats in the `NSUserDefault`
             myDefaults.setObject(array, forKey: "myMovie")
                 
-            // call this after you update
+            // call this after update
             myDefaults.synchronize()
+            
+            // update UI
             button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -381,13 +388,13 @@ class MovieViewController: UIViewController {
         }
     }
     
-    // return the saved movies
+    // return saved movies
     func getMovies() -> [[String:AnyObject]] {
         let movies = myDefaults.objectForKey("myMovie") as? [[String:AnyObject]] 
         return movies!
     }
     
-    // check the status of this movie
+    // check the marking status of this movie
     func checkMarked () -> Bool {
         let movies = getMovies()
         var flag = false

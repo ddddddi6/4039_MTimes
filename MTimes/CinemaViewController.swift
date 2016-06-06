@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 import MapKit
 
@@ -46,7 +47,6 @@ class CinemaViewController: UIViewController {
         let tapGesture_p = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.webView(_:)))
         homepage.userInteractionEnabled=true
         homepage.addGestureRecognizer(tapGesture_p)
-
         
         // Do any additional setup after loading the view.
     }
@@ -143,6 +143,8 @@ class CinemaViewController: UIViewController {
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseCinemaJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+// external library from https://github.com/SwiftyJSON/SwiftyJSON
 import SwiftyJSON
 import CoreLocation
 
@@ -19,12 +20,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var latitude: String!
     var longitude: String!
     
+    // Define a NSMutableArray to store all cinemas
     var nearbyCinema: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
         self.nearbyCinema = NSMutableArray()
         super.init(coder: aDecoder)
-        
-        // Define a NSMutableArray to store all cinemas
     }
 
     override func viewDidLoad() {
@@ -123,6 +123,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
 
     // Search nearby cinema from google map api and check network connection
+    // solution from: https://developers.google.com/places/web-service/search#PlaceSearchRequests
     func searchNearbyCinema() -> Bool{
         var flag = true as Bool
         let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + self.latitude + "," + self.longitude + "&radius=50000&types=movie_theater&sensor=true&key=AIzaSyBp1FhLFQV2NCcXkMSO4p4lm3vuFD5g8f8")!
@@ -165,6 +166,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // Parse the received json result
+    // solution from: https://github.com/SwiftyJSON/SwiftyJSON
+    // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
     func parseCinemaJSON(movieJSON:NSData){
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
