@@ -75,7 +75,7 @@ class SearchResultTests: XCTestCase {
     }
     
     func testParseSearchingResult() {
-        let filePath = NSBundle.mainBundle().pathForResource("search_response",ofType:"json")
+        let filePath = NSBundle.mainBundle().pathForResource("search_result",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(stc.parseMovieJSON(data!))
     }
