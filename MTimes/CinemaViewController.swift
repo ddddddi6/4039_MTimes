@@ -29,6 +29,8 @@ class CinemaViewController: UIViewController {
     var cinemaRating: Double?
     var photo: String?
     
+    var link: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,7 @@ class CinemaViewController: UIViewController {
     
     // jump to cinema homepage
     func webView(sender:UITapGestureRecognizer){
+        link = self.homepage.text
         self.performSegueWithIdentifier("CinemaWebSegue", sender: nil)
     }
     
@@ -199,7 +202,7 @@ class CinemaViewController: UIViewController {
         if segue.identifier == "CinemaWebSegue"
         {
             let controller: WebViewController = segue.destinationViewController as! WebViewController
-            controller.weblink = self.homepage.text
+            controller.weblink = link
             // Go to cinema homepage
         }
     }

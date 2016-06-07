@@ -15,6 +15,10 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var infoLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     
+    required init(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)!
+    }
+    
     var currentMovie: Movie?
     // get saved movies from MovieViewController
     var movies = MovieViewController().getMovies()

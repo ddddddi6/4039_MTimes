@@ -36,29 +36,29 @@ class MovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let apiLink = "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) as String
-        let apiKey = "api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"
+        if (self.currentMovie?.id != nil){
+            let apiLink = "https://api.themoviedb.org/3/movie/" + String(self.currentMovie!.id!) as String
+            let apiKey = "api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4"
 
-        
-        let urlStrings = [apiLink + "/images?" + apiKey,
+            let urlStrings = [apiLink + "/images?" + apiKey,
                           apiLink + "/similar?" + apiKey,
                           apiLink + "/videos?" + apiKey,
                           apiLink + "/reviews?" + apiKey]
         
-        for i in 0 ..< urlStrings.count
-        {
-            downloadMovieData(urlStrings[i], flag: i)
+            for i in 0 ..< urlStrings.count
+            {
+                downloadMovieData(urlStrings[i], flag: i)
+            }
         }
+            // check whether the movie has been saved
+            if (checkMarked() && myDefaults.objectForKey("myMovie") != nil) {
+                button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
+                button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
+                button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+            }
         
-        // check whether the movie has been saved
-        if (checkMarked() && myDefaults.objectForKey("myMovie") != nil) {
-            button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
-            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
-            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
-        }
+            button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), forControlEvents: .TouchUpInside)
         
-        button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), forControlEvents: .TouchUpInside)
-
         // Do any additional setup after loading the view.
     }
 
@@ -98,7 +98,7 @@ class MovieViewController: UIViewController {
     
     // Download selected movie from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io
-    func downloadMovieData(url: String, flag: Int) -> Bool {
+    func downloadMovieData(url: String, flag: Int) {
         var flags = true as Bool
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
@@ -137,7 +137,6 @@ class MovieViewController: UIViewController {
                 default:
                     break
                 }
-                flags = true
             } else {
                 let messageString: String = "Something wrong with the network connection"
                 // Setup an alert to warn user
@@ -147,12 +146,10 @@ class MovieViewController: UIViewController {
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
-                flags = false
             }
         }
         task.resume()
         }
-        return flags
         // Download movie
     }
     
@@ -213,6 +210,7 @@ class MovieViewController: UIViewController {
     
     // Parse the received json result for similar movies
     func parseMovieJSON(movieJSON:NSData) -> Bool{
+        var flag = true as Bool
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
                                                                     options: NSJSONReadingOptions.MutableContainers)
@@ -227,9 +225,10 @@ class MovieViewController: UIViewController {
                 }
             }
         }catch {
+            flag = false
             print("JSON Serialization error")
         }
-        return true
+        return flag
     }
     
     // display similar movies on screen

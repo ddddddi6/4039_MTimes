@@ -111,7 +111,6 @@
                                     <outlet property="posterView" destination="eVz-eq-6Nb" id="Oby-Mi-ptD"/>
                                     <outlet property="rateLabel" destination="7fn-Th-Xc4" id="7ue-12-mMx"/>
                                     <outlet property="titleLabel" destination="g1A-mq-m8h" id="BzW-oT-bSz"/>
-                                    <segue destination="6vL-B4-7h9" kind="show" identifier="N_ViewMovieSegue" id="u2w-wn-yUB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -127,11 +126,12 @@
                     </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="VFn-sP-SQi" id="5R1-MN-SwO"/>
+                        <segue destination="6vL-B4-7h9" kind="show" identifier="N_ViewMovieSegue" id="FSd-OS-xsS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZM-nC-WTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1198" y="422"/>
+            <point key="canvasLocation" x="1242" y="448"/>
         </scene>
         <!--Discover-->
         <scene sceneID="qyW-6t-O61">
@@ -224,11 +224,11 @@
                         <outlet property="recLabel" destination="8wY-97-Rei" id="5z2-LR-qmC"/>
                         <outlet property="searchBar" destination="WWo-x4-KF1" id="6zN-W8-QV6"/>
                         <outlet property="searchDisplayController" destination="9Yo-uK-aYb" id="w2m-WF-Ltc"/>
-                        <segue destination="1fE-qU-bxs" kind="show" identifier="popularSegue" id="vr2-H1-7Wy"/>
+                        <segue destination="1fE-qU-bxs" kind="show" identifier="PopularSegue" id="vr2-H1-7Wy"/>
                         <segue destination="Wy5-5L-am5" kind="show" identifier="SearchSegue" id="ujJ-0a-ZUQ"/>
                         <segue destination="vVf-Wo-8cY" kind="show" identifier="ShowMapSegue" id="oFU-AD-fJk"/>
                         <segue destination="9Vt-bk-rpq" kind="show" identifier="ShowBookmarkSegue" id="Ra4-3r-bzk"/>
-                        <segue destination="AB0-UU-W5u" kind="show" identifier="aboutSegue" id="5eB-le-Cti"/>
+                        <segue destination="AB0-UU-W5u" kind="show" identifier="AboutSegue" id="5eB-le-Cti"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QgY-km-9aF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,7 +246,7 @@
         <!--About-->
         <scene sceneID="Lfm-3G-x3W">
             <objects>
-                <viewController title="About" id="AB0-UU-W5u" customClass="AboutViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" title="About" id="AB0-UU-W5u" customClass="AboutViewController" customModule="MTimes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zzg-Xb-TXp"/>
                         <viewControllerLayoutGuide type="bottom" id="JzI-GM-IM2"/>
@@ -491,7 +491,6 @@
                                     <outlet property="posterView" destination="8Ob-GJ-1Mo" id="aZ2-6r-fbj"/>
                                     <outlet property="rateLabel" destination="i67-Ea-k2J" id="juo-fy-Wf3"/>
                                     <outlet property="titleLabel" destination="Fxz-jB-Azb" id="Zq0-Xi-Oe3"/>
-                                    <segue destination="6vL-B4-7h9" kind="show" identifier="P_ViewMovieSegue" id="u9a-L7-NuI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -506,6 +505,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="cR0-LR-FV4" id="2Po-k4-Rl4"/>
+                        <segue destination="6vL-B4-7h9" kind="show" identifier="P_ViewMovieSegue" id="rlr-Ea-gaJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecN-Jx-4Oh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -619,7 +619,6 @@
                                     <outlet property="posterView" destination="TFc-O7-ssl" id="JGb-DZ-P1n"/>
                                     <outlet property="rateLabel" destination="cL2-Xb-vfP" id="p9w-ck-T4X"/>
                                     <outlet property="titleLabel" destination="UpT-cx-PLN" id="G1H-iG-wNB"/>
-                                    <segue destination="6vL-B4-7h9" kind="show" identifier="S_ViewMovieSegue" id="Cb0-GQ-LPp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -634,11 +633,12 @@
                     </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="GAE-ZH-9UP" id="XK2-xa-TR8"/>
+                        <segue destination="6vL-B4-7h9" kind="show" identifier="S_ViewMovieSegue" id="KiT-Kz-thx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maI-Yy-rUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="-441"/>
+            <point key="canvasLocation" x="2416" y="-429"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hKg-ov-e5A">
@@ -773,7 +773,6 @@
                                     <outlet property="posterView" destination="TMT-Hz-DRT" id="2TV-WS-Wc7"/>
                                     <outlet property="rateLabel" destination="OMf-St-cof" id="e1y-iR-2Mg"/>
                                     <outlet property="titleLabel" destination="9PY-Yw-6YD" id="hjY-h4-ye8"/>
-                                    <segue destination="6vL-B4-7h9" kind="show" identifier="U_ViewMovieSegue" id="q6l-eH-STc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -789,6 +788,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="infoLabel" destination="urI-KU-GoR" id="QEB-N6-vbD"/>
+                        <segue destination="6vL-B4-7h9" kind="show" identifier="U_ViewMovieSegue" id="AxA-I0-8Td"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Pg-8r-cYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -977,7 +977,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzn-Mh-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360" y="843"/>
+            <point key="canvasLocation" x="2416" y="404"/>
         </scene>
         <!--Map-->
         <scene sceneID="6Yh-87-QGj">
@@ -1094,7 +1094,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bco-1Y-dDc">
-                                <rect key="frame" x="20" y="430" width="292" height="24"/>
+                                <rect key="frame" x="20" y="430" width="257" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3RK-GE-eJl"/>
                                 </constraints>
@@ -1128,7 +1128,7 @@
                             <constraint firstItem="iaj-tT-q7e" firstAttribute="top" secondItem="B6b-vk-kdu" secondAttribute="top" id="NRX-em-emv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="i9J-84-rxK" secondAttribute="trailing" constant="68" id="Nam-yX-O8Q"/>
                             <constraint firstItem="VMX-Ug-Uee" firstAttribute="trailing" secondItem="B6b-vk-kdu" secondAttribute="trailing" id="NhS-E6-C0V"/>
-                            <constraint firstItem="Wwv-Dh-TaX" firstAttribute="trailing" secondItem="bco-1Y-dDc" secondAttribute="trailing" id="OXw-Af-1V4"/>
+                            <constraint firstItem="Wwv-Dh-TaX" firstAttribute="trailing" secondItem="bco-1Y-dDc" secondAttribute="trailing" constant="35" id="OXw-Af-1V4"/>
                             <constraint firstItem="eI9-2X-gZ1" firstAttribute="leading" secondItem="hH0-PX-Jq8" secondAttribute="leading" id="PWM-uG-YcJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iaj-tT-q7e" secondAttribute="trailing" constant="-4" id="SME-nP-8CQ"/>
                             <constraint firstItem="eI9-2X-gZ1" firstAttribute="trailing" secondItem="hH0-PX-Jq8" secondAttribute="trailing" id="UUI-2r-35Y"/>
@@ -1283,7 +1283,7 @@
         <image name="tmdb" width="450" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oFU-AD-fJk"/>
-        <segue reference="Aas-Li-4Ff"/>
+        <segue reference="rlr-Ea-gaJ"/>
+        <segue reference="hWH-9B-e0f"/>
     </inferredMetricsTieBreakers>
 </document>

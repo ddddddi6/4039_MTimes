@@ -3,7 +3,6 @@
 # Uncomment this line if you're using Swift
 use_frameworks!
 
-pod 'Firebase', '>= 2.5.1'
 
 target 'MTimes' do
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
@@ -15,7 +14,6 @@ pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 target 'MTimesUITests' do
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 

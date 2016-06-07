@@ -14,6 +14,10 @@ class PlayingTableController: UITableViewController {
     
     @IBOutlet var infoLabel: UILabel!
     
+    var m: Movie!
+    
+    var url = "https://api.themoviedb.org/3/movie/now_playing?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
+    
     // Define a NSMutableArray to store all current playing movies
     var currentMovie: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
@@ -111,11 +115,19 @@ class PlayingTableController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        
+        m = self.currentMovie[indexPath.row] as! Movie
+        
+        self.performSegueWithIdentifier("N_ViewMovieSegue", sender: nil)
+    }
+    
     // Download current playing movies from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/movies/movienowplaying
-    func downloadMovieData() -> Bool {
-        var flag = true as Bool
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+    func downloadMovieData(){
+        let url = NSURL(string: self.url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -123,11 +135,10 @@ class PlayingTableController: UITableViewController {
         let priority = QOS_CLASS_USER_INTERACTIVE
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if let data = data {
+            if let response = response, data = data {
                 self.parseMovieJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
-                    flag = true
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
@@ -138,12 +149,10 @@ class PlayingTableController: UITableViewController {
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 
                     self.presentViewController(alertController, animated: true, completion: nil)
-                flag = false
             }
         }
         task.resume()
         }
-        return flag
         // Download movies
     }
     
@@ -191,9 +200,6 @@ class PlayingTableController: UITableViewController {
         {
             let controller: MovieViewController = segue.destinationViewController as! MovieViewController
             
-            let indexPath = tableView.indexPathForSelectedRow!
-            
-            let m: Movie = self.currentMovie[indexPath.row] as! Movie
             controller.currentMovie = m
             // Display movie details screen
         }

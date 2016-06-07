@@ -15,9 +15,8 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet var bookmarkLabel: UILabel!
     @IBOutlet var aboutLabel: UILabel!
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    var buttonArray = Array<UIButton>()
+    var movieTitle: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +47,6 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         self.aboutLabel.text = " About MTimes"
         
         let buttonText = ["Popular movies", "Find a cinema", "Bookmark", "About"]
-        var buttonArray = Array<UIButton>()
         
         var number = self.searchBar.frame.maxY + 47
         for i in 0 ..< buttonText.count
@@ -71,7 +69,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         
         buttonArray[2].addTarget(self, action: #selector(DiscoverViewController.displayBookmark(_:)), forControlEvents: .TouchUpInside)
         
-        buttonArray[3].addTarget(self, action: #selector(DiscoverViewController.displayAbout(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[3].addTarget(self, action: #selector(DiscoverViewController.displayAboutScreen(_:)), forControlEvents: .TouchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -83,7 +81,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     
     // jump to popular movie screen
     func displayPopularMovies (sender: UIButton!) {
-        self.performSegueWithIdentifier("popularSegue", sender: nil)
+        self.performSegueWithIdentifier("PopularSegue", sender: nil)
     }
     
     // jump to bookmark screen
@@ -92,13 +90,14 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     }
     
     //jump to about screen
-    func displayAbout (sender: UIButton!) {
-        self.performSegueWithIdentifier("aboutSegue", sender: nil)
+    func displayAboutScreen (sender: UIButton!) {
+        self.performSegueWithIdentifier("AboutSegue", sender: nil)
     }
     
     // jump to search result screen
     func searchBarSearchButtonClicked(searchBar: UISearchBar!)
     {
+        movieTitle = searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         self.performSegueWithIdentifier("SearchSegue", sender: nil)
     }
     
@@ -117,8 +116,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SearchSegue"
         {
-            let title = searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            if(title == "")
+            if(movieTitle == "")
             {
                 let messageString: String = "Please input valid movie title"
                 // Setup an alert to warn user
@@ -132,7 +130,7 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
                 
             } else {
                 let controller: SearchTableController = segue.destinationViewController as! SearchTableController
-                controller.movieTitle = title
+                controller.movieTitle = movieTitle
             }
         }
     }

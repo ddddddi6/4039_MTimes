@@ -13,6 +13,7 @@ import SwiftyJSON
 class SearchTableController: UITableViewController {
     @IBOutlet var infoLabel: UILabel!
     
+    var m: Movie!
     var movieTitle: String?
     
     var currentMovie: NSMutableArray
@@ -118,6 +119,15 @@ class SearchTableController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        
+        m = self.currentMovie[indexPath.row] as! Movie
+        
+        self.performSegueWithIdentifier("S_ViewMovieSegue", sender: nil)
+    }
+    
     // Download searching results from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/search/searchmovie
     func downloadMovieData() {
@@ -212,9 +222,6 @@ class SearchTableController: UITableViewController {
         {
             let controller: MovieViewController = segue.destinationViewController as! MovieViewController
             
-            let indexPath = tableView.indexPathForSelectedRow!
-            
-            let m: Movie = self.currentMovie[indexPath.row] as! Movie
             controller.currentMovie = m
             // Display movie details screen
         }

@@ -14,6 +14,10 @@ class UpcomingTableController: UITableViewController {
     
     @IBOutlet var infoLabel: UILabel!
     
+    var m: Movie!
+    
+    var url = "https://api.themoviedb.org/3/movie/upcoming?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
+    
     // Define a NSMutableArray to store all upcoming movies
     var currentMovie: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
@@ -111,11 +115,20 @@ class UpcomingTableController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let indexPath = tableView.indexPathForSelectedRow!
+        
+        m = self.currentMovie[indexPath.row] as! Movie
+        
+        self.performSegueWithIdentifier("U_ViewMovieSegue", sender: nil)
+    }
+    
     
     // Download upcoming movies from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/movies/movieupcoming
     func downloadMovieData() {
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+        let url = NSURL(string: self.url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -191,9 +204,6 @@ class UpcomingTableController: UITableViewController {
         {
             let controller: MovieViewController = segue.destinationViewController as! MovieViewController
             
-            let indexPath = tableView.indexPathForSelectedRow!
-            
-            let m: Movie = self.currentMovie[indexPath.row] as! Movie
             controller.currentMovie = m
             // Display movie details screen
         }
