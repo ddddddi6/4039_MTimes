@@ -9,6 +9,7 @@
 import XCTest
 import MapKit
 import SwiftyJSON
+import Foundation
 @testable import MTimes
 
 class MovieDetailTests: XCTestCase {
@@ -94,5 +95,31 @@ class MovieDetailTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("reviews_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parseReviewJSON(data!))
+    }
+    
+    // solution from: https://www.raywenderlich.com/101306/unit-testing-tutorial-mocking-objects
+    func testMarkMovie() {
+        mvc.currentMovie = Movie(id: 1, title: "title", poster: "poster", overview: "overview", popularity: 1, rate: 1, date: NSDate(), count: 1, backdrop: "backdrop")
+        let mockUserDefaults = MockUserDefaults(suiteName: "testing")!
+        mvc.myDefaults = mockUserDefaults
+        let button = UIButton()
+        mvc.button = button
+        button.addTarget(mvc, action: #selector(mvc.markMovie(_:)), forControlEvents: .TouchUpInside)
+        button.sendActionsForControlEvents(.TouchUpInside)
+        
+        XCTAssertTrue(mockUserDefaults.movieWasChanged, "Movie value in user defaults should be altered")
+    }
+}
+
+class MockUserDefaults: NSUserDefaults {
+    
+    var movieWasChanged = false
+    typealias FakeDefaults = Dictionary<String, AnyObject?>
+    var data : FakeDefaults?
+    
+    override func setObject(value: AnyObject?, forKey defaultName: String) {
+        if defaultName == "savedMovie" {
+            movieWasChanged = true
+        }
     }
 }

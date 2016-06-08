@@ -31,7 +31,7 @@ class MovieViewController: UIViewController {
     var videoKey: String?
     var reviews = [String]()
     
-    let myDefaults = NSUserDefaults.standardUserDefaults()
+    var myDefaults = NSUserDefaults.standardUserDefaults()
    
     override func viewDidLoad() {
         super.viewDidLoad()
