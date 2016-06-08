@@ -80,20 +80,20 @@ class MapViewTests: XCTestCase {
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/
-//    func testMovieToPassIsPassedOnMovieDetailSegue() {
-//        stc.m = Movie(id: 1, title: "title", poster: "poster", overview: "overview", popularity: 1, rate: 1, date: NSDate(), count: 1, backdrop: "backdrop")
-//        let segue = UIStoryboardSegue(identifier: "S_ViewMovieSegue",
-//                                      source: stc,
-//                                      destination: mvc)
-//        
-//        stc.prepareForSegue(segue, sender: nil)
-//        
-//        if let passedArgument = mvc.currentMovie {
-//            XCTAssertEqual(stc.m, passedArgument)
-//        }
-//        else {
-//            XCTFail("Argument should be passed")
-//        }
-//    }
+    func testCinemaToPassIsPassedOnCinemaDetailSegue() {
+        mvc.cinemaID = "ChIJiz5UY85d1moR7LZreJts8fo"
+        let segue = UIStoryboardSegue(identifier: "CinemaDetailSegue",
+                                      source: mvc,
+                                      destination: cvc)
+        
+        mvc.prepareForSegue(segue, sender: nil)
+        
+        if let passedArgument = cvc.currentCinemaID {
+            XCTAssertEqual("ChIJiz5UY85d1moR7LZreJts8fo", passedArgument)
+        }
+        else {
+            XCTFail("Argument should be passed")
+        }
+    }
 
 }

@@ -21,22 +21,19 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     var currentMovie: Movie?
     // get saved movies from MovieViewController
-    var movies = MovieViewController().getMovies()
+    var movies: [[String:AnyObject]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.tableView.addSubview(self.refreshControl)
         
-        if movies.count == 0 {
+        if MovieViewController().getMovies() == nil {
             self.infoLabel.text = "You haven't save any movie"
-        } else if movies.count == 1 {
-            self.infoLabel.text = "Here is " + String(movies.count) + " Movie"
-            self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-            tableView.delegate = self
-            tableView.dataSource = self
         } else {
-            self.infoLabel.text = "Here are " + String(movies.count) + " Movies"
+            movies = MovieViewController().getMovies()
+            self.infoLabel.text = "Here are " + String(movies!.count) + " Movies"
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
             tableView.delegate = self
             tableView.dataSource = self
@@ -60,7 +57,9 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        updateInfo()
+        if movies != nil {
+            updateInfo()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,10 +71,10 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     func updateInfo() {
         movies = MovieViewController().getMovies()
         self.tableView.reloadData()
-        if movies.count == 0 {
+        if movies!.count == 0 {
             self.infoLabel.text = "You haven't save any movie"
         } else {
-            self.infoLabel.text = "Here are " + String(movies.count) + " Movies"
+            self.infoLabel.text = "Here are " + String(movies!.count) + " Movies"
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
             tableView.delegate = self
             tableView.dataSource = self
@@ -89,7 +88,7 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
-        case 0: return self.movies.count
+        case 0: return self.movies!.count
         case 1: return 1
         default: return 0
         }
@@ -98,8 +97,8 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell
         cell.backgroundColor = UIColor(red: 76/255.0, green: 76/255.0, blue: 76/255.0, alpha: 1.0)
-        if movies.count != 0 {
-            let title = self.movies[indexPath.row]["title"] as! String
+        if movies!.count != 0 {
+            let title = self.movies![indexPath.row]["title"] as! String
             cell.textLabel?.backgroundColor = UIColor.clearColor()
             cell.textLabel?.font = UIFont.boldSystemFontOfSize(17)
             cell.textLabel?.textColor = UIColor.whiteColor()
@@ -111,8 +110,8 @@ class BookmarkViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if movies.count != 0 {
-            let id = self.movies[indexPath.row]["id"] as! Int
+        if movies!.count != 0 {
+            let id = self.movies![indexPath.row]["id"] as! Int
         
             let movieID = String(id) as String
         

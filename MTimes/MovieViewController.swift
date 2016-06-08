@@ -51,10 +51,13 @@ class MovieViewController: UIViewController {
             }
         }
             // check whether the movie has been saved
-            if (checkMarked() && myDefaults.objectForKey("myMovie") != nil) {
+        let key = myDefaults.objectForKey("savedMovie")
+            if (key != nil) {
+                if (checkMarked()){
                 button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
                 button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
                 button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+                }
             }
         
             button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), forControlEvents: .TouchUpInside)
@@ -117,7 +120,7 @@ class MovieViewController: UIViewController {
                     }
                     break
                 case 1:
-                    self.parseMovieJSON(data)
+                    self.parseSimilarMovieJSON(data)
                     dispatch_async(dispatch_get_main_queue()) {
                         self.updateSimilarMovies()
                     }
@@ -209,7 +212,7 @@ class MovieViewController: UIViewController {
     }
     
     // Parse the received json result for similar movies
-    func parseMovieJSON(movieJSON:NSData) -> Bool{
+    func parseSimilarMovieJSON(movieJSON:NSData) -> Bool{
         var flag = true as Bool
         do{
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
@@ -347,15 +350,30 @@ class MovieViewController: UIViewController {
     // save or mark the movie
     // solution from: https://www.hackingwithswift.com/read/12/2/reading-and-writing-basics-nsuserdefaults
     // and http://stackoverflow.com/questions/26233067/simple-persistent-storage-in-swift
-    func markMovie(sender: UIButton) {
-        if !checkMarked() {
+    func markMovie(sender: UIButton!) {
+        if (myDefaults.objectForKey("savedMovie") == nil) {
+            let array = [["id": currentMovie!.id!, "title": currentMovie!.title!]] as? [[String:AnyObject]]
+            
+            // then update whats in the `NSUserDefault`
+            myDefaults.setObject(array, forKey: "savedMovie")
+            
+            // call this after update
+            myDefaults.synchronize()
+            
+            // update UI
+            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
+            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+            button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
+
+        } else {
+            if !checkMarked() {
             var array = getMovies()
             
             // add movie id and title
-            array.append(["id": currentMovie!.id!, "title": currentMovie!.title!])
+            array!.append(["id": currentMovie!.id!, "title": currentMovie!.title!])
             
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(array, forKey: "myMovie")
+            myDefaults.setObject(array, forKey: "savedMovie")
                 
             // call this after update
             myDefaults.synchronize()
@@ -368,16 +386,16 @@ class MovieViewController: UIViewController {
             // remove mark from this movie
             var array = getMovies()
             var index = -1 as Int
-            for var i = 0; i <= array.count; ++i {
-                let id = array[i]["id"] as! Int
+            for var i = 0; i <= array!.count; ++i {
+                let id = array![i]["id"] as! Int
                 if currentMovie?.id == id {
                     index = i
                     break
                 }
             }
-            array.removeAtIndex(index)
+            array!.removeAtIndex(index)
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(array, forKey: "myMovie")
+            myDefaults.setObject(array, forKey: "savedMovie")
             
             // call this after you update
             myDefaults.synchronize()
@@ -385,19 +403,20 @@ class MovieViewController: UIViewController {
             button.titleLabel?.font = UIFont.systemFontOfSize(12)
             button?.backgroundColor = UIColor(red: 127/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
         }
+        }
     }
     
     // return saved movies
-    func getMovies() -> [[String:AnyObject]] {
-        let movies = myDefaults.objectForKey("myMovie") as? [[String:AnyObject]] 
-        return movies!
+    func getMovies() -> [[String:AnyObject]]? {
+        let movies = myDefaults.objectForKey("savedMovie") as? [[String:AnyObject]]
+        return movies
     }
     
     // check the marking status of this movie
     func checkMarked () -> Bool {
         let movies = getMovies()
         var flag = false
-        for movie in movies {
+        for movie in movies! {
             let id = movie["id"] as! Int
             if currentMovie?.id == id {
                 flag = true

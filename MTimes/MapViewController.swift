@@ -20,6 +20,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var latitude: String!
     var longitude: String!
     
+    var cinemaID: String!
+    
     // Define a NSMutableArray to store all cinemas
     var nearbyCinema: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
@@ -110,6 +112,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
+            self.cinemaID = self.mapView.selectedAnnotations[0].subtitle!
             self.performSegueWithIdentifier("CinemaDetailSegue", sender: self)
         }
     }
@@ -118,7 +121,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if segue.identifier == "CinemaDetailSegue"
         {
             let theDestination : CinemaViewController = segue.destinationViewController as! CinemaViewController
-            theDestination.currentCinemaID = self.mapView.selectedAnnotations[0].subtitle!}
+            theDestination.currentCinemaID = self.cinemaID}
     }
 
 

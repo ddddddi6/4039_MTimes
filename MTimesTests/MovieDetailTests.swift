@@ -39,8 +39,10 @@ class MovieDetailTests: XCTestCase {
         }
     }
     
-    func testDownloadImagesDetail() {
-        let URL = NSURL(string: "https://api.themoviedb.org/3/movie/246655/images?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+    func testDownloadMovieDetail() {
+        let parameters = ["images", "similar", "videos", "reviews"]
+        for parameter in parameters {
+        let URL = NSURL(string: "https://api.themoviedb.org/3/movie/246655/" + parameter + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let expectation = expectationWithDescription("GET \(URL)")
         
         let session = NSURLSession.sharedSession()
@@ -67,10 +69,30 @@ class MovieDetailTests: XCTestCase {
             }
             task.cancel()
         }
+        }
     }
     
-    func checkBookmark() {
-        
+    func testParseMovieImages() {
+        let filePath = NSBundle.mainBundle().pathForResource("images_response",ofType:"json")
+        let data = NSData(contentsOfFile:filePath!)
+        XCTAssertNotNil(mvc.parsePosterJSON(data!))
     }
-
+    
+    func testParseSimilarMovies() {
+        let filePath = NSBundle.mainBundle().pathForResource("similar_response",ofType:"json")
+        let data = NSData(contentsOfFile:filePath!)
+        XCTAssertNotNil(mvc.parseSimilarMovieJSON(data!))
+    }
+    
+    func testParseVideo() {
+        let filePath = NSBundle.mainBundle().pathForResource("video_response",ofType:"json")
+        let data = NSData(contentsOfFile:filePath!)
+        XCTAssertNotNil(mvc.parseVideoJSON(data!))
+    }
+    
+    func testParseMovieReview() {
+        let filePath = NSBundle.mainBundle().pathForResource("reviews_response",ofType:"json")
+        let data = NSData(contentsOfFile:filePath!)
+        XCTAssertNotNil(mvc.parseReviewJSON(data!))
+    }
 }
