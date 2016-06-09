@@ -77,24 +77,28 @@ class MovieDetailTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("images_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parsePosterJSON(data!))
+        XCTAssertNotEqual(mvc.imageSet.count, 0, "Result should be stored")
     }
     
     func testParseSimilarMovies() {
         let filePath = NSBundle.mainBundle().pathForResource("similar_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parseSimilarMovieJSON(data!))
+        XCTAssertNotEqual(mvc.movieSet.count, 0, "Result should be stored")
     }
     
     func testParseVideo() {
         let filePath = NSBundle.mainBundle().pathForResource("video_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parseVideoJSON(data!))
+        XCTAssertNotNil(mvc.videoKey)
     }
     
     func testParseMovieReview() {
         let filePath = NSBundle.mainBundle().pathForResource("reviews_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parseReviewJSON(data!))
+        XCTAssertNotEqual(mvc.reviews.count, 0, "Result should be stored")
     }
     
     // solution from: https://www.raywenderlich.com/101306/unit-testing-tutorial-mocking-objects

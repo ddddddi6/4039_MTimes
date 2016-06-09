@@ -15,12 +15,18 @@ class PopularTableController: UITableViewController {
     
     var m: Movie!
     
+    var elements: NSMutableArray
+    
+    var currentPage = 0
+    var nextpage = 0
+    
     var url = "https://api.themoviedb.org/3/movie/popular?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
     
     // Define a NSMutableArray to store all popular movies
     var currentMovie: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
+        self.elements = NSMutableArray()
         super.init(coder: aDecoder)
     }
     
@@ -29,9 +35,13 @@ class PopularTableController: UITableViewController {
         
         self.infoLabel.text = "Loading movies..."
         
-        self.downloadMovieData()
+        self.downloadMovieData(self.url)
+        for var i = 2; i <= 4; i++ {
+            let urls = "https://api.themoviedb.org/3/movie/popular?page=" + String(i) + "&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
+            self.downloadMoreMovieData(urls)
+        }
         
-        self.refreshControl?.addTarget(self, action: #selector(PlayingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(PopularTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -62,7 +72,7 @@ class PopularTableController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
-        case 0: return self.currentMovie.count
+        case 0: return self.elements.count
         case 1: return 1
         default: return 0
         }
@@ -73,7 +83,7 @@ class PopularTableController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MovieTableCell
         
         // Configure the cell...
-        let m: Movie = self.currentMovie[indexPath.row] as! Movie
+        let m: Movie = self.elements[indexPath.row] as! Movie
         self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Popular Movies"
         if (m.title != nil) {
             cell.titleLabel.text = m.title
@@ -113,6 +123,19 @@ class PopularTableController: UITableViewController {
         }
     }
     
+    // Load more movies in the table
+    // solution from: http://stackoverflow.com/questions/27079253/load-more-for-uitableview-in-swift
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let lastElement = elements.count - 1
+        if indexPath.row == lastElement && lastElement != currentMovie.count - 1 {
+            // handle your logic here to get more items, add it to dataSource and reload tableview
+            currentPage += 20
+            nextpage = elements.count - 1
+            elements.addObjectsFromArray(currentMovie.subarrayWithRange(NSMakeRange(currentPage, 20)))
+            tableView.reloadData()
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let indexPath = tableView.indexPathForSelectedRow!
@@ -124,8 +147,8 @@ class PopularTableController: UITableViewController {
     
     // Download popular movies from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/movies/moviepopular
-    func downloadMovieData() {
-        let url = NSURL(string: self.url)!
+    func downloadMovieData(url: String) {
+        let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -136,6 +159,7 @@ class PopularTableController: UITableViewController {
             if let data = data {
                 self.parseMovieJSON(data)
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.elements.addObjectsFromArray(self.currentMovie.subarrayWithRange(NSMakeRange(0, 20)))
                     self.tableView.reloadData()
                 }
             } else {
@@ -153,6 +177,34 @@ class PopularTableController: UITableViewController {
         }
         // Download movies
     }
+    
+    func downloadMoreMovieData(url: String) {
+        let url = NSURL(string: url)!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let session = NSURLSession.sharedSession()
+        let priority = QOS_CLASS_USER_INTERACTIVE
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                if let data = data {
+                    self.parseMovieJSON(data)
+                } else {
+                    let messageString: String = "Something wrong with the connection"
+                    // Setup an alert to warn user
+                    // UIAlertController manages an alert instance
+                    let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+            }
+            task.resume()
+        }
+        // Download movies
+    }
+
     
     // Parse the received json result
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON

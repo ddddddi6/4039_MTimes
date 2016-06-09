@@ -1,6 +1,6 @@
 //
-//  MTimesTests.swift
-//  MTimesTests
+//  CurrentPlayingMovieTests.swift
+//  CurrentPlayingMovieTests
 //
 //  Created by Dee on 27/04/2016.
 //  Copyright © 2016 Dee. All rights reserved.
@@ -11,7 +11,7 @@ import MapKit
 import SwiftyJSON
 @testable import MTimes
 
-class MTimesTests: XCTestCase {
+class CurrentPlayingMovieTests: XCTestCase {
     
     var mvc: MovieViewController!
     var ptc: PlayingTableController!
@@ -43,6 +43,7 @@ class MTimesTests: XCTestCase {
     }
             
     // Solution from: http://nshipster.com/xctestcase/
+    // and http://roadfiresoftware.com/2015/12/how-to-test-your-json-parser/
     func testDownloadPlayingMovie() {
         let URL = NSURL(string: ptc.url)!
         let expectation = expectationWithDescription("GET \(URL)")
@@ -77,6 +78,7 @@ class MTimesTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("playing_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(ptc.parseMovieJSON(data!))
+        XCTAssertNotEqual(ptc.currentMovie.count, 0, "Result should be stored in Movie object")
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/

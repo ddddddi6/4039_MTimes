@@ -78,6 +78,9 @@ class CinemaDetailTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("cinema_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(cvc.parseCinemaJSON(data!))
+        XCTAssertNotNil(cvc.cinemaAddress)
+        XCTAssertNotNil(cvc.cinemaWeb)
+        XCTAssertNotNil(cvc.cinemaPhone)
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/

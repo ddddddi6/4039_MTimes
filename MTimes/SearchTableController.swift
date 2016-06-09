@@ -31,7 +31,7 @@ class SearchTableController: UITableViewController {
         
         self.downloadMovieData()
         
-        self.refreshControl?.addTarget(self, action: #selector(PlayingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(SearchTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -132,6 +132,7 @@ class SearchTableController: UITableViewController {
     // solution from: http://docs.themoviedb.apiary.io/#reference/search/searchmovie
     func downloadMovieData() {
         let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        // solution from http://stackoverflow.com/questions/24551816/swift-encode-url
         let escapedString = mTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         let url = NSURL(string: "https://api.themoviedb.org/3/search/movie?query=" + escapedString!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
         let request = NSMutableURLRequest(URL: url)

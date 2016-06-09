@@ -32,7 +32,7 @@ class UpcomingTableController: UITableViewController {
         
         self.downloadMovieData()
         
-        self.refreshControl?.addTarget(self, action: #selector(PlayingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(UpcomingTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

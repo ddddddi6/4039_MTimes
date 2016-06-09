@@ -77,6 +77,7 @@ class BookmarkTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("bookmark_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(bvc.parseMovieJSON(data!))
+        XCTAssertNotEqual(bvc.currentMovie!.count, 0, "Result should be stored in Movie object")
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/

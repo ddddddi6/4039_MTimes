@@ -78,6 +78,7 @@ class PopularMovieTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("playing_response",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(ptc.parseMovieJSON(data!))
+        
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/

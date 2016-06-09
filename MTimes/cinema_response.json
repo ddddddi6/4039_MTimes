@@ -28,7 +28,7 @@
             "types" : [ "administrative_area_level_1", "political" ]
          },
          {
-            "long_name" : "澳大利亚",
+            "long_name" : "Australia",
             "short_name" : "AU",
             "types" : [ "country", "political" ]
          },
@@ -38,8 +38,8 @@
             "types" : [ "postal_code" ]
          }
       ],
-      "adr_address" : "Highpoint Shopping Centre, \u003cspan class=\"street-address\"\u003e200 Rosamond Rd\u003c/span\u003e, \u003cspan class=\"locality\"\u003eMelbourne\u003c/span\u003e \u003cspan class=\"region\"\u003eVIC\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e3032\u003c/span\u003e\u003cspan class=\"country-name\"\u003e澳大利亚\u003c/span\u003e",
-      "formatted_address" : "Highpoint Shopping Centre, 200 Rosamond Rd, Melbourne VIC 3032澳大利亚",
+      "adr_address" : "Highpoint Shopping Centre, \u003cspan class=\"street-address\"\u003e200 Rosamond Rd\u003c/span\u003e, \u003cspan class=\"locality\"\u003eMelbourne\u003c/span\u003e \u003cspan class=\"region\"\u003eVIC\u003c/span\u003e \u003cspan class=\"postal-code\"\u003e3032\u003c/span\u003e\u003cspan class=\"country-name\"\u003eAustralia\u003c/span\u003e",
+      "formatted_address" : "Highpoint Shopping Centre, 200 Rosamond Rd, Melbourne VIC 3032Australia",
       "formatted_phone_number" : "(03) 9026 9960",
       "geometry" : {
          "location" : {

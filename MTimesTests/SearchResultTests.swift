@@ -78,6 +78,7 @@ class SearchResultTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("search_result",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(stc.parseMovieJSON(data!))
+        XCTAssertNotEqual(stc.currentMovie.count, 0, "Result should be stored in Movie object")
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/

@@ -77,6 +77,7 @@ class MapViewTests: XCTestCase {
         let filePath = NSBundle.mainBundle().pathForResource("nearby_cinema",ofType:"json")
         let data = NSData(contentsOfFile:filePath!)
         XCTAssertNotNil(mvc.parseCinemaJSON(data!))
+        XCTAssertNotEqual(mvc.nearbyCinema.count, 0, "Result should be stored in Cinema object")
     }
     
     // solution from: http://jakubturek.pl/blog/2015/03/07/ios-unit-test-recipes-uiviewcontrollers/
