@@ -15,8 +15,7 @@ class PopularTableController: UITableViewController {
     
     var m: Movie!
     
-    var elements: NSMutableArray
-    
+    var totalPages: Int?
     var currentPage = 0
     var nextpage = 0
     
@@ -24,6 +23,8 @@ class PopularTableController: UITableViewController {
     
     // Define a NSMutableArray to store all popular movies
     var currentMovie: NSMutableArray
+    // Define a NSMutableArray to store movies ready for displaying on table
+    var elements: NSMutableArray
     required init?(coder aDecoder: NSCoder) {
         self.currentMovie = NSMutableArray()
         self.elements = NSMutableArray()
@@ -35,7 +36,10 @@ class PopularTableController: UITableViewController {
         
         self.infoLabel.text = "Loading movies..."
         
+        // First download movie
         self.downloadMovieData(self.url)
+        
+        // Download more movies
         for var i = 2; i <= 4; i++ {
             let urls = "https://api.themoviedb.org/3/movie/popular?page=" + String(i) + "&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
             self.downloadMoreMovieData(urls)
@@ -123,7 +127,7 @@ class PopularTableController: UITableViewController {
         }
     }
     
-    // Load more movies in the table
+    // When scroll down to the bottom of table view, load more movies from the array
     // solution from: http://stackoverflow.com/questions/27079253/load-more-for-uitableview-in-swift
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let lastElement = elements.count - 1
@@ -145,7 +149,7 @@ class PopularTableController: UITableViewController {
         self.performSegueWithIdentifier("P_ViewMovieSegue", sender: nil)
     }
     
-    // Download popular movies from the source and check network connection
+    // Download popular movies from the source and load them into tableview and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/movies/moviepopular
     func downloadMovieData(url: String) {
         let url = NSURL(string: url)!
@@ -178,6 +182,7 @@ class PopularTableController: UITableViewController {
         // Download movies
     }
     
+    // Download more popular movies but not load into tableview and check network connection
     func downloadMoreMovieData(url: String) {
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
@@ -205,7 +210,6 @@ class PopularTableController: UITableViewController {
         // Download movies
     }
 
-    
     // Parse the received json result
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON
     // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
@@ -214,6 +218,8 @@ class PopularTableController: UITableViewController {
             let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
                                                                     options: NSJSONReadingOptions.MutableContainers)
             let json = JSON(result)
+            
+            totalPages = json["total_pages"].int
             
             NSLog("Found \(json["results"].count) popular movies!")
             for movie in json["results"].arrayValue {

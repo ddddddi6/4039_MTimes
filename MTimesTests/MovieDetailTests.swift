@@ -103,6 +103,18 @@ class MovieDetailTests: XCTestCase {
     
     // solution from: https://www.raywenderlich.com/101306/unit-testing-tutorial-mocking-objects
     func testMarkMovie() {
+        class MockUserDefaults: NSUserDefaults {
+            
+            var movieWasChanged = false
+            typealias FakeDefaults = Dictionary<String, AnyObject?>
+            var data : FakeDefaults?
+            
+            override func setObject(value: AnyObject?, forKey defaultName: String) {
+                if defaultName == "savedMovie" {
+                    movieWasChanged = true
+                }
+            }
+        }
         mvc.currentMovie = Movie(id: 1, title: "title", poster: "poster", overview: "overview", popularity: 1, rate: 1, date: NSDate(), count: 1, backdrop: "backdrop")
         let mockUserDefaults = MockUserDefaults(suiteName: "testing")!
         mvc.myDefaults = mockUserDefaults
@@ -115,15 +127,4 @@ class MovieDetailTests: XCTestCase {
     }
 }
 
-class MockUserDefaults: NSUserDefaults {
-    
-    var movieWasChanged = false
-    typealias FakeDefaults = Dictionary<String, AnyObject?>
-    var data : FakeDefaults?
-    
-    override func setObject(value: AnyObject?, forKey defaultName: String) {
-        if defaultName == "savedMovie" {
-            movieWasChanged = true
-        }
-    }
-}
+
