@@ -17,6 +17,7 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        // Labels for displaying infomation related to this application
         let m_api = UILabel(frame: CGRectMake(10, 85 , 380, 21))
         m_api.text = "The Movie Database API"
         m_api.textColor = UIColor.whiteColor()
@@ -60,6 +61,7 @@ class AboutViewController: UIViewController {
         desc.textColor = UIColor.lightGrayColor()
         desc.font = UIFont.boldSystemFontOfSize(15)
         
+        // Add labels to the view
         self.view.addSubview(m_api)
         self.view.addSubview(m_desc)
         self.view.addSubview(g_api)
@@ -67,6 +69,8 @@ class AboutViewController: UIViewController {
         self.view.addSubview(swiftyjson)
         self.view.addSubview(s_desc)
         self.view.addSubview(desc)
+        
+        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {

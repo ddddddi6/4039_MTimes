@@ -56,7 +56,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Dispose of any resources that can be recreated.
     }
     
-    // get current location
+    // get current location and then search nearby cinemas
     // solution from: https://www.youtube.com/watch?v=qrdIL44T6FQ
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     
@@ -82,7 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(error.localizedDescription)
     }
     
-    // add button for annotation on map
+    // add info button for each annotation on map to jump to cinema detail controller
     // solution from: http://stackoverflow.com/questions/28225296/how-to-add-a-button-to-mkpointannotation
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -204,6 +204,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let scale = UIScreen.mainScreen().scale
         
+        // get the screenshot of current view
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
         
         layer.renderInContext(UIGraphicsGetCurrentContext()!)

@@ -183,6 +183,7 @@ class CinemaViewController: UIViewController {
         
         let scale = UIScreen.mainScreen().scale
         
+        // get the screenshot of current view
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
         
         layer.renderInContext(UIGraphicsGetCurrentContext()!)
@@ -197,7 +198,7 @@ class CinemaViewController: UIViewController {
 
     }
     
-    // pass homepage link to second view
+    // pass homepage link to web view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CinemaWebSegue"
         {

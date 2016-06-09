@@ -115,6 +115,7 @@ class UpcomingTableController: UITableViewController {
         }
     }
     
+    // Override to get selected movie
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let indexPath = tableView.indexPathForSelectedRow!
@@ -180,13 +181,14 @@ class UpcomingTableController: UITableViewController {
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     dateFormatter.timeZone = NSTimeZone(name: "UTC")
                     let release_date = dateFormatter.dateFromString(date)!
-                    
                     if let
                         poster = movie["poster_path"].string,
                         backdrop = movie["backdrop_path"].string {
+                        // Store the info in Movie ojbect
                         let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: backdrop)
                         currentMovie.addObject(m)
                     } else {
+                        // Some movies may not provide poster and images
                         let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image")
                         currentMovie.addObject(m)
                     }

@@ -45,6 +45,7 @@ class MovieViewController: UIViewController {
                           apiLink + "/videos?" + apiKey,
                           apiLink + "/reviews?" + apiKey]
         
+            // download movie detail from each api link
             for i in 0 ..< urlStrings.count
             {
                 downloadMovieData(urlStrings[i], flag: i)
@@ -54,6 +55,7 @@ class MovieViewController: UIViewController {
         let key = myDefaults.objectForKey("savedMovie")
             if (key != nil) {
                 if (checkMarked()){
+                    // update UI if the movie has been saved
                 button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
                 button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
                 button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
@@ -102,7 +104,6 @@ class MovieViewController: UIViewController {
     // Download selected movie from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io
     func downloadMovieData(url: String, flag: Int) {
-        var flags = true as Bool
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -112,6 +113,7 @@ class MovieViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if let data = data {
+                // parse json result
                 switch (flag) {
                 case 0:
                     self.parsePosterJSON(data)
@@ -179,7 +181,7 @@ class MovieViewController: UIViewController {
         return true
     }
     
-    // Update backdrops of the movie
+    // Display backdrops of the movie
     func updateImages() {
         if imageSet.count != 0 {
             let image1 = "http://image.tmdb.org/t/p/w500" + self.imageSet[0] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
@@ -319,7 +321,7 @@ class MovieViewController: UIViewController {
         }
     }
     
-    // display reviews
+    // display reviews of current movie
     func updateReview() {
         if reviews.count != 0 {
             let review = UILabel(frame: CGRectMake(8, scrollView.contentSize.height,  UIScreen.mainScreen().bounds.width - 16, 21))
@@ -347,11 +349,16 @@ class MovieViewController: UIViewController {
         }
     }
     
-    // save or mark the movie
+    // save or mark the movie in `NSUserDefaults`
     // solution from: https://www.hackingwithswift.com/read/12/2/reading-and-writing-basics-nsuserdefaults
     // and http://stackoverflow.com/questions/26233067/simple-persistent-storage-in-swift
     func markMovie(sender: UIButton!) {
+        
+        // Check whether the `NSUserDefaults` exists and the movie has been saved, then update UI
+        
         if (myDefaults.objectForKey("savedMovie") == nil) {
+            // the savedMovie `NSUserDefaults` does not exist
+            
             let array = [["id": currentMovie!.id!, "title": currentMovie!.title!]] as? [[String:AnyObject]]
             
             // then update whats in the `NSUserDefault`
@@ -366,6 +373,8 @@ class MovieViewController: UIViewController {
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
 
         } else {
+            // the movie has not been saved
+            
             if !checkMarked() {
             var array = getMovies()
             
@@ -383,7 +392,8 @@ class MovieViewController: UIViewController {
             button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
         } else {
-            // remove mark from this movie
+            // remove mark from this movie and delete from `NSUserDefaults`
+                
             var array = getMovies()
             var index = -1 as Int
             for var i = 0; i <= array!.count; ++i {
@@ -397,7 +407,7 @@ class MovieViewController: UIViewController {
             // then update whats in the `NSUserDefault`
             myDefaults.setObject(array, forKey: "savedMovie")
             
-            // call this after you update
+            // call this after update
             myDefaults.synchronize()
             button.setTitle("Bookmark", forState: UIControlState.Normal)
             button.titleLabel?.font = UIFont.systemFontOfSize(12)
