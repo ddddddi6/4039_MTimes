@@ -5,11 +5,10 @@ use_frameworks!
 
 
 target 'MTimes' do
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'SwiftyJSON', '3.0.0'
 end
 
 target 'MTimesTests' do
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 
 end
 

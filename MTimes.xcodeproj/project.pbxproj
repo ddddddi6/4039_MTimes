@@ -8,24 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		04063A191D05339B00611B6A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A181D05339B00611B6A /* AboutViewController.swift */; };
-		04063A1B1D06D71D00611B6A /* SwiftyJSON in Resources */ = {isa = PBXBuildFile; fileRef = 04063A1A1D06D71D00611B6A /* SwiftyJSON */; };
 		04063A1C1D06D71D00611B6A /* SwiftyJSON in Resources */ = {isa = PBXBuildFile; fileRef = 04063A1A1D06D71D00611B6A /* SwiftyJSON */; };
-		04063A1E1D06DCAF00611B6A /* playing_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A1D1D06DCAF00611B6A /* playing_response.json */; };
-		04063A1F1D06DCAF00611B6A /* playing_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A1D1D06DCAF00611B6A /* playing_response.json */; };
 		04063A211D06F48100611B6A /* DiscoverScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A201D06F48100611B6A /* DiscoverScreenTests.swift */; };
 		04063A231D06F53900611B6A /* MovieDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A221D06F53900611B6A /* MovieDetailTests.swift */; };
 		04063A251D0704E400611B6A /* UpcomingMovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A241D0704E400611B6A /* UpcomingMovieTests.swift */; };
 		04063A271D0705A600611B6A /* PopularMovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A261D0705A600611B6A /* PopularMovieTests.swift */; };
 		04063A291D07082500611B6A /* SearchResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A281D07082500611B6A /* SearchResultTests.swift */; };
 		04063A2B1D070B6900611B6A /* BookmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A2A1D070B6900611B6A /* BookmarkTests.swift */; };
-		04063A2E1D070DB500611B6A /* bookmark_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A2C1D070DB500611B6A /* bookmark_response.json */; };
-		04063A2F1D070DB500611B6A /* bookmark_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A2C1D070DB500611B6A /* bookmark_response.json */; };
 		04063A331D070F1500611B6A /* MapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A321D070F1500611B6A /* MapViewTests.swift */; };
 		04063A351D07114F00611B6A /* CinemaDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04063A341D07114F00611B6A /* CinemaDetailTests.swift */; };
-		04063A381D0712C700611B6A /* cinema_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A361D0712C700611B6A /* cinema_response.json */; };
-		04063A391D0712C700611B6A /* cinema_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A361D0712C700611B6A /* cinema_response.json */; };
-		04063A3A1D0712C700611B6A /* nearby_cinema.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A371D0712C700611B6A /* nearby_cinema.json */; };
-		04063A3B1D0712C700611B6A /* nearby_cinema.json in Resources */ = {isa = PBXBuildFile; fileRef = 04063A371D0712C700611B6A /* nearby_cinema.json */; };
 		041798A61CED777200C03BB0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798A51CED777200C03BB0 /* MapViewController.swift */; };
 		041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041798A91CEF47E200C03BB0 /* MapKit.framework */; };
 		041798AC1CEFED5000C03BB0 /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041798AB1CEFED5000C03BB0 /* Cinema.swift */; };
@@ -36,13 +27,9 @@
 		0447884A1CE16AB60029BE33 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044788491CE16AB60029BE33 /* DiscoverViewController.swift */; };
 		0447884C1CE203A60029BE33 /* PopularTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884B1CE203A60029BE33 /* PopularTableController.swift */; };
 		0447884E1CE2D6F00029BE33 /* SearchTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447884D1CE2D6F00029BE33 /* SearchTableController.swift */; };
+		0448B7621E52F1BB0003716D /* SwiftyJSON in Resources */ = {isa = PBXBuildFile; fileRef = 0448B7611E52F1BB0003716D /* SwiftyJSON */; };
 		046D70561D018ED100F45A57 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046D70551D018ED100F45A57 /* BookmarkViewController.swift */; };
 		048F59961CD9945400873784 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048F59951CD9945400873784 /* MovieViewController.swift */; };
-		049B22431D07181600722BA6 /* search_result.json in Resources */ = {isa = PBXBuildFile; fileRef = 049B22421D07181600722BA6 /* search_result.json */; };
-		049B22481D07A1C000722BA6 /* images_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 049B22441D07A1C000722BA6 /* images_response.json */; };
-		049B22491D07A1C000722BA6 /* reviews_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 049B22451D07A1C000722BA6 /* reviews_response.json */; };
-		049B224A1D07A1C000722BA6 /* similar_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 049B22461D07A1C000722BA6 /* similar_response.json */; };
-		049B224B1D07A1C000722BA6 /* video_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 049B22471D07A1C000722BA6 /* video_response.json */; };
 		04D729451CD033DA00FF6DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729441CD033DA00FF6DBE /* AppDelegate.swift */; };
 		04D7294A1CD033DA00FF6DBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D729481CD033DA00FF6DBE /* Main.storyboard */; };
 		04D7294D1CD033DA00FF6DBE /* MTimes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */; };
@@ -53,10 +40,9 @@
 		04D7297A1CD05CE700FF6DBE /* PlayingTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D729791CD05CE700FF6DBE /* PlayingTableController.swift */; };
 		04D7297C1CD05D0700FF6DBE /* MovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */; };
 		04D7297E1CD05F6E00FF6DBE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7297D1CD05F6E00FF6DBE /* Movie.swift */; };
-		415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E80280748C35BB08147FCB /* Pods.framework */; };
-		46DA35E5BE5465EC7A20055E /* Pods_MTimesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 984BB20BF58934614307C075 /* Pods_MTimesTests.framework */; };
-		553E37D7BCB2E1D0BF72A5F6 /* Pods_MTimesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */; };
-		D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */; };
+		6339A49AB26721F1BDBF3F9E /* Pods_MTimesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D721E97887B7AFE7492D75 /* Pods_MTimesUITests.framework */; };
+		92DCA3469F8360A6BA985A48 /* Pods_MTimes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A082E35381B7FF226A6BC700 /* Pods_MTimes.framework */; };
+		9B93D8D08BDD9134EF9EFBF2 /* Pods_MTimesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D968EC470CDD87658371769 /* Pods_MTimesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,20 +76,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		03D604EABDCEE1A0FAAABF54 /* Pods-MTimesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		04063A181D05339B00611B6A /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		04063A1A1D06D71D00611B6A /* SwiftyJSON */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftyJSON; path = "../MTimes 2/Pods/Target Support Files/SwiftyJSON"; sourceTree = "<group>"; };
-		04063A1D1D06DCAF00611B6A /* playing_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playing_response.json; sourceTree = "<group>"; };
 		04063A201D06F48100611B6A /* DiscoverScreenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverScreenTests.swift; sourceTree = "<group>"; };
 		04063A221D06F53900611B6A /* MovieDetailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailTests.swift; sourceTree = "<group>"; };
 		04063A241D0704E400611B6A /* UpcomingMovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpcomingMovieTests.swift; sourceTree = "<group>"; };
 		04063A261D0705A600611B6A /* PopularMovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularMovieTests.swift; sourceTree = "<group>"; };
 		04063A281D07082500611B6A /* SearchResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTests.swift; sourceTree = "<group>"; };
 		04063A2A1D070B6900611B6A /* BookmarkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkTests.swift; sourceTree = "<group>"; };
-		04063A2C1D070DB500611B6A /* bookmark_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bookmark_response.json; sourceTree = "<group>"; };
 		04063A321D070F1500611B6A /* MapViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewTests.swift; sourceTree = "<group>"; };
 		04063A341D07114F00611B6A /* CinemaDetailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaDetailTests.swift; sourceTree = "<group>"; };
-		04063A361D0712C700611B6A /* cinema_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cinema_response.json; sourceTree = "<group>"; };
-		04063A371D0712C700611B6A /* nearby_cinema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nearby_cinema.json; sourceTree = "<group>"; };
 		041798A51CED777200C03BB0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		041798A91CEF47E200C03BB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		041798AB1CEFED5000C03BB0 /* Cinema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
@@ -114,13 +97,9 @@
 		044788491CE16AB60029BE33 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		0447884B1CE203A60029BE33 /* PopularTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableController.swift; sourceTree = "<group>"; };
 		0447884D1CE2D6F00029BE33 /* SearchTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableController.swift; sourceTree = "<group>"; };
+		0448B7611E52F1BB0003716D /* SwiftyJSON */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftyJSON; path = "Pods/Target Support Files/SwiftyJSON"; sourceTree = "<group>"; };
 		046D70551D018ED100F45A57 /* BookmarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		048F59951CD9945400873784 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
-		049B22421D07181600722BA6 /* search_result.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_result.json; sourceTree = "<group>"; };
-		049B22441D07A1C000722BA6 /* images_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = images_response.json; sourceTree = "<group>"; };
-		049B22451D07A1C000722BA6 /* reviews_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews_response.json; sourceTree = "<group>"; };
-		049B22461D07A1C000722BA6 /* similar_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = similar_response.json; sourceTree = "<group>"; };
-		049B22471D07A1C000722BA6 /* video_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_response.json; sourceTree = "<group>"; };
 		04D729411CD033DA00FF6DBE /* MTimes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTimes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D729441CD033DA00FF6DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D729491CD033DA00FF6DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,16 +116,15 @@
 		04D729791CD05CE700FF6DBE /* PlayingTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingTableController.swift; sourceTree = "<group>"; };
 		04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableCell.swift; sourceTree = "<group>"; };
 		04D7297D1CD05F6E00FF6DBE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.release.xcconfig"; sourceTree = "<group>"; };
-		5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		984BB20BF58934614307C075 /* Pods_MTimesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.debug.xcconfig"; sourceTree = "<group>"; };
-		A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E39C35432EEC0FF3D612816 /* Pods-MTimesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		55D721E97887B7AFE7492D75 /* Pods_MTimesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67FAAFC253BDAA249CC46B53 /* Pods-MTimes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.release.xcconfig"; sourceTree = "<group>"; };
+		6B55CA9A249BB13B4C31A6D7 /* Pods-MTimes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.debug.xcconfig"; sourceTree = "<group>"; };
+		8D968EC470CDD87658371769 /* Pods_MTimesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A082E35381B7FF226A6BC700 /* Pods_MTimes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTimes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A71005B40EAE96E0ADE5B8B3 /* Pods-MTimesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests.release.xcconfig"; sourceTree = "<group>"; };
 		A7E80280748C35BB08147FCB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimes.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimes/Pods-MTimes.release.xcconfig"; sourceTree = "<group>"; };
+		DE8834769E8B4D2310B4D3D5 /* Pods-MTimesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTimesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +134,7 @@
 			files = (
 				041798DA1CF42BF500C03BB0 /* SwiftyJSON.framework in Frameworks */,
 				041798AA1CEF47E200C03BB0 /* MapKit.framework in Frameworks */,
-				415204C39B2A8B8ACF5B1436 /* Pods.framework in Frameworks */,
-				D7041C5CA0CF3C82CDA1778F /* Pods_MTimes.framework in Frameworks */,
+				92DCA3469F8360A6BA985A48 /* Pods_MTimes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46DA35E5BE5465EC7A20055E /* Pods_MTimesTests.framework in Frameworks */,
+				9B93D8D08BDD9134EF9EFBF2 /* Pods_MTimesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				553E37D7BCB2E1D0BF72A5F6 /* Pods_MTimesUITests.framework in Frameworks */,
+				6339A49AB26721F1BDBF3F9E /* Pods_MTimesUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,12 +160,13 @@
 		04D729381CD033DA00FF6DBE = {
 			isa = PBXGroup;
 			children = (
+				0448B7611E52F1BB0003716D /* SwiftyJSON */,
 				04D729431CD033DA00FF6DBE /* MTimes */,
 				04D7295B1CD033DA00FF6DBE /* MTimesTests */,
 				04D729661CD033DA00FF6DBE /* MTimesUITests */,
 				04D729421CD033DA00FF6DBE /* Products */,
-				7EA29D87EC9D45CD8707101F /* Pods */,
 				DBB951CF8E3F5F6E7AEEF6F0 /* Frameworks */,
+				25CA0A099C2713A9FDB70FB1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,21 +195,12 @@
 				04D729481CD033DA00FF6DBE /* Main.storyboard */,
 				041798A51CED777200C03BB0 /* MapViewController.swift */,
 				04D7297D1CD05F6E00FF6DBE /* Movie.swift */,
-				04063A2C1D070DB500611B6A /* bookmark_response.json */,
 				04D7297B1CD05D0700FF6DBE /* MovieTableCell.swift */,
 				048F59951CD9945400873784 /* MovieViewController.swift */,
 				04D7294B1CD033DA00FF6DBE /* MTimes.xcdatamodeld */,
-				04063A361D0712C700611B6A /* cinema_response.json */,
-				04063A371D0712C700611B6A /* nearby_cinema.json */,
-				04063A1D1D06DCAF00611B6A /* playing_response.json */,
-				049B22421D07181600722BA6 /* search_result.json */,
 				04D729791CD05CE700FF6DBE /* PlayingTableController.swift */,
 				0447884B1CE203A60029BE33 /* PopularTableController.swift */,
 				0447884D1CE2D6F00029BE33 /* SearchTableController.swift */,
-				049B22441D07A1C000722BA6 /* images_response.json */,
-				049B22451D07A1C000722BA6 /* reviews_response.json */,
-				049B22461D07A1C000722BA6 /* similar_response.json */,
-				049B22471D07A1C000722BA6 /* video_response.json */,
 				0442BC271CD8D1D500F5EA85 /* UpcomingTableController.swift */,
 				041798DB1CF443A500C03BB0 /* WebViewController.swift */,
 			);
@@ -264,15 +233,15 @@
 			path = MTimesUITests;
 			sourceTree = "<group>";
 		};
-		7EA29D87EC9D45CD8707101F /* Pods */ = {
+		25CA0A099C2713A9FDB70FB1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */,
-				C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */,
-				5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */,
-				5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */,
-				76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */,
-				0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */,
+				6B55CA9A249BB13B4C31A6D7 /* Pods-MTimes.debug.xcconfig */,
+				67FAAFC253BDAA249CC46B53 /* Pods-MTimes.release.xcconfig */,
+				03D604EABDCEE1A0FAAABF54 /* Pods-MTimesTests.debug.xcconfig */,
+				A71005B40EAE96E0ADE5B8B3 /* Pods-MTimesTests.release.xcconfig */,
+				4E39C35432EEC0FF3D612816 /* Pods-MTimesUITests.debug.xcconfig */,
+				DE8834769E8B4D2310B4D3D5 /* Pods-MTimesUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -284,9 +253,9 @@
 				041798D91CF42BF500C03BB0 /* SwiftyJSON.framework */,
 				041798A91CEF47E200C03BB0 /* MapKit.framework */,
 				A7E80280748C35BB08147FCB /* Pods.framework */,
-				A4F2DB9621D1078527E8CB8E /* Pods_MTimes.framework */,
-				984BB20BF58934614307C075 /* Pods_MTimesTests.framework */,
-				8BF92B54A8D40627A02DFE9A /* Pods_MTimesUITests.framework */,
+				A082E35381B7FF226A6BC700 /* Pods_MTimes.framework */,
+				8D968EC470CDD87658371769 /* Pods_MTimesTests.framework */,
+				55D721E97887B7AFE7492D75 /* Pods_MTimesUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,13 +267,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D7296C1CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimes" */;
 			buildPhases = (
-				F49EC3AD4A7E739ECAD0E671 /* Check Pods Manifest.lock */,
+				CC1B9351396F5FD6DB53E04C /* [CP] Check Pods Manifest.lock */,
 				04D7293D1CD033DA00FF6DBE /* Sources */,
 				04D7293E1CD033DA00FF6DBE /* Frameworks */,
 				04D7293F1CD033DA00FF6DBE /* Resources */,
-				BDAF915DE11D2B45B9A7ABCF /* Embed Pods Frameworks */,
-				A92494854DECAD4B6028054E /* Copy Pods Resources */,
 				04D7298B1CD830DC00FF6DBE /* Embed Frameworks */,
+				292BDD9239C747818AEAEA89 /* [CP] Embed Pods Frameworks */,
+				2DC2B6E6618D7A1DC63E2A75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -319,12 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D7296F1CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesTests" */;
 			buildPhases = (
-				4EC78F625B94853D525522F4 /* Check Pods Manifest.lock */,
+				4B419771C9966814479C0651 /* [CP] Check Pods Manifest.lock */,
 				04D729541CD033DA00FF6DBE /* Sources */,
 				04D729551CD033DA00FF6DBE /* Frameworks */,
 				04D729561CD033DA00FF6DBE /* Resources */,
-				68344AE4C8D205475F0C21F8 /* Embed Pods Frameworks */,
-				ADB7EDA3326A7FECC7A19849 /* Copy Pods Resources */,
+				739C5A24660BA945DC94C4D3 /* [CP] Embed Pods Frameworks */,
+				09130B7B878221205BD5584F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -340,11 +309,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D729721CD033DA00FF6DBE /* Build configuration list for PBXNativeTarget "MTimesUITests" */;
 			buildPhases = (
-				826AA686FE043931AA19A198 /* Check Pods Manifest.lock */,
+				B640E072B09B8F41A3FC3ECF /* [CP] Check Pods Manifest.lock */,
 				04D7295F1CD033DA00FF6DBE /* Sources */,
 				04D729601CD033DA00FF6DBE /* Frameworks */,
 				04D729611CD033DA00FF6DBE /* Resources */,
-				D4260D57A788C0CB5A0199CE /* Copy Pods Resources */,
+				E4DF55951AABE15E34BD586D /* [CP] Embed Pods Frameworks */,
+				AA4DAFC7FBF17DE6B5DA4BBA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -368,16 +338,19 @@
 				TargetAttributes = {
 					04D729401CD033DA00FF6DBE = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 87BXM8YT8Q;
+						DevelopmentTeam = V9RJNM34U4;
+						LastSwiftMigration = 0810;
 					};
 					04D729571CD033DA00FF6DBE = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 87BXM8YT8Q;
+						LastSwiftMigration = 0810;
 						TestTargetID = 04D729401CD033DA00FF6DBE;
 					};
 					04D729621CD033DA00FF6DBE = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 87BXM8YT8Q;
+						LastSwiftMigration = 0810;
 						TestTargetID = 04D729401CD033DA00FF6DBE;
 					};
 				};
@@ -407,19 +380,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049B224A1D07A1C000722BA6 /* similar_response.json in Resources */,
-				049B22431D07181600722BA6 /* search_result.json in Resources */,
-				049B22491D07A1C000722BA6 /* reviews_response.json in Resources */,
+				0448B7621E52F1BB0003716D /* SwiftyJSON in Resources */,
 				04D729521CD033DA00FF6DBE /* LaunchScreen.storyboard in Resources */,
-				049B22481D07A1C000722BA6 /* images_response.json in Resources */,
-				04063A1E1D06DCAF00611B6A /* playing_response.json in Resources */,
-				04063A2E1D070DB500611B6A /* bookmark_response.json in Resources */,
 				04D7294F1CD033DA00FF6DBE /* Assets.xcassets in Resources */,
-				04063A1B1D06D71D00611B6A /* SwiftyJSON in Resources */,
-				049B224B1D07A1C000722BA6 /* video_response.json in Resources */,
-				04063A3A1D0712C700611B6A /* nearby_cinema.json in Resources */,
 				04D7294A1CD033DA00FF6DBE /* Main.storyboard in Resources */,
-				04063A381D0712C700611B6A /* cinema_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,11 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04063A391D0712C700611B6A /* cinema_response.json in Resources */,
 				04063A1C1D06D71D00611B6A /* SwiftyJSON in Resources */,
-				04063A3B1D0712C700611B6A /* nearby_cinema.json in Resources */,
-				04063A1F1D06DCAF00611B6A /* playing_response.json in Resources */,
-				04063A2F1D070DB500611B6A /* bookmark_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,74 +405,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4EC78F625B94853D525522F4 /* Check Pods Manifest.lock */ = {
+		09130B7B878221205BD5584F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		68344AE4C8D205475F0C21F8 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		826AA686FE043931AA19A198 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A92494854DECAD4B6028054E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ADB7EDA3326A7FECC7A19849 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,14 +420,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BDAF915DE11D2B45B9A7ABCF /* Embed Pods Frameworks */ = {
+		292BDD9239C747818AEAEA89 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,14 +435,59 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4260D57A788C0CB5A0199CE /* Copy Pods Resources */ = {
+		2DC2B6E6618D7A1DC63E2A75 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimes/Pods-MTimes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B419771C9966814479C0651 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		739C5A24660BA945DC94C4D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesTests/Pods-MTimesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA4DAFC7FBF17DE6B5DA4BBA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,19 +495,49 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F49EC3AD4A7E739ECAD0E671 /* Check Pods Manifest.lock */ = {
+		B640E072B09B8F41A3FC3ECF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC1B9351396F5FD6DB53E04C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E4DF55951AABE15E34BD586D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MTimesUITests/Pods-MTimesUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -735,9 +710,10 @@
 		};
 		04D7296D1CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A047024CD144E1E9DC2C9F23 /* Pods-MTimes.debug.xcconfig */;
+			baseConfigurationReference = 6B55CA9A249BB13B4C31A6D7 /* Pods-MTimes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V9RJNM34U4;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -752,15 +728,17 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
 		04D7296E1CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C31AD92EA8B627FE1D19DB29 /* Pods-MTimes.release.xcconfig */;
+			baseConfigurationReference = 67FAAFC253BDAA249CC46B53 /* Pods-MTimes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V9RJNM34U4;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -775,13 +753,14 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		04D729701CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E4949F7613905D6859561DE /* Pods-MTimesTests.debug.xcconfig */;
+			baseConfigurationReference = 03D604EABDCEE1A0FAAABF54 /* Pods-MTimesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MTimesTests/Info.plist;
@@ -789,13 +768,14 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MTimes.app/MTimes";
 			};
 			name = Debug;
 		};
 		04D729711CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A602352A7863D5BBCF9C384 /* Pods-MTimesTests.release.xcconfig */;
+			baseConfigurationReference = A71005B40EAE96E0ADE5B8B3 /* Pods-MTimesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = MTimesTests/Info.plist;
@@ -803,30 +783,33 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MTimes.app/MTimes";
 			};
 			name = Release;
 		};
 		04D729731CD033DA00FF6DBE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76417AB2B1602F0C9B37D180 /* Pods-MTimesUITests.debug.xcconfig */;
+			baseConfigurationReference = 4E39C35432EEC0FF3D612816 /* Pods-MTimesUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = MTimesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MTimes;
 			};
 			name = Debug;
 		};
 		04D729741CD033DA00FF6DBE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D14F89D6C64ED87B0E9B604 /* Pods-MTimesUITests.release.xcconfig */;
+			baseConfigurationReference = DE8834769E8B4D2310B4D3D5 /* Pods-MTimesUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = MTimesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.diliu.MTimesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = MTimes;
 			};
 			name = Release;

@@ -27,11 +27,11 @@ class SearchTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.infoLabel.text = "Loading movies..."
+        self.infoLabel.text = " Loading movies..."
         
         self.downloadMovieData()
         
-        self.refreshControl?.addTarget(self, action: #selector(SearchTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(SearchTableController.refresh(_:)), for: UIControlEvents.valueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,7 +45,7 @@ class SearchTableController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func refresh(sender:AnyObject)
+    func refresh(_ sender:AnyObject)
     {
         // Updating table view data
         self.tableView.reloadData()
@@ -54,12 +54,12 @@ class SearchTableController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
         case 0: return self.currentMovie.count
@@ -68,14 +68,14 @@ class SearchTableController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "MovieTableCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MovieTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MovieTableCell
         
         // Configure the cell...
         let m: Movie = self.currentMovie[indexPath.row] as! Movie
         if currentMovie.count != 0 {
-            self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Results"
+            self.infoLabel.text = " Here Are " + String(currentMovie.count) + " Results"
         }
         if (m.title != nil) {
             cell.titleLabel.text = m.title
@@ -87,9 +87,9 @@ class SearchTableController: UITableViewController {
             cell.rateLabel.text = "Rate: " + String(format: "%.2f", m.rate!)
         }
         if (m.date != nil) {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let date = dateFormatter.stringFromDate(m.date!)
+            let date = dateFormatter.string(from: m.date! as Date)
             if (date != "1111-11-11") {
                 cell.dateLabel.text = "Release Date: \(date)"
             } else {
@@ -98,8 +98,8 @@ class SearchTableController: UITableViewController {
         }
         if (m.poster != nil) {
             let image = "http://image.tmdb.org/t/p/w500" + m.poster! + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
-            if let url  = NSURL(string: image),
-                data = NSData(contentsOfURL: url)
+            if let url  = URL(string: image),
+                let data = try? Data(contentsOf: url)
             {
                 cell.posterView.image = UIImage(data: data)
             } else if (m.poster == "No Poster") {
@@ -110,7 +110,7 @@ class SearchTableController: UITableViewController {
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0{
             return true
         }
@@ -120,54 +120,54 @@ class SearchTableController: UITableViewController {
     }
     
     // Override to get selected movie
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let indexPath = tableView.indexPathForSelectedRow!
         
         m = self.currentMovie[indexPath.row] as! Movie
         
-        self.performSegueWithIdentifier("S_ViewMovieSegue", sender: nil)
+        self.performSegue(withIdentifier: "S_ViewMovieSegue", sender: nil)
     }
     
     // Download searching results from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/search/searchmovie
     func downloadMovieData() {
-        let mTitle = self.movieTitle!.stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let mTitle = self.movieTitle!.replacingOccurrences(of: " ", with: "%20", options: NSString.CompareOptions.literal, range: nil)
         // solution from http://stackoverflow.com/questions/24551816/swift-encode-url
-        let escapedString = mTitle.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-        let url = NSURL(string: "https://api.themoviedb.org/3/search/movie?query=" + escapedString!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
-        let request = NSMutableURLRequest(URL: url)
+        let escapedString = mTitle.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie?query=" + escapedString!+"&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4")!
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             if let data = data {
                 self.parseMovieJSON(data)
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                     if self.currentMovie.count == 0 {
                         self.infoLabel.text = "Sorry, No Result Found..."
                         let messageString: String = "No Result Found"
                         // Setup an alert to warn user
                         // UIAlertController manages an alert instance
-                        let alertController = UIAlertController(title: "Sorry", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertController = UIAlertController(title: "Sorry", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                         
-                        alertController.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default,handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default,handler: nil))
                         
-                        self.presentViewController(alertController, animated: true, completion: nil)
+                        self.present(alertController, animated: true, completion: nil)
                     }
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
-                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                 
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
-        }
+        }) 
         task.resume()
         // Download movies
     }
@@ -175,10 +175,10 @@ class SearchTableController: UITableViewController {
     // Parse the received json result
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON
     // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
-    func parseMovieJSON(movieJSON:NSData){
+    func parseMovieJSON(_ movieJSON:Data){
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             NSLog("Found \(json["results"].count) results!")
@@ -186,29 +186,29 @@ class SearchTableController: UITableViewController {
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
-                    title = movie["title"].string,
-                    overview = movie["overview"].string,
-                    popularity = movie["popularity"].double,
-                    rate = movie["vote_average"].double,
-                    date = movie["release_date"].string,
-                    count = movie["vote_count"].int {
-                    let dateFormatter = NSDateFormatter()
+                    let title = movie["title"].string,
+                    let overview = movie["overview"].string,
+                    let popularity = movie["popularity"].double,
+                    let rate = movie["vote_average"].double,
+                    let date = movie["release_date"].string,
+                    let count = movie["vote_count"].int {
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
-                    dateFormatter.timeZone = NSTimeZone(name: "UTC")
+                    dateFormatter.timeZone = TimeZone(identifier: "UTC")
                     if date.characters.count == 0{
-                        let release_date = dateFormatter.dateFromString("1111-11-11")!
+                        let release_date = dateFormatter.date(from: "1111-11-11")!
                     } else {
-                    let release_date = dateFormatter.dateFromString(date)!
+                    let release_date = dateFormatter.date(from: date)!
                     if let
                         poster = movie["poster_path"].string,
-                        backdrop = movie["backdrop_path"].string {
+                        let backdrop = movie["backdrop_path"].string {
                         // Store the info in Movie ojbect
                         let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: backdrop)
-                        currentMovie.addObject(m)
+                        currentMovie.add(m)
                     } else {
                         // Some movies may not provide poster and images
                         let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image")
-                        currentMovie.addObject(m)
+                        currentMovie.add(m)
                     }
                     }
                 }
@@ -219,10 +219,10 @@ class SearchTableController: UITableViewController {
     }
     
     // pass selected movie to movie detail screen
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "S_ViewMovieSegue"
         {
-            let controller: MovieViewController = segue.destinationViewController as! MovieViewController
+            let controller: MovieViewController = segue.destination as! MovieViewController
             
             controller.currentMovie = m
             // Display movie details screen

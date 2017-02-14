@@ -34,18 +34,18 @@ class PopularTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.infoLabel.text = "Loading movies..."
+        self.infoLabel.text = " Loading movies..."
         
         // First download movie
         self.downloadMovieData(self.url)
         
         // Download more movies
-        for var i = 2; i <= 4; i++ {
+        for i in (0..<5) {
             let urls = "https://api.themoviedb.org/3/movie/popular?page=" + String(i) + "&api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
             self.downloadMoreMovieData(urls)
         }
         
-        self.refreshControl?.addTarget(self, action: #selector(PopularTableController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(PopularTableController.refresh(_:)), for: UIControlEvents.valueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -59,7 +59,7 @@ class PopularTableController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func refresh(sender:AnyObject)
+    func refresh(_ sender:AnyObject)
     {
         // Updating table view data
         self.tableView.reloadData()
@@ -68,12 +68,12 @@ class PopularTableController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch(section)
         {
         case 0: return self.elements.count
@@ -82,13 +82,13 @@ class PopularTableController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "MovieTableCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MovieTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MovieTableCell
         
         // Configure the cell...
         let m: Movie = self.elements[indexPath.row] as! Movie
-        self.infoLabel.text = "Here Are " + String(currentMovie.count) + " Popular Movies"
+        self.infoLabel.text = " Here Are " + String(currentMovie.count) + " Popular Movies"
         if (m.title != nil) {
             cell.titleLabel.text = m.title
         }
@@ -99,15 +99,15 @@ class PopularTableController: UITableViewController {
             cell.rateLabel.text = "Rate: " + String(format: "%.2f", m.rate!)
         }
         if (m.date != nil) {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let date = dateFormatter.stringFromDate(m.date!)
+            let date = dateFormatter.string(from: m.date! as Date)
             cell.dateLabel.text = "Release Date: \(date)"
         }
         if (m.poster != nil) {
             let image = "http://image.tmdb.org/t/p/w500" + m.poster! + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
-            if let url  = NSURL(string: image),
-                data = NSData(contentsOfURL: url)
+            if let url  = URL(string: image),
+                let data = try? Data(contentsOf: url)
             {
                 cell.posterView.image = UIImage(data: data)
             } else if (m.poster == "No Poster") {
@@ -118,7 +118,7 @@ class PopularTableController: UITableViewController {
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0{
             return true
         }
@@ -129,83 +129,83 @@ class PopularTableController: UITableViewController {
     
     // When scroll down to the bottom of table view, load more movies from the array
     // solution from: http://stackoverflow.com/questions/27079253/load-more-for-uitableview-in-swift
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastElement = elements.count - 1
         if indexPath.row == lastElement && lastElement != currentMovie.count - 1 {
             // handle your logic here to get more items, add it to dataSource and reload tableview
             currentPage += 20
             nextpage = elements.count - 1
-            elements.addObjectsFromArray(currentMovie.subarrayWithRange(NSMakeRange(currentPage, 20)))
+            elements.addObjects(from: currentMovie.subarray(with: NSMakeRange(currentPage, 20)))
             tableView.reloadData()
         }
     }
     
     // Override to get selected movie
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let indexPath = tableView.indexPathForSelectedRow!
         
         m = self.currentMovie[indexPath.row] as! Movie
         
-        self.performSegueWithIdentifier("P_ViewMovieSegue", sender: nil)
+        self.performSegue(withIdentifier: "P_ViewMovieSegue", sender: nil)
     }
     
     // Download popular movies from the source and load them into tableview and check network connection
     // solution from: http://docs.themoviedb.apiary.io/#reference/movies/moviepopular
-    func downloadMovieData(url: String) {
-        let url = NSURL(string: url)!
-        let request = NSMutableURLRequest(URL: url)
+    func downloadMovieData(_ url: String) {
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let session = NSURLSession.sharedSession()
-        let priority = QOS_CLASS_USER_INTERACTIVE
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+        let session = URLSession.shared
+        let priority = DispatchQoS.QoSClass.userInteractive
+        DispatchQueue.global(qos: priority).async {
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             if let data = data {
                 self.parseMovieJSON(data)
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.elements.addObjectsFromArray(self.currentMovie.subarrayWithRange(NSMakeRange(0, 20)))
+                DispatchQueue.main.async {
+                    self.elements.addObjects(from: self.currentMovie.subarray(with: NSMakeRange(0, 20)))
                     self.tableView.reloadData()
                 }
             } else {
                 let messageString: String = "Something wrong with the connection"
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
-                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                 
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
-        }
+        }) 
         task.resume()
         }
         // Download movies
     }
     
     // Download more popular movies but not load into tableview and check network connection
-    func downloadMoreMovieData(url: String) {
-        let url = NSURL(string: url)!
-        let request = NSMutableURLRequest(URL: url)
+    func downloadMoreMovieData(_ url: String) {
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let session = NSURLSession.sharedSession()
-        let priority = QOS_CLASS_USER_INTERACTIVE
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            let task = session.dataTaskWithRequest(request) { data, response, error in
+        let session = URLSession.shared
+        let priority = DispatchQoS.QoSClass.userInteractive
+        DispatchQueue.global(qos: priority).async {
+            let task = session.dataTask(with: request, completionHandler: { data, response, error in
                 if let data = data {
                     self.parseMovieJSON(data)
                 } else {
                     let messageString: String = "Something wrong with the connection"
                     // Setup an alert to warn user
                     // UIAlertController manages an alert instance
-                    let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                    let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                     
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                     
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
                 }
-            }
+            }) 
             task.resume()
         }
         // Download movies
@@ -214,10 +214,10 @@ class PopularTableController: UITableViewController {
     // Parse the received json result
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON
     // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
-    func parseMovieJSON(movieJSON:NSData){
+    func parseMovieJSON(_ movieJSON:Data){
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             totalPages = json["total_pages"].int
@@ -226,26 +226,26 @@ class PopularTableController: UITableViewController {
             for movie in json["results"].arrayValue {
                 if let
                     id = movie["id"].int,
-                    title = movie["title"].string,
-                    overview = movie["overview"].string,
-                    popularity = movie["popularity"].double,
-                    rate = movie["vote_average"].double,
-                    date = movie["release_date"].string,
-                    count = movie["vote_count"].int{
-                    let dateFormatter = NSDateFormatter()
+                    let title = movie["title"].string,
+                    let overview = movie["overview"].string,
+                    let popularity = movie["popularity"].double,
+                    let rate = movie["vote_average"].double,
+                    let date = movie["release_date"].string,
+                    let count = movie["vote_count"].int{
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
-                    dateFormatter.timeZone = NSTimeZone(name: "UTC")
-                    let release_date = dateFormatter.dateFromString(date)!
+                    dateFormatter.timeZone = TimeZone(identifier: "UTC")
+                    let release_date = dateFormatter.date(from: date)!
                     if let
                         poster = movie["poster_path"].string,
-                        backdrop = movie["backdrop_path"].string {
+                        let backdrop = movie["backdrop_path"].string {
                         // Store the info in Movie ojbect
                         let m: Movie = Movie(id: id, title: title, poster: poster, overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: backdrop)
-                        currentMovie.addObject(m)
+                        currentMovie.add(m)
                     } else {
                         // Some movies may not provide poster and images
                         let m: Movie = Movie(id: id, title: title, poster: "No Poster", overview: overview, popularity: popularity, rate: rate, date: release_date, count: count, backdrop: "No Image")
-                        currentMovie.addObject(m)
+                        currentMovie.add(m)
                     }
                 }
             }
@@ -255,10 +255,10 @@ class PopularTableController: UITableViewController {
     }
     
     // pass selected movie to movie detail screen
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "P_ViewMovieSegue"
         {
-            let controller: MovieViewController = segue.destinationViewController as! MovieViewController
+            let controller: MovieViewController = segue.destination as! MovieViewController
             
             controller.currentMovie = m
             // Display movie details screen

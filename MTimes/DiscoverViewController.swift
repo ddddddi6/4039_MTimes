@@ -25,10 +25,10 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         {
             for subView1 in subView.subviews
             {
-                if subView1.isKindOfClass(UITextField)
+                if subView1.isKind(of: UITextField.self)
                 {
-                    subView1.backgroundColor = UIColor.clearColor()
-                    subView1.layer.borderColor = UIColor.lightGrayColor().CGColor
+                    subView1.backgroundColor = UIColor.clear
+                    subView1.layer.borderColor = UIColor.lightGray.cgColor
                     subView1.layer.borderWidth = 1
                     subView1.layer.cornerRadius = 5.0
                     subView1.clipsToBounds = true
@@ -38,8 +38,8 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         
         searchBar.delegate = self
         
-        let textFieldInsideSearchBar = searchBar.valueForKey("searchField") as? UITextField
-        textFieldInsideSearchBar?.textColor = UIColor.whiteColor()
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = UIColor.white
         
         self.recLabel.text = " Recommendation"
         self.mapLabel.text = " Locate cinema"
@@ -51,25 +51,25 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
         var number = self.searchBar.frame.maxY + 47
         for i in 0 ..< buttonText.count
         {
-            let button = UIButton(frame: CGRectMake(100, number, 150, 28))
+            let button = UIButton(frame: CGRect(x: 100, y: number, width: 150, height: 28))
             button.center.x = self.view.center.x
-            button.backgroundColor = UIColor.grayColor()
+            button.backgroundColor = UIColor.gray
             button.layer.cornerRadius = 5.0
-            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-            button.titleLabel?.font = UIFont.boldSystemFontOfSize(14)
-            button.setTitle(buttonText[i], forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.white, for: UIControlState())
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            button.setTitle(buttonText[i], for: UIControlState())
             buttonArray.append(button)
             self.view.addSubview(button)
             number += 88
         }
         
-        buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[0].addTarget(self, action: #selector(DiscoverViewController.displayPopularMovies(_:)), for: .touchUpInside)
         
-        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.showMap(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[1].addTarget(self, action: #selector(DiscoverViewController.showMap(_:)), for: .touchUpInside)
         
-        buttonArray[2].addTarget(self, action: #selector(DiscoverViewController.displayBookmark(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[2].addTarget(self, action: #selector(DiscoverViewController.displayBookmark(_:)), for: .touchUpInside)
         
-        buttonArray[3].addTarget(self, action: #selector(DiscoverViewController.displayAboutScreen(_:)), forControlEvents: .TouchUpInside)
+        buttonArray[3].addTarget(self, action: #selector(DiscoverViewController.displayAboutScreen(_:)), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }
@@ -80,40 +80,40 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
     }
     
     // jump to popular movie screen
-    func displayPopularMovies (sender: UIButton!) {
-        self.performSegueWithIdentifier("PopularSegue", sender: nil)
+    func displayPopularMovies (_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "PopularSegue", sender: nil)
     }
     
     // jump to bookmark screen
-    func displayBookmark (sender: UIButton!) {
-        self.performSegueWithIdentifier("ShowBookmarkSegue", sender: nil)
+    func displayBookmark (_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "ShowBookmarkSegue", sender: nil)
     }
     
     //jump to about screen
-    func displayAboutScreen (sender: UIButton!) {
-        self.performSegueWithIdentifier("AboutSegue", sender: nil)
+    func displayAboutScreen (_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "AboutSegue", sender: nil)
     }
     
     // jump to search result screen
-    func searchBarSearchButtonClicked(searchBar: UISearchBar!)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar!)
     {
-        movieTitle = searchBar.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        self.performSegueWithIdentifier("SearchSegue", sender: nil)
+        movieTitle = searchBar.text!.trimmingCharacters(in: CharacterSet.whitespaces)
+        self.performSegue(withIdentifier: "SearchSegue", sender: nil)
     }
     
     // jump to map screen
-    func showMap (sender: UIButton!) {
-        self.performSegueWithIdentifier("ShowMapSegue", sender: nil)
+    func showMap (_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "ShowMapSegue", sender: nil)
     }
     
     // dismiss keyboard for search bar
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
     
     // pass movie title to second view
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchSegue"
         {
             if(movieTitle == "")
@@ -122,14 +122,14 @@ class DiscoverViewController: UIViewController, UISearchBarDelegate {
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
                 let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle:
-                    UIAlertControllerStyle.Alert)
+                    UIAlertControllerStyle.alert)
                 
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
                 
             } else {
-                let controller: SearchTableController = segue.destinationViewController as! SearchTableController
+                let controller: SearchTableController = segue.destination as! SearchTableController
                 controller.movieTitle = movieTitle
             }
         }

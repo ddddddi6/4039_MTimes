@@ -18,56 +18,56 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
     
         // Labels for displaying infomation related to this application
-        let m_api = UILabel(frame: CGRectMake(10, 85 , 380, 21))
-        m_api.text = "The Movie Database API"
-        m_api.textColor = UIColor.whiteColor()
-        m_api.font = UIFont.boldSystemFontOfSize(17)
+        let apiLabel = UILabel(frame: CGRect(x: 10, y: 85 , width: 380, height: 21))
+        apiLabel.text = "The Movie Database API"
+        apiLabel.textColor = UIColor.white
+        apiLabel.font = UIFont.boldSystemFont(ofSize: 17)
         
-        let m_desc = UILabel(frame: CGRectMake(10, m_api.frame.maxY+5, 360, 42))
-        m_desc.text = "https://www.themoviedb.org/documentation/api/terms-of-use"
-        m_desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        m_desc.numberOfLines = 2
-        m_desc.textColor = UIColor.whiteColor()
-        m_desc.font = UIFont.systemFontOfSize(14)
+        let descLabel = UILabel(frame: CGRect(x: 10, y: apiLabel.frame.maxY+5, width: 360, height: 42))
+        descLabel.text = "https://www.themoviedb.org/documentation/api/terms-of-use"
+        descLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        descLabel.numberOfLines = 2
+        descLabel.textColor = UIColor.white
+        descLabel.font = UIFont.systemFont(ofSize: 14)
         
-        let g_api = UILabel(frame: CGRectMake(10, m_desc.frame.maxY+5, 380, 21))
-        g_api.text = "Google Map API"
-        g_api.textColor = UIColor.whiteColor()
-        g_api.font = UIFont.boldSystemFontOfSize(17)
+        let googleApi = UILabel(frame: CGRect(x: 10, y: descLabel.frame.maxY+5, width: 380, height: 21))
+        googleApi.text = "Google Map API"
+        googleApi.textColor = UIColor.white
+        googleApi.font = UIFont.boldSystemFont(ofSize: 17)
         
-        let g_desc = UILabel(frame: CGRectMake(10, g_api.frame.maxY+5, 360, 42))
-        g_desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        g_desc.numberOfLines = 2
-        g_desc.text = "https://developers.google.com/places/web-service/search#PlaceSearchRequests"
-        g_desc.textColor = UIColor.whiteColor()
-        g_desc.font = UIFont.systemFontOfSize(14)
+        let googleDesc = UILabel(frame: CGRect(x: 10, y: googleApi.frame.maxY+5, width: 360, height: 42))
+        googleDesc.lineBreakMode = NSLineBreakMode.byWordWrapping
+        googleDesc.numberOfLines = 2
+        googleDesc.text = "https://developers.google.com/places/web-service/search#PlaceSearchRequests"
+        googleDesc.textColor = UIColor.white
+        googleDesc.font = UIFont.systemFont(ofSize: 14)
         
-        let swiftyjson = UILabel(frame: CGRectMake(10, g_desc.frame.maxY+5, 380, 21))
-        swiftyjson.text = "SwiftyJSON"
-        swiftyjson.textColor = UIColor.whiteColor()
-        swiftyjson.font = UIFont.boldSystemFontOfSize(17)
+        let swiftyJson = UILabel(frame: CGRect(x: 10, y: googleDesc.frame.maxY+5, width: 380, height: 21))
+        swiftyJson.text = "SwiftyJSON"
+        swiftyJson.textColor = UIColor.white
+        swiftyJson.font = UIFont.boldSystemFont(ofSize: 17)
         
-        let s_desc = UILabel(frame: CGRectMake(10, swiftyjson.frame.maxY+5, 360, 42))
-        s_desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        s_desc.numberOfLines = 2
-        s_desc.text = "https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE"
-        s_desc.textColor = UIColor.whiteColor()
-        s_desc.font = UIFont.systemFontOfSize(14)
+        let swiftyJsonDesc = UILabel(frame: CGRect(x: 10, y: swiftyJson.frame.maxY+5, width: 360, height: 42))
+        swiftyJsonDesc.lineBreakMode = NSLineBreakMode.byWordWrapping
+        swiftyJsonDesc.numberOfLines = 2
+        swiftyJsonDesc.text = "https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE"
+        swiftyJsonDesc.textColor = UIColor.white
+        swiftyJsonDesc.font = UIFont.systemFont(ofSize: 14)
         
-        let desc = UILabel(frame: CGRectMake(10, s_desc.frame.maxY+10, 360, 42))
+        let desc = UILabel(frame: CGRect(x: 10, y: swiftyJsonDesc.frame.maxY+10, width: 360, height: 42))
         desc.text = "This product uses the TMDb API but is not endorsed or certified by TMDb."
-        desc.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        desc.lineBreakMode = NSLineBreakMode.byWordWrapping
         desc.numberOfLines = 2
-        desc.textColor = UIColor.lightGrayColor()
-        desc.font = UIFont.boldSystemFontOfSize(15)
+        desc.textColor = UIColor.lightGray
+        desc.font = UIFont.boldSystemFont(ofSize: 15)
         
         // Add labels to the view
-        self.view.addSubview(m_api)
-        self.view.addSubview(m_desc)
-        self.view.addSubview(g_api)
-        self.view.addSubview(g_desc)
-        self.view.addSubview(swiftyjson)
-        self.view.addSubview(s_desc)
+        self.view.addSubview(apiLabel)
+        self.view.addSubview(descLabel)
+        self.view.addSubview(googleApi)
+        self.view.addSubview(googleDesc)
+        self.view.addSubview(swiftyJson)
+        self.view.addSubview(swiftyJsonDesc)
         self.view.addSubview(desc)
         
         // Do any additional setup after loading the view.

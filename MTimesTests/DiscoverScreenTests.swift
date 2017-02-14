@@ -19,9 +19,9 @@ class DiscoverScreenTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        avc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AboutViewController") as! AboutViewController
-        dvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DiscoverViewController") as! DiscoverViewController
-        stc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchTableController") as! SearchTableController
+        avc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+        dvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DiscoverViewController") as! DiscoverViewController
+        stc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchTableController") as! SearchTableController
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -37,7 +37,7 @@ class DiscoverScreenTest: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
@@ -48,8 +48,8 @@ class DiscoverScreenTest: XCTestCase {
             
             var segueIdentifier: NSString?
             
-            override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
-                segueIdentifier = identifier
+            override func performSegue(withIdentifier identifier: String?, sender: Any?) {
+                segueIdentifier = identifier as NSString?
             }
         }
         
@@ -70,8 +70,8 @@ class DiscoverScreenTest: XCTestCase {
             
             var segueIdentifier: NSString?
             
-            override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
-                segueIdentifier = identifier
+            override func performSegue(withIdentifier identifier: String?, sender: Any?) {
+                segueIdentifier = identifier as NSString?
             }
         }
         
@@ -92,8 +92,8 @@ class DiscoverScreenTest: XCTestCase {
             
             var segueIdentifier: NSString?
             
-            override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
-                segueIdentifier = identifier
+            override func performSegue(withIdentifier identifier: String?, sender: Any?) {
+                segueIdentifier = identifier as NSString?
             }
         }
         
@@ -114,8 +114,8 @@ class DiscoverScreenTest: XCTestCase {
             
             var segueIdentifier: NSString?
             
-            override func performSegueWithIdentifier(identifier: String?, sender: AnyObject?) {
-                segueIdentifier = identifier
+            override func performSegue(withIdentifier identifier: String?, sender: Any?) {
+                segueIdentifier = identifier as NSString?
             }
         }
         
@@ -138,7 +138,7 @@ class DiscoverScreenTest: XCTestCase {
                                       source: dvc,
                                       destination: stc)
         
-        dvc.prepareForSegue(segue, sender: nil)
+        dvc.prepare(for: segue, sender: nil)
         
         if let passedArgument = stc.movieTitle {
             XCTAssertEqual("Movie Title", passedArgument)

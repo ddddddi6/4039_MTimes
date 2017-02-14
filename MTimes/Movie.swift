@@ -15,7 +15,7 @@ class Movie: NSObject {
     var overview: String?
     var popularity: Double?
     var rate: Double?
-    var date: NSDate?
+    var date: Date?
     var count: Int?
     var backdrop: String?
     
@@ -33,7 +33,7 @@ class Movie: NSObject {
         // Default intialization of each variables
     }
     
-    init(id: Int, title: String, poster: String, overview: String, popularity: Double, rate: Double, date: NSDate, count: Int, backdrop: String)
+    init(id: Int, title: String, poster: String, overview: String, popularity: Double, rate: Double, date: Date, count: Int, backdrop: String)
     {
         self.id = id
         self.title = title

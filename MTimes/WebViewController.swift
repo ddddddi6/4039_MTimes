@@ -17,10 +17,10 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string: weblink!);
-        let requestObj = NSURLRequest(URL: url!);
+        let url = URL(string: weblink!);
+        let requestObj = URLRequest(url: url!);
         webView.loadRequest(requestObj);
-        webView.backgroundColor = UIColor.clearColor()
+        webView.backgroundColor = UIColor.clear
 
         // Do any additional setup after loading the view.
     }

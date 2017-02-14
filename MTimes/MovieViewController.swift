@@ -31,7 +31,7 @@ class MovieViewController: UIViewController {
     var videoKey: String?
     var reviews = [String]()
     
-    var myDefaults = NSUserDefaults.standardUserDefaults()
+    var myDefaults = UserDefaults.standard
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,17 +52,17 @@ class MovieViewController: UIViewController {
             }
         }
             // check whether the movie has been saved
-        let key = myDefaults.objectForKey("savedMovie")
+        let key = myDefaults.object(forKey: "savedMovie")
             if (key != nil) {
                 if (checkMarked()){
                     // update UI if the movie has been saved
                 button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
-                button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
-                button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+                button.setTitle("Remove Bookmark", for: UIControlState())
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
                 }
             }
         
-            button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(MovieViewController.markMovie(_:)), for: .touchUpInside)
         
         // Do any additional setup after loading the view.
     }
@@ -72,70 +72,70 @@ class MovieViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.scrollView.contentSize.height = 3000
         
         self.overview.text = "Overview"
         
-        self.titleLabel.text = self.currentMovie!.title
+        self.titleLabel.text = "" + self.currentMovie!.title!
         self.popularityLabel.text = "Popularity: " + String(format: "%.2f", currentMovie!.popularity!)
         self.rateLabel.text = "Rate: " + String(format: "%.2f", currentMovie!.rate!) + "/" + String(currentMovie!.count!) + " votes"
         self.overviewLabel.text = currentMovie!.overview
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.stringFromDate(currentMovie!.date!)
+        let date = dateFormatter.string(from: currentMovie!.date! as Date)
         self.dateLabel.text = "Release Date: \(date)"
         let poster = "http://image.tmdb.org/t/p/w500" + currentMovie!.poster! + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
-        if let url  = NSURL(string: poster),
-            data = NSData(contentsOfURL: url)
+        if let url  = URL(string: poster),
+            let data = try? Data(contentsOf: url)
         {
             self.posterView.image = UIImage(data: data)
         } else {
             self.posterView.image = UIImage(named: "Image")
         }
-        self.imagesView.frame.size.width = UIScreen.mainScreen().bounds.width
-        self.imagesView.frame.size.height = UIScreen.mainScreen().bounds.width / 1.5
+        self.imagesView.frame.size.width = UIScreen.main.bounds.width
+        self.imagesView.frame.size.height = UIScreen.main.bounds.width / 1.5
         
         // Display selected movie details
     }
     
     // Download selected movie from the source and check network connection
     // solution from: http://docs.themoviedb.apiary.io
-    func downloadMovieData(url: String, flag: Int) {
-        let url = NSURL(string: url)!
-        let request = NSMutableURLRequest(URL: url)
+    func downloadMovieData(_ url: String, flag: Int) {
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let session = NSURLSession.sharedSession()
-        let priority = QOS_CLASS_USER_INTERACTIVE
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+        let session = URLSession.shared
+        let priority = DispatchQoS.QoSClass.userInteractive
+        DispatchQueue.global(qos: priority).async {
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             if let data = data {
                 // parse json result
                 switch (flag) {
                 case 0:
                     self.parsePosterJSON(data)
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.updateImages()
                     }
                     break
                 case 1:
                     self.parseSimilarMovieJSON(data)
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.updateSimilarMovies()
                     }
                     break
                 case 2:
                     self.parseVideoJSON(data)
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.updateVideo()
                     }
                     break
                 case 3:
                     self.parseReviewJSON(data)
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async {
                         self.updateReview()
                     }
                     break
@@ -146,13 +146,13 @@ class MovieViewController: UIViewController {
                 let messageString: String = "Something wrong with the network connection"
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
-                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                 
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
-        }
+        }) 
         task.resume()
         }
         // Download movie
@@ -161,10 +161,10 @@ class MovieViewController: UIViewController {
     // Parse the received json result for backdrops
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON
     // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
-    func parsePosterJSON(movieJSON:NSData) -> Bool{
+    func parsePosterJSON(_ movieJSON:Data) -> Bool{
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             if json["backdrops"] != 0 {
@@ -185,11 +185,11 @@ class MovieViewController: UIViewController {
     func updateImages() {
         if imageSet.count != 0 {
             let image1 = "http://image.tmdb.org/t/p/w500" + self.imageSet[0] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
-            let imageView1 = UIImageView(frame: CGRectMake(0, 0, self.imagesView.frame.width, self.imagesView.frame.height))
-            let imageView2 = UIImageView(frame: CGRectMake(self.imagesView.frame.width, 0, self.imagesView.frame.width, self.imagesView.frame.height))
+            let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: self.imagesView.frame.width, height: self.imagesView.frame.height))
+            let imageView2 = UIImageView(frame: CGRect(x: self.imagesView.frame.width, y: 0, width: self.imagesView.frame.width, height: self.imagesView.frame.height))
         
-            if let url  = NSURL(string: image1),
-                data = NSData(contentsOfURL: url) {
+            if let url  = URL(string: image1),
+                let data = try? Data(contentsOf: url) {
                     imageView1.image = UIImage(data: data)
                 } else {
                     imageView1.image = UIImage(named: "noimage")
@@ -197,28 +197,28 @@ class MovieViewController: UIViewController {
             
             let image2 = "http://image.tmdb.org/t/p/w500" + self.imageSet[imageSet.count - 1] + "?api_key=dfa910cc8fcf72c0ac1c5e26cf6f6df4" as String
         
-            if let url  = NSURL(string: image2),
-                data = NSData(contentsOfURL: url) {
+            if let url  = URL(string: image2),
+                let data = try? Data(contentsOf: url) {
                     imageView2.image = UIImage(data: data)
                 } else {
                     imageView2.image = UIImage(named: "noimage")
                 }
             self.imagesView.addSubview(imageView1)
             self.imagesView.addSubview(imageView2)
-            imagesView.contentSize = CGSizeMake(imagesView.frame.size.width*2, imagesView.frame.size.height)
+            imagesView.contentSize = CGSize(width: imagesView.frame.size.width*2, height: imagesView.frame.size.height)
         } else {
-            let imageView1 = UIImageView(frame: CGRectMake(0, 0, self.imagesView.frame.width, self.imagesView.frame.height))
+            let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: self.imagesView.frame.width, height: self.imagesView.frame.height))
             imageView1.image = UIImage(named: "noimage")
             self.imagesView.addSubview(imageView1)
         }
     }
     
     // Parse the received json result for similar movies
-    func parseSimilarMovieJSON(movieJSON:NSData) -> Bool{
+    func parseSimilarMovieJSON(_ movieJSON:Data) -> Bool{
         var flag = true as Bool
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             if json["results"].count != 0 {
@@ -242,29 +242,29 @@ class MovieViewController: UIViewController {
             self.similar.text = "Similar Movies"
             self.similar.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
             var number = self.similar.frame.maxY + 5
-            for var i = 0; i < 5; i++
+            for i in 0 ..< 5
             {
-                let label = UILabel(frame: CGRectMake(23, number , 380, 21))
+                let label = UILabel(frame: CGRect(x: 23, y: number , width: 380, height: 21))
                 label.text = self.movieSet[i]
                 label.textColor = UIColor(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0, alpha: 0.7)
-                label.font = UIFont.boldSystemFontOfSize(11)
+                label.font = UIFont.boldSystemFont(ofSize: 11)
                 self.scrollView.addSubview(label)
                 number += 15
                 self.scrollView.contentSize.height += 8
             }
         } else {
             self.similar.text = " "
-            self.similar.enabled = false
+            self.similar.isEnabled = false
             self.scrollView.contentSize.height = self.similar.frame.maxY
         }
         return true
     }
     
     // Parse the received json result for videos
-    func parseVideoJSON(movieJSON:NSData) {
+    func parseVideoJSON(_ movieJSON:Data) {
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             if json["results"].count != 0 {
@@ -282,15 +282,15 @@ class MovieViewController: UIViewController {
     // solution from: https://www.youtube.com/watch?v=5qwyoi3sQPI
     func updateVideo() {
         if self.videoKey != nil {
-            let webV:UIWebView = UIWebView(frame: CGRectMake(0, scrollView.contentSize.height+25, UIScreen.mainScreen().bounds.width, 230))
-            webV.backgroundColor = UIColor.clearColor()
+            let webV:UIWebView = UIWebView(frame: CGRect(x: 0, y: scrollView.contentSize.height+25, width: UIScreen.main.bounds.width, height: 230))
+            webV.backgroundColor = UIColor.clear
             webV.scrollView.showsHorizontalScrollIndicator = false
             webV.scrollView.showsVerticalScrollIndicator = false
         
             let height = webV.frame.height - 20
         
             let youtubelink: String = "https://www.youtube.com/embed/" + self.videoKey!
-            let Code: NSString = "<body style='background-color: #4C4C4C; margin: 0; padding: 0;'><iframe width=100% height=\(height) src=\(youtubelink) frameborder=0  allowfullscreen></iframe></body>"
+            let Code: NSString = "<body style='background-color: #4C4C4C; margin: 0; padding: 0;'><iframe width=100% height=\(height) src=\(youtubelink) frameborder=0  allowfullscreen></iframe></body>" as NSString
             webV.loadHTMLString(Code as String, baseURL: nil)
         
             self.scrollView.addSubview(webV)
@@ -302,10 +302,10 @@ class MovieViewController: UIViewController {
     }
     
     // Parse the received json result for reviews
-    func parseReviewJSON(movieJSON:NSData) {
+    func parseReviewJSON(_ movieJSON:Data) {
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
             
             if json["results"].count != 0 {
@@ -324,21 +324,21 @@ class MovieViewController: UIViewController {
     // display reviews of current movie
     func updateReview() {
         if reviews.count != 0 {
-            let review = UILabel(frame: CGRectMake(8, scrollView.contentSize.height,  UIScreen.mainScreen().bounds.width - 16, 21))
+            let review = UILabel(frame: CGRect(x: 8, y: scrollView.contentSize.height,  width: UIScreen.main.bounds.width - 16, height: 21))
             review.text = "Reviews"
-            review.textColor = UIColor.whiteColor()
-            review.font = UIFont.boldSystemFontOfSize(17)
+            review.textColor = UIColor.white
+            review.font = UIFont.boldSystemFont(ofSize: 17)
             review.backgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1)
             self.scrollView.addSubview(review)
             var number = review.frame.maxY + 5
             for i in 0 ..< self.reviews.count
             {
-                let label = UILabel(frame: CGRectMake(23, number , 330, 62))
-                label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+                let label = UILabel(frame: CGRect(x: 23, y: number , width: 330, height: 62))
+                label.lineBreakMode = NSLineBreakMode.byWordWrapping
                 label.numberOfLines = 3
                 label.text = self.reviews[i]
-                label.textColor = UIColor.whiteColor()
-                label.font = UIFont.systemFontOfSize(12)
+                label.textColor = UIColor.white
+                label.font = UIFont.systemFont(ofSize: 12)
                 self.scrollView.addSubview(label)
                 number = label.frame.maxY + 5
                 self.scrollView.contentSize.height = label.frame.maxY + 5
@@ -352,24 +352,23 @@ class MovieViewController: UIViewController {
     // save or mark the movie in `NSUserDefaults`
     // solution from: https://www.hackingwithswift.com/read/12/2/reading-and-writing-basics-nsuserdefaults
     // and http://stackoverflow.com/questions/26233067/simple-persistent-storage-in-swift
-    func markMovie(sender: UIButton!) {
+    func markMovie(_ sender: UIButton!) {
         
         // Check whether the `NSUserDefaults` exists and the movie has been saved, then update UI
         
-        if (myDefaults.objectForKey("savedMovie") == nil) {
+        if (myDefaults.object(forKey: "savedMovie") == nil) {
             // the savedMovie `NSUserDefaults` does not exist
             
-            let array = [["id": currentMovie!.id!, "title": currentMovie!.title!]] as? [[String:AnyObject]]
-            
+            let array = [["id": currentMovie!.id!, "title": currentMovie!.title!]]             
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(array, forKey: "savedMovie")
+            myDefaults.set(array, forKey: "savedMovie")
             
             // call this after update
             myDefaults.synchronize()
             
             // update UI
-            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
-            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+            button.setTitle("Remove Bookmark", for: UIControlState())
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
 
         } else {
@@ -379,38 +378,38 @@ class MovieViewController: UIViewController {
             var array = getMovies()
             
             // add movie id and title
-            array!.append(["id": currentMovie!.id!, "title": currentMovie!.title!])
+            array!.append(["id": currentMovie!.id! as AnyObject, "title": currentMovie!.title! as AnyObject])
             
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(array, forKey: "savedMovie")
+            myDefaults.set(array, forKey: "savedMovie")
                 
             // call this after update
             myDefaults.synchronize()
             
             // update UI
-            button.setTitle("Remove Bookmark", forState: UIControlState.Normal)
-            button.titleLabel?.font = UIFont.boldSystemFontOfSize(12)
+            button.setTitle("Remove Bookmark", for: UIControlState())
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             button?.backgroundColor = UIColor(red: 55/255.0, green: 187.0/255.0, blue: 38.0/255.0, alpha: 1.0)
         } else {
             // remove mark from this movie and delete from `NSUserDefaults`
                 
             var array = getMovies()
             var index = -1 as Int
-            for var i = 0; i <= array!.count; ++i {
+            for i in (0..<array!.count+1) {
                 let id = array![i]["id"] as! Int
                 if currentMovie?.id == id {
                     index = i
                     break
                 }
             }
-            array!.removeAtIndex(index)
+            array!.remove(at: index)
             // then update whats in the `NSUserDefault`
-            myDefaults.setObject(array, forKey: "savedMovie")
+            myDefaults.set(array, forKey: "savedMovie")
             
             // call this after update
             myDefaults.synchronize()
-            button.setTitle("Bookmark", forState: UIControlState.Normal)
-            button.titleLabel?.font = UIFont.systemFontOfSize(12)
+            button.setTitle("Bookmark", for: UIControlState())
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             button?.backgroundColor = UIColor(red: 127/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
         }
         }
@@ -418,7 +417,7 @@ class MovieViewController: UIViewController {
     
     // return saved movies
     func getMovies() -> [[String:AnyObject]]? {
-        let movies = myDefaults.objectForKey("savedMovie") as? [[String:AnyObject]]
+        let movies = myDefaults.object(forKey: "savedMovie") as? [[String:AnyObject]]
         return movies
     }
     

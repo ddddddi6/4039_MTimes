@@ -39,31 +39,31 @@ class CinemaViewController: UIViewController {
         
         // add gesture to Labels
         let tapGesture_c = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.callNumber(_:)))
-        phoneNumber.userInteractionEnabled=true
+        phoneNumber.isUserInteractionEnabled=true
         phoneNumber.addGestureRecognizer(tapGesture_c)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.navigateCinema(_:)))
-        address.userInteractionEnabled=true
+        address.isUserInteractionEnabled=true
         address.addGestureRecognizer(tapGesture)
         
         let tapGesture_p = UITapGestureRecognizer(target: self, action: #selector(CinemaViewController.webView(_:)))
-        homepage.userInteractionEnabled=true
+        homepage.isUserInteractionEnabled=true
         homepage.addGestureRecognizer(tapGesture_p)
         
         // Do any additional setup after loading the view.
     }
     
     // jump to cinema homepage
-    func webView(sender:UITapGestureRecognizer){
+    func webView(_ sender:UITapGestureRecognizer){
         link = self.homepage.text
-        self.performSegueWithIdentifier("CinemaWebSegue", sender: nil)
+        self.performSegue(withIdentifier: "CinemaWebSegue", sender: nil)
     }
     
     // call cinema phone number
-    func callNumber(sender:UITapGestureRecognizer) {
-        let number = self.phoneNumber.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        if let phoneCallURL:NSURL = NSURL(string:"tel://\(number)") {
-            let application:UIApplication = UIApplication.sharedApplication()
+    func callNumber(_ sender:UITapGestureRecognizer) {
+        let number = self.phoneNumber.text!.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        if let phoneCallURL:URL = URL(string:"tel://\(number)") {
+            let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
                 application.openURL(phoneCallURL);
             }
@@ -71,7 +71,7 @@ class CinemaViewController: UIViewController {
     }
     
     // open the map in map application
-    func navigateCinema(sender:UITapGestureRecognizer) -> Bool{
+    func navigateCinema(_ sender:UITapGestureRecognizer) -> Bool{
         var flag = true as Bool
             let geocoder = CLGeocoder()
             let str = address.text // A string of the address info you already have
@@ -81,8 +81,8 @@ class CinemaViewController: UIViewController {
                     if let location = placemarks.first?.location {
                         let query = "?ll=\(location.coordinate.latitude),\(location.coordinate.longitude)"
                         let path = "http://maps.apple.com/" + query
-                        if let url = NSURL(string: path) {
-                            UIApplication.sharedApplication().openURL(url)
+                        if let url = URL(string: path) {
+                            UIApplication.shared.openURL(url)
                         } else {
                             flag = false
                             // Could not construct url. Handle error.
@@ -106,23 +106,23 @@ class CinemaViewController: UIViewController {
     
     // Download selected cinema from the source and check network connection
     func downloadCinemaData() {
-        let url = NSURL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + currentCinemaID! + "&key=AIzaSyBpHKu9KGpv-VacWvQOhrI7OVjGVdHQY9Y")!
-        let request = NSMutableURLRequest(URL: url)
+        let url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + currentCinemaID! + "&key=AIzaSyBpHKu9KGpv-VacWvQOhrI7OVjGVdHQY9Y")!
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             if let data = data {
                 self.parseCinemaJSON(data)
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.title = self.cinemaName
                     self.address.text = self.cinemaAddress
                     self.homepage.text = self.cinemaWeb
                     self.phoneNumber.text = self.cinemaPhone
                     self.rating.text = "Rating: " + String(format: "%.1f", self.cinemaRating!)
                     let poster = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + self.photo! + "&key=AIzaSyBpHKu9KGpv-VacWvQOhrI7OVjGVdHQY9Y" as String
-                    if let url  = NSURL(string: poster),
-                        data = NSData(contentsOfURL: url)
+                    if let url  = URL(string: poster),
+                        let data = try? Data(contentsOf: url)
                     {
                         self.cinemaPhoto.image = UIImage(data: data)
                     } else {
@@ -134,13 +134,13 @@ class CinemaViewController: UIViewController {
                 let messageString: String = "Something wrong with the connection"
                 // Setup an alert to warn user
                 // UIAlertController manages an alert instance
-                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.Alert)
+                let alertController = UIAlertController(title: "Alert", message: messageString, preferredStyle: UIAlertControllerStyle.alert)
                 
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
             }
-        }
+        }) 
         task.resume()
         // Download cinema
     }
@@ -148,19 +148,19 @@ class CinemaViewController: UIViewController {
     // Parse the received json result
     // solution from: https://github.com/SwiftyJSON/SwiftyJSON
     // and https://www.hackingwithswift.com/example-code/libraries/how-to-parse-json-using-swiftyjson
-    func parseCinemaJSON(movieJSON:NSData){
+    func parseCinemaJSON(_ movieJSON:Data){
         do{
-            let result = try NSJSONSerialization.JSONObjectWithData(movieJSON,
-                                                                    options: NSJSONReadingOptions.MutableContainers)
+            let result = try JSONSerialization.jsonObject(with: movieJSON,
+                                                                    options: JSONSerialization.ReadingOptions.mutableContainers)
             let json = JSON(result)
 
             if let
                 name = json["result"]["name"].string,
-                phone = json["result"]["international_phone_number"].string,
-                website = json["result"]["website"].string,
-                address = json["result"]["vicinity"].string,
-                photo = json["result"]["photos"][0]["photo_reference"].string,
-                rating = json["result"]["rating"].double{
+                let phone = json["result"]["international_phone_number"].string,
+                let website = json["result"]["website"].string,
+                let address = json["result"]["vicinity"].string,
+                let photo = json["result"]["photos"][0]["photo_reference"].string,
+                let rating = json["result"]["rating"].double{
                     self.cinemaName = name
                     self.cinemaPhone = phone
                     self.cinemaWeb = website
@@ -178,15 +178,15 @@ class CinemaViewController: UIViewController {
     // share the screenshot with external applications
     // solution from: https://www.hackingwithswift.com/example-code/uikit/how-to-share-content-with-uiactivityviewcontroller
     // and http://stackoverflow.com/questions/25448879/how-to-take-full-screen-screenshot-in-swift
-    @IBAction func share(sender: UIBarButtonItem) {
-        let layer = UIApplication.sharedApplication().keyWindow!.layer
+    @IBAction func share(_ sender: UIBarButtonItem) {
+        let layer = UIApplication.shared.keyWindow!.layer
         
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         
         // get the screenshot of current view
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, scale);
         
-        layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
         
         let img = UIGraphicsGetImageFromCurrentImageContext()
         
@@ -194,15 +194,15 @@ class CinemaViewController: UIViewController {
         
         let activityViewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
         
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
 
     }
     
     // pass homepage link to web view controller
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CinemaWebSegue"
         {
-            let controller: WebViewController = segue.destinationViewController as! WebViewController
+            let controller: WebViewController = segue.destination as! WebViewController
             controller.weblink = link
             // Go to cinema homepage
         }
